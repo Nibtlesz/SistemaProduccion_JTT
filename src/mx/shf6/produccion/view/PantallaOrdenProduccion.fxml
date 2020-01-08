@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+
+<AnchorPane styleClass="bodyPantallaEspera" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaOrdenProduccion">
+   <children>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium16" text="Ordenes de Producción" />
+                        <Label styleClass="labelRobotoMedium14" text="Gestión de la producción en planta" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="comboStatus" prefWidth="100.0" promptText="Status" styleClass="campoBuscador">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ComboBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="320.0">
+                     <children>
+                        <DatePicker fx:id="fechaInicial" prefWidth="150.0" styleClass="campoBuscador">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></DatePicker>
+                        <DatePicker fx:id="fechaFinal" prefWidth="150.0" styleClass="campoBuscador" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <TextField fx:id="campoTextoBusqueda" prefHeight="30.0" prefWidth="200.0" promptText="Buscar" styleClass="campoBuscador" />
+                  <HBox alignment="CENTER" maxHeight="30.0" maxWidth="30.0" onMouseClicked="#buscarOrdenProduccion" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/BuscarIcon.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/ActualizarBoton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ImageView>
+               </children>
+            </HBox>
+            <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tablaOrdenProduccion" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <PTableColumn fx:id="columnaFecha" percentageWidth="0.1" prefWidth="75.0" text="Fecha" />
+                        <PTableColumn fx:id="columnaOrdenCompra" percentageWidth="0.05" prefWidth="75.0" text="O.C" />
+                        <PTableColumn fx:id="columnaCliente" percentageWidth="0.2" prefWidth="75.0" text="Cliente" />
+                        <PTableColumn fx:id="columnaNumeroParte" percentageWidth="0.1" prefWidth="75.0" text="Proyecto" />
+                        <PTableColumn fx:id="columnaDescripcion" percentageWidth="0.2" prefWidth="75.0" text="Descripcion" />
+                        <PTableColumn fx:id="columnaCantidad" percentageWidth="0.05" prefWidth="75.0" text="Cantidad" />
+                        <PTableColumn fx:id="columnaStatus" percentageWidth="0.05" prefWidth="75.0" text="Status" />
+                      <PTableColumn fx:id="columnaLote" percentageWidth="0.05" prefWidth="75.0" text="PMP" />
+                        <PTableColumn fx:id="columnaAcciones" percentageWidth="0.2" prefWidth="75.0" text="Acciones" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

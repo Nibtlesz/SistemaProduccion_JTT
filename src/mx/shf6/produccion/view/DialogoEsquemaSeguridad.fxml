@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import mx.shf6.produccion.utilities.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="560.0" prefWidth="828.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoEsquemaSeguridad">
+   <children>
+      <VBox prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="etiquetaNombreProyecto" styleClass="labelRobotoMedium16" text="Esquema de Seguridad" textFill="WHITE" />
+                        <Label styleClass="labelRobotoMedium14" text="Gestión de permisos para los grupos de usuarios" textFill="WHITE" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCerrar" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/CerrarBoton.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" prefHeight="453.0" prefWidth="798.0">
+               <children>
+                  <TableView fx:id="TablaRol" editable="true" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="columnaCodigo" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Código" />
+                        <PTableColumn fx:id="columnaDescripcion" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.5" prefWidth="-1.0" text="Descripción" />
+                        <PTableColumn fx:id="columnaSeleccionador" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

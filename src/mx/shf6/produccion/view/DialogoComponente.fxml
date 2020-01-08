@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefWidth="900.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoComponente">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="textFieldTitulos" text="Formulario Registro">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Tipo componente" />
+                  <ComboBox fx:id="comboBoxTipoComponente" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Material" />
+                  <ComboBox fx:id="comboBoxMaterial" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Cliente" />
+                  <ComboBox fx:id="comboBoxCliente" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Tipo materia prima" />
+                  <ComboBox fx:id="comboBoxTipoMateriaPrima" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Tipo miscelaneo" />
+                  <ComboBox fx:id="comboBoxTipoMiscelaneo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Acabado" />
+                  <ComboBox fx:id="comboBoxAcabado" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Tratamiento" />
+                  <ComboBox fx:id="comboBoxTratamiento" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Consecutivo" visible="false" />
+                  <TextField fx:id="campoTextoConsecutivo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefWidth="500.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Número de parte" />
+                  <HBox maxWidth="1.7976931348623157E308">
+                     <children>
+                        <TextField fx:id="campoTextoNumeroParte" maxWidth="450.0" styleClass="campoBuscador" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <CheckBox fx:id="checkHabilitar" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Editar" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Descripción" />
+                        <TextField fx:id="campoTextoDescripcion" prefWidth="300.0" styleClass="campoBuscador" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Código catalogo" visible="false" />
+                        <TextField fx:id="campoCodigoCatalogo" prefWidth="100.0" styleClass="campoBuscador" visible="false" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Hilos" visible="false" />
+                        <TextField fx:id="campoTextoHilos" prefWidth="100.0" styleClass="campoBuscador" visible="false" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Alto / Lado" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoAlto" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxAlto" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Largo" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoLargo" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxLargo" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Ancho / Lado" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoAncho" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxAncho" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Alto 2" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoAlto2" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxAlto2" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Espesor" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoEspesor" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxEspesor" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Ancho total" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoAnchoTotal" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxAnchoTotal" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Diametro exterior" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoDiametroExterior" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxDiametroExterior" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Diametro interior" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoDiametroInterior" prefWidth="80.0" styleClass="campoBuscador" />
+                              <ComboBox fx:id="comboBoxDiametroInterior" prefWidth="80.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Grado material" />
+                        <HBox spacing="2.0">
+                           <children>
+                              <TextField fx:id="campoTextoGradoMaterial" prefWidth="164.0" styleClass="campoBuscador" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Costo Material" />
+                        <TextField fx:id="campoTextoCosto" prefWidth="180.0" styleClass="campoBuscador" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Costo Directo" />
+                        <TextField fx:id="campoTextoCostoDirecto" prefWidth="180.0" styleClass="campoBuscador" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Costo Indirecto" />
+                        <TextField fx:id="campoTextoCostoIndirecto" prefWidth="180.0" styleClass="campoBuscador" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox spacing="5.0">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Notas" />
+                        <TextArea fx:id="campoTextoNotas" prefHeight="50.0" prefWidth="300.0" styleClass="campoAreaBuscador" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Revisión" visible="false" />
+                        <TextField fx:id="campoTextoRevision" prefWidth="100.0" styleClass="campoBuscador" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="labelRobotoMedium12" text="Status" />
+                        <ComboBox fx:id="comboBoxStatus" prefWidth="100.0" styleClass="campoBuscador" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" spacing="5.0">
+               <children>
+                  <Button minHeight="30.0" mnemonicParsing="false" onAction="#manejadorBotonAceptar" prefWidth="200.0" styleClass="buttonGreen" text="Aceptar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button minHeight="30.0" mnemonicParsing="false" onAction="#manejadorBotonCerrar" onMouseClicked="#manejadorBotonCerrar" prefWidth="200.0" styleClass="buttonRed" text="Cancelar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

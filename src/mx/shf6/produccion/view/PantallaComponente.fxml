@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane styleClass="bodyPantallaEspera" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaComponente">
+   <children>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="labelRobotoMedium16" text="Componentes" />
+                        <Label styleClass="labelRobotoMedium14" text="Gestión de materia prima, miscelaneos, partes primarias y ensambles" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <MenuButton mnemonicParsing="false" styleClass="menuContext" text="Filtro">
+                    <items>
+                        <RadioMenuItem fx:id="checkMenuTodos" mnemonicParsing="false" onAction="#manejadorBotonActualizar" selected="true" text="Todos">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="TipoComponente" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="checkMenuMateriaPrima" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Materias Primas" toggleGroup="$TipoComponente" />
+                        <RadioMenuItem fx:id="checkMenuMiscelaneo" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Miscelaneos" toggleGroup="$TipoComponente" />
+                        <RadioMenuItem fx:id="checkMenuPartePrimaria" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Partes Primarias" toggleGroup="$TipoComponente" />
+                        <RadioMenuItem fx:id="checkMenuSubEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Sub Ensables" toggleGroup="$TipoComponente" />
+                        <RadioMenuItem fx:id="checkMenuEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Ensambles" toggleGroup="$TipoComponente" />
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/FiltroIcono.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuButton>
+                  <TextField fx:id="campoTextoBusqueda" prefHeight="30.0" prefWidth="350.0" promptText="Buscar" styleClass="campoBuscador">
+                     <font>
+                        <Font name="Roboto" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER" fillHeight="false" maxHeight="30.0" maxWidth="30.0" onMouseClicked="#buscarRegistroTabla" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/BuscarIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/ActualizarBoton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="4.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCrear" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@images/1x/AgregarBoton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="botonMenuPantalla" text="MenuButton" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#manejadorBotonMateriasPrimas" text="Materias primas" />
+                <MenuItem mnemonicParsing="false" onAction="#manejadorBotonMiscelaneos" text="Miscelaneos" />
+                  <MenuItem mnemonicParsing="false" onAction="#manejadorBotonMaterial" text="Materiales" />
+                  <MenuItem mnemonicParsing="false" onAction="#manejadoBotonAcabados" text="Acabados" />
+                  <MenuItem mnemonicParsing="false" onAction="#manejadorBotonTratamiento" text="Tratamientos" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/OpcionesBoton.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tablaComponente" editable="true" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="columnaNumeroParte" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="# Parte" />
+                        <PTableColumn fx:id="columnaDescripcion" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Descripción" />
+                        <PTableColumn fx:id="columnaTipoComponente" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Tipo" />
+                        <PTableColumn fx:id="columnaCosto" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Costo" />
+                        <PTableColumn fx:id="columnaNotas" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Notas" />
+                        <PTableColumn fx:id="columnaStatus" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Status" />
+                        <PTableColumn fx:id="columnaAcciones" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Acciones" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

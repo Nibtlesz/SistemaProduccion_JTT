@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="333.0" styleClass="bodyPantallaSesion" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaSesion">
+   <children>
+      <ImageView fitHeight="518.0" fitWidth="333.0" layoutX="77.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@images/1x/FondoLogin.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="29.0" layoutY="152.0" prefHeight="143.0" prefWidth="151.0" AnchorPane.leftAnchor="30.0">
+         <children>
+            <Label styleClass="labelRobotoMedium18" text="SISTEMA DE" />
+            <Label styleClass="labelRobotoBlack18" text="PRODUCCIÓN" />
+            <Line endX="35.0" startX="-100.0" stroke="#2d388c" />
+            <Line endX="-61.70710754394531" layoutX="111.0" layoutY="65.0" startX="-100.0" stroke="#2d388c" />
+            <Label styleClass="labelRobotoRegular14" text="USUARIO">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="2.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="campoTextoUsuario" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" styleClass="textFieldCredenciales" />
+            <Label styleClass="labelRobotoRegular14" text="CONTRASEÑA">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="2.0" />
+               </padding>
+            </Label>
+            <PasswordField fx:id="campoTextoContrasena" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" styleClass="textFieldCredenciales" />
+            <Label onMouseClicked="#ingresarButtonHandler" styleClass="labelIngresar" text="INGRESAR">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </VBox>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="309.0" layoutY="206.0" onMouseClicked="#cerrarButtonHandler" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/1x/CloseButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import mx.shf6.produccion.utilities.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoDetalleOrdenCompra">
+   <children>
+      <VBox prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="3.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="textFieldCliente" editable="false" focusTraversable="false" prefWidth="300.0" promptText="Nombre" styleClass="textFieldTitulos" text="Cliente">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="textFieldFolio" editable="false" focusTraversable="false" layoutX="10.0" layoutY="16.0" prefWidth="150.0" promptText="Código" styleClass="textFieldSubTitulos" text="Orden de compra">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tableViewDetalleOrdenCompra" editable="true" styleClass="tablaDatosDetalle">
+                     <columns>
+                        <PTableColumn fx:id="tableColumnDiseno" percentageWidth="0.2" prefWidth="75.0" text="Diseño" />
+                        <PTableColumn fx:id="tableColumnDescripcion" percentageWidth="0.2" prefWidth="75.0" text="Descripción" />
+                        <PTableColumn fx:id="tableColumnEntregaFinal" percentageWidth="0.15" prefWidth="75.0" text="Entrega final" />
+                        <PTableColumn fx:id="tableColumnPorEntregar" percentageWidth="0.15" prefWidth="75.0" text="Por entregar" />
+                        <PTableColumn fx:id="tableColumnSaldo" percentageWidth="0.1" prefWidth="75.0" text="Saldo" />
+                        <PTableColumn fx:id="tableColumnAcciones" percentageWidth="0.2" prefWidth="75.0" text="Acciones" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#manejadorBotonAgregar" text="Agregar componente" />
+                           </items>
+                        </ContextMenu>
+                     </contextMenu>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#manejadorBotonCerrar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@images/1x/CloseWindow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

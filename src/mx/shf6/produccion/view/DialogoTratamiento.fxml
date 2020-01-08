@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoTratamiento">
+   <children>
+      <VBox prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" spacing="3.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="textFieldTitulos" text="Tratamientos" />
+                        <Label styleClass="textFieldSubTitulos" text="Gestión de los tipos de tratamiento" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0">
+                     <children>
+                        <TextField fx:id="campoTextoBusqueda" prefHeight="30.0" prefWidth="170.0" promptText="Buscar" styleClass="campoBuscador">
+                           <font>
+                              <Font name="Roboto" size="12.0" />
+                           </font>
+                        </TextField>
+                        <HBox alignment="CENTER" fillHeight="false" maxHeight="30.0" maxWidth="30.0" onMouseClicked="#buscarRegistroTabla" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                           <children>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" onMouseClicked="#buscarRegistroTabla" pickOnBounds="true" preserveRatio="true">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <image>
+                                    <Image url="@images/1x/BuscarIcon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/ActualizarBoton.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCrear" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/AgregarBoton.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadoBotonCerrar" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@images/1x/CerrarBoton.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tablaTratamiento" editable="true" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="columnaSysPK" minWidth="-1.0" percentageWidth="0.05" prefWidth="-1.0" text="ID" />
+                        <PTableColumn fx:id="columnaCodigo" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Código" />
+                        <PTableColumn fx:id="columnaDescripcion" minWidth="-1.0" percentageWidth="0.5" prefWidth="-1.0" text="Descripción" />
+                        <PTableColumn fx:id="columnaStatus" minWidth="-1.0" percentageWidth="0.15" prefWidth="-1.0" text="Status" />
+                        <PTableColumn fx:id="columnaAcciones" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Acciones" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

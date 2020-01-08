@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane styleClass="bodyPantallaEspera" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaCotizaciones">
+   <children>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="labelRobotoMedium16" text="Cotizaciones" />
+                        <Label styleClass="labelRobotoMedium14" text="Gestion de las cotizaciones de proyectos" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <TextField fx:id="buscarCotizacion" prefHeight="30.0" prefWidth="350.0" promptText="Buscar" styleClass="campoBuscador">
+                     <font>
+                        <Font name="Roboto" size="12.0" />
+                     </font>
+                  </TextField>
+                  <HBox alignment="CENTER" fillHeight="false" maxHeight="30.0" maxWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" onMouseClicked="#buscarButtonHandler" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/MagnifierIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@images/1x/ActualizarBoton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonNuevo" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/AgregarBoton.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_CENTER" styleClass="tablaDatosDetalle" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tablaCotizacion" editable="true" maxHeight="1.7976931348623157E308" styleClass="tablaDatosGestor" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="clienteColumna" minWidth="-1.0" prefWidth="-1.0" text="Cliente" />
+                        <TableColumn fx:id="referenciaColumna" minWidth="-1.0" prefWidth="-1.0" text="Referencia" />
+                        <TableColumn fx:id="fechaColumna" minWidth="-1.0" prefWidth="-1.0" text="Fecha" />
+                        <TableColumn fx:id="statusColumna" minWidth="-1.0" prefWidth="-1.0" text="Status" />
+                        <TableColumn fx:id="observacionesColumna" minWidth="-1.0" prefWidth="-1.0" text="Observaciones" />
+                        <TableColumn fx:id="accionesColumn" minWidth="-1.0" prefWidth="-1.0" text="Acciones" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

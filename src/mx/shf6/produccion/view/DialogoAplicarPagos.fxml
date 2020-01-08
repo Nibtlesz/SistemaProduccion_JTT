@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="560.0" prefWidth="828.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoAplicarPagos">
+   <children>
+      <VBox alignment="CENTER_LEFT" prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label fx:id="etiquetaNombreCliente" styleClass="labelRobotoMedium16" text="Recibos por Aplicar" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="etiquetaSaldo" styleClass="labelRobotoMedium14" text="Saldo" textFill="WHITE" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonAceptar" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/AprobarIcono.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="3.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="611.0" layoutY="23.0" onMouseClicked="#manejadorBotonCerrar" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/CerrarBoton.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" layoutX="22.0" layoutY="29.0" prefHeight="386.0" prefWidth="603.0" styleClass="tablaDatosDetalle" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tablaDetalleRecibos" editable="true" maxHeight="1.7976931348623157E308" prefHeight="400.0" prefWidth="634.0" styleClass="tablaDatosGestor" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <columns>
+                        <PTableColumn fx:id="columnaReferencia" minWidth="-1.0" prefWidth="-1.0" text="Referencia" />
+                        <PTableColumn fx:id="columnaFecha" minWidth="-1.0" prefWidth="48.0" text="Fecha" />
+                        <PTableColumn fx:id="columnaImporte" minWidth="-1.0" prefWidth="141.0" text="Importe" />
+                        <PTableColumn fx:id="columnaDisponible" minWidth="-1.0" prefWidth="100.0" text="Disponible" />
+                        <PTableColumn fx:id="columnaImporteAplicar" minWidth="-1.0" prefWidth="119.0" text="Importe Aplicar" />
+                     </columns>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

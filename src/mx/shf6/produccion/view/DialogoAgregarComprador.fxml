@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefWidth="250.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoAgregarComprador">
+   <children>
+      <VBox alignment="CENTER_LEFT" prefHeight="40.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="textFieldTitulos" text="Formulario de registro">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Nombre" />
+                  <TextField fx:id="campoNombre" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Correo" />
+                  <TextField fx:id="campoCorreo" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Teléfono" />
+                  <TextField fx:id="campoTelefono" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Teléfono secundario (opcional)" />
+                  <TextField fx:id="campoTelefonoAuxiliar" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Área / Departamento" />
+                  <TextField fx:id="campoAreaDepartamento" styleClass="campoBuscador" />
+               </children>
+            </VBox>
+            <VBox spacing="5.0">
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#manejadorBotonAceptar" prefHeight="30.0" styleClass="buttonGreen" text="Aceptar" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#manejadorBotonCerrar" prefHeight="30.0" styleClass="buttonRed" text="Cancelar" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

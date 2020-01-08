@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+
+<AnchorPane prefHeight="500.0" prefWidth="750.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaDetalleCotizacion">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="3.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="labelCliente" editable="false" focusTraversable="false" prefWidth="300.0" promptText="Nombre" styleClass="textFieldTitulos" text="CUBA UTP ASSY SOLDADURA">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="labelCotizacion" editable="false" focusTraversable="false" layoutX="10.0" layoutY="16.0" prefWidth="150.0" promptText="Código" styleClass="textFieldSubTitulos" text="463105536">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tablaDetalleCotizacion" editable="true" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="columnaNumeroDibujo" minWidth="-1.0" percentageWidth="0.1" prefWidth="96.0" text="# Parte" />
+                        <PTableColumn fx:id="columnaDescripcion" minWidth="-1.0" percentageWidth="0.3" prefWidth="33.0" text="Descripcion" />
+                        <PTableColumn fx:id="columnaCantidad" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Cantidad" />
+                        <PTableColumn fx:id="columaPrecioUnitario" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Costo" />
+                        <PTableColumn fx:id="columnaFechaEstimada" percentageWidth="0.1" prefWidth="75.0" text="Fecha Est." />
+                        <PTableColumn fx:id="columnaObservaciones" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Observaciones" />
+                     </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="menuItemAgregarProyecto" mnemonicParsing="false" onAction="#manejadorAgregar" text="Agregar Proyecto" />
+                            <MenuItem fx:id="menuItemEditarProyecto" mnemonicParsing="false" onAction="#manejadorEditar" text="Editar Proyecto" />
+                            <MenuItem fx:id="menuItemQuitarProyecto" mnemonicParsing="false" onAction="#manejadorQuitar" text="Quitar Proyecto" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#btnCancelar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@images/1x/CloseWindow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

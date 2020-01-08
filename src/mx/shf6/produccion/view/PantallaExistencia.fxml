@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+
+<AnchorPane styleClass="bodyPantallaEspera" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaExistencia">
+   <children>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="labelRobotoMedium16" text="Existencias" />
+                        <Label styleClass="labelRobotoMedium14" text="Consulta de existencias en almancen" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <ComboBox fx:id="comboBoxAlmacen" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin></ComboBox>
+                  <TextField fx:id="campoTextoBuscar" prefHeight="30.0" prefWidth="350.0" promptText="Buscar" styleClass="campoBuscador">
+                     <font>
+                        <Font name="Roboto" size="12.0" />
+                     </font>
+                  </TextField>
+                  <HBox alignment="CENTER" fillHeight="false" maxHeight="30.0" maxWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" onMouseClicked="#manejadorBotonBuscar" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/MagnifierIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="396.0" layoutY="23.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@images/1x/ActualizarBoton.png" />
+                     </image>
+                  </ImageView>
+                  <MenuButton contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="botonMenuPantalla" text="MenuButton">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/OpcionesBoton.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="24.0" width="24.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#manejadorBotonAlmacenes" styleClass="itemMenu" text="Almacén" />
+                        <MenuItem mnemonicParsing="false" onAction="#manejadorBotonEntradas" styleClass="itemMenu" text="Entradas" />
+                        <MenuItem mnemonicParsing="false" onAction="#manejadorBotonSalidas" styleClass="itemMenu" text="Salidas" />
+                        <MenuItem mnemonicParsing="false" onAction="#manejadorBotonTraspasos" styleClass="itemMenu" text="Traspasos" />
+                        <MenuItem mnemonicParsing="false" onAction="#manejadorBotonExistencias" styleClass="itemMenu" text="Existencias" />
+                     </items>
+                  </MenuButton>
+               </children>
+            </HBox>
+            <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tablaExistencias" editable="true" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="columnaNumeroParte" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Número Parte" />
+                        <PTableColumn fx:id="columnaComponente" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Componente" />
+                        <PTableColumn fx:id="columnaAlmacen" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Almacen" />
+                        <PTableColumn fx:id="columnaCantidad" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Cantidad" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </VBox>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

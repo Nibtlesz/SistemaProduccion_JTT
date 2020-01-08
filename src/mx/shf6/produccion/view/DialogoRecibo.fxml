@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoRecibo">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="40.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="textFieldTitulos" text="Nuevo Recibo">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefWidth="250.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Referencia" />
+                  <TextField fx:id="campoTextoReferencia" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Cliente" />
+                  <TextField fx:id="campoTextoCliente" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Importe" />
+                  <TextField fx:id="campoTextoImporte" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="labelRobotoMedium12" text="Notas" />
+                  <TextArea fx:id="areaTextoNotas" prefHeight="100.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <HBox alignment="TOP_CENTER" spacing="5.0">
+               <children>
+                  <Button minHeight="30.0" mnemonicParsing="false" onAction="#manejadorBotonAceptar" prefWidth="200.0" styleClass="buttonGreen" text="Aceptar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button minHeight="30.0" mnemonicParsing="false" onAction="#manejadorBotonCerrar" onMouseClicked="#manejadorBotonCerrar" prefWidth="200.0" styleClass="buttonRed" text="Cancelar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

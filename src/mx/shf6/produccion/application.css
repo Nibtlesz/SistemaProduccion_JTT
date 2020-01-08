@@ -1,0 +1,422 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/* CSS PARA PANTALLA BASE */
+.bodyPantallaBase {
+	-fx-background-color: transparent;
+}
+
+/* CSS PARA PANTALLA INICIO */
+.bodyPantallaInicio {
+	-fx-background-color: transparent;
+}
+
+/* TIPOGRAFIAS */
+.labelRobotoLight10 {
+	-fx-font-family: "Roboto Regular";
+	-fx-font-size: 10px;
+}
+.labelRobotoLight12 {
+	-fx-font-family: "Roboto Regular";
+	-fx-font-size: 12px;
+}
+.labelRobotoRegular12 {
+	-fx-font-family: "Roboto Regular";
+	-fx-font-size: 12px;
+}
+.labelRobotoRegular14 {
+	-fx-font-family: "Roboto Regular";
+	-fx-font-size: 14px;
+}
+.labelRobotoMedium12 {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 12px;
+}
+.labelRobotoMedium14 {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 14px;
+}
+.labelRobotoMedium16 {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 16px;
+}
+.labelRobotoMedium18 {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 18px;
+}
+.labelRobotoBold14 {
+	-fx-font-family: "Roboto Bold";
+	-fx-font-size: 14px;
+}
+.labelRobotoBold16 {
+	-fx-font-family: "Roboto Bold";
+	-fx-font-size: 16px;
+}
+.labelRobotoBlack18 {
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 18px;
+}
+
+/* CSS PARA PANTALLA SESION */
+.bodyPantallaSesion {
+	-fx-background-color: transparent;
+}
+.textFieldCredenciales {
+	-fx-background-color: #E6E6E6;
+	-fx-border-style: solid;
+	-fx-border-color: #D1D0D2;
+	-fx-border-width: 0px 0px 1px 0px;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Regular";
+	-fx-font-size: 12px;
+}
+.labelIngresar {
+	-fx-font-family: "Roboto Black";
+	-fx-font-size: 14px;
+	-fx-text-fill: #272A7F;
+}
+
+/* CSS PARA PANTALLA MENU */
+.bodyPantallaMenu {
+	-fx-background-color: #151940;
+}
+
+/* CSS PARA PANTALLA ESPERA */
+.bodyPantallaEspera {
+	-fx-background-color: #E6E6E6;
+}
+
+/* CSS PARA PANTALLA CABECERA */
+.bodyPantallaCabecera {
+	-fx-background-color: #D2D1D2;
+}
+
+/* CSS PARA PANTALLA OVERVIEW */
+.bodyPantallaOverview {
+	-fx-background-color: #FFFFFF;
+}
+
+.campoBuscador {
+	-fx-background-color: #E6E6E6;
+	-fx-border-style: none;
+	-fx-border-width: 0px 0px 0px 0px;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+}
+
+.menuContext {
+	-fx-background-color: #FFFFFF;
+	-fx-border-style: none;
+	-fx-border-width: 0px 0px 0px 0px;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+}
+
+.campoAreaBuscador {
+    -fx-background-insets: 0;
+    -fx-background-color: #E6E6E6;
+    -fx-background-radius: 0, 0, 0, 0;
+
+    -fx-box-border: none;
+    -fx-focus-color: #E6E6E6;
+    -fx-faint-focus-color: #E6E6E6;
+    -fx-text-box-border: #E6E6E6;
+    -fx-border-width: -1;
+}
+
+.campoAreaBuscador .content {
+	-fx-background-color: #E6E6E6;
+	-fx-border-style: none;
+	-fx-border-width: 0px 0px 0px 0px;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+}
+.tablaDatosGestor {
+	-fx-base: #FFFFFF;
+	-fx-control-inner-background: #FFFFFF;
+	-fx-background-color: #FFFFFF;
+}
+.tablaDatosGestor .column-header-background {
+	-fx-background-color: transparent;
+}
+.tablaDatosGestor .column-header, .tablaDatos .filler {
+	-fx-border-width: 2 0 0 0;
+	-fx-background-color: transparent;
+	-fx-border-color:
+		derive(#B3B3B3, 80%)
+		transparent
+		transparent
+		transparent;
+	-fx-border-insets: 0 0 0 0;
+}
+.tablaDatosGestor .column-header .label {
+	-fx-alignment: center-left;
+	-fx-font-size: 12px;
+	-fx-font-family: "Roboto Medium";
+	-fx-text-fill:   black;
+	-fx-opacity: .87;
+}
+.tablaDatosGestor .table-cell {
+	-fx-alignment: center-left;
+	-fx-font-size: 12px;
+	-fx-font-family: "Roboto";
+	-fx-text-fill:   black;
+	-fx-opacity: .87;
+}
+.tablaDatosGestor .table-row-cell:odd {
+	-fx-background-color: #FFFFFF;
+	-fx-background-insets: 0;
+}
+.tablaDatosGestor .table-row-cell:even {
+	-fx-background-color: #F2F2F2;
+	-fx-background-insets: 0;
+}
+.tablaDatosGestor .table-row-cell:selected {
+	-fx-background-color: #ABAAAB;
+	-fx-background-insets: 0;
+}
+.tablaDatosGestor .table-row-cell:selected .text {
+	-fx-fill: black;
+}
+
+.tablaDatosDetalle {
+	-fx-base: #FFFFFF;
+	-fx-control-inner-background: #FFFFFF;
+	-fx-background-color: #FFFFFF;
+	-fx-selection-bar: #FAA44A;
+}
+.tablaDatosDetalle .column-header-background {
+	-fx-background-color: transparent;
+}
+.tablaDatosDetalle .column-header, .tablaDatos .filler {
+	-fx-border-width: 2 0 0 0;
+	-fx-background-color: transparent;
+	-fx-border-color:
+		derive(#B3B3B3, 80%)
+		transparent
+		transparent
+		transparent;
+	-fx-border-insets: 0 0 0 0;
+}
+.tablaDatosDetalle .column-header .label {
+	-fx-alignment: center-left;
+	-fx-font-size: 11px;
+	-fx-font-family: "Roboto Medium";
+	-fx-text-fill:   black;
+	-fx-opacity: .87;
+}
+.tablaDatosDetalle .table-cell {
+	-fx-alignment: center-left;
+	-fx-font-size: 10px;
+	-fx-font-family: "Roboto";
+	-fx-text-fill:   black;
+	-fx-opacity: .87;
+}
+.tablaDatosDetalle .table-row-cell:odd {
+	-fx-background-color: #FFFFFF;
+	-fx-background-insets: 0;
+}
+.tablaDatosDetalle .table-row-cell:even {
+	-fx-background-color: #F2F2F2;
+	-fx-background-insets: 0;
+}
+.tablaDatosDetalle .table-row-cell:selected {
+	-fx-background-color: #D1D3D4;
+	-fx-background-insets: 0;
+}
+.tablaDatosDetalle .table-row-cell:selected .text {
+	-fx-fill: black;
+}
+
+.paginacionTabla {
+	-fx-page-information-visible: false;
+	-fx-tooltip-visible:false;
+}
+.paginacionTabla .pagination-control .button, .paginacionTabla .toggle-button {
+	-fx-background-color: white;
+	-fx-border-color: #B3B3B3;
+}
+.paginacionTabla .pagination-control .toggle-button:selected {
+	-fx-background-color: #293280;
+	-fx-text-fill: white;
+}
+.paginacionTabla .pagination-control .toggle-button:hover {
+	-fx-background-color: lightgray;
+}
+
+/* CSS PARA CRUD */
+.dashBoardCard {
+	-fx-background-color: #FFFFFF;
+}
+.dashBoardCardGray {
+	-fx-background-color: #4D4D4D;
+}
+.dashBoardCardYellow {
+	-fx-background-color: #F6B229;
+}
+.imageEmpresa {
+	-fx-background-radius: 30px;
+	-fx-border-radius: 30px;
+}
+.textFieldTitulos {
+	-fx-background-color: rgb(255,255,255,0.025);
+	-fx-border-style: none ;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 14px;
+	-fx-text-fill: rgb(255,255,255,0.85);
+}
+.textFieldSubTitulos {
+	-fx-background-color: rgb(255,255,255,0.025);
+	-fx-border-style: none ;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Light";
+	-fx-font-size: 12px;
+	-fx-text-fill: rgb(255,255,255,0.85);
+}
+.textFieldTitulosDos {
+	-fx-background-color: transparent;
+	-fx-border-style: none ;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 12px;
+	-fx-text-fill: rgb(255,255,255,0.85);
+}
+.textFieldTitulosDosBlack {
+	-fx-background-color: rgb(0,0,0,0.025);
+	-fx-border-style: none ;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 13px;
+	-fx-text-fill: rgb(0,0,0,0.85);
+}
+.textFieldSubTitulosDos {
+	-fx-background-color: transparent;
+	-fx-border-style: none ;
+	-fx-border-radius: 0px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
+	-fx-font-family: "Roboto Light";
+	-fx-font-size: 10px;
+	-fx-text-fill: rgb(255,255,255,0.85);
+}
+.panelPestana .tab-header-background {
+	-fx-background-color: white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: lightgray ;
+}
+.panelPestana .tab {
+	-fx-background-color: white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: lightgray ;
+	-fx-pref-height: 32px;
+	-fx-font-size: 12px;
+	-fx-font-family: "Roboto";
+	-fx-text-fill:   black;
+}
+.panelPestana .tab:selected {
+	-fx-background-color: white;
+	-fx-border-width: 0px 0px 2x 0px;
+	-fx-border-color: #F6B229;
+	-fx-pref-height: 32px;
+	-fx-focus-color: transparent;
+	-fx-font-family: "Roboto Medium";
+}
+.panelPestana .tab:hover {
+	-fx-background-color: white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: #DFA121;
+	-fx-pref-height: 32px;
+	-fx-focus-color: transparent;
+}
+.etiquetaDatosPerfil {
+	-fx-background-color: white;
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: lightgray;
+}
+
+
+.buttonGreen {
+	-fx-background-color: #7AC943;
+	-fx-border-width: 1px 1px 1px 1px;
+	-fx-border-radius: 3px;
+	-fx-background-radius: 3px;
+
+	-fx-font-size: 12px;
+	-fx-font-family: "Roboto Medium";
+	-fx-text-fill: white;
+}
+.buttonGreen:hover {
+	-fx-background-color: #73B23F;
+}
+
+.buttonRed {
+	-fx-background-color: #FF1D25;
+	-fx-border-width: 1px 1px 1px 1px;
+	-fx-border-radius: 3px;
+	-fx-background-radius: 3px;
+
+	-fx-font-size: 12px;
+	-fx-font-family: "Roboto Medium";
+	-fx-text-fill: white;
+}
+.buttonRed:hover {
+	-fx-background-color: #D8282A;
+}
+
+.comboEditable .text {
+	-fx-background-color: black;
+	-fx-text-fill: white;
+}
+
+.botonMenuPantalla {
+	-fx-background-color: #FFFFFF;
+	-fx-border-radius: 0px;
+	-fx-background-radius: 0px;
+
+	-fx-focus-color: transparent;
+	-fx-padding: -1px;
+    -fx-border-style: none;
+    -fx-border-width: 0px;
+    -fx-border-insets: 0px;
+}
+
+.botonMenuPantalla > .arrow-button {
+	-fx-padding: -1px;
+}
+
+.botonMenuPantalla > .arrow-button > .arrow {
+	-fx-padding: -1px;
+}
+
+.itemMenu {
+	-fx-background-color: #FFFFFF;
+	-fx-cursor: hand;
+}
+
+.itemMenu > .label {
+	-fx-font-family: "Roboto Medium";
+	-fx-font-size: 12px;
+	-fx-text-fill: #666666;
+}
+
+/*CSS PARA GRAFICAS*/
+.grafica>.bar-chart {
+    -fx-bar-gap: 6;
+    -fx-category-gap: 10;
+}
+
+/* .chart-bar.default-color0 {
+    -fx-bar-fill: #151940;
+}
+
+.chart-bar.default-color1 {
+    -fx-bar-fill: red;
+}
+
+.chart-bar.default-color2 {
+    -fx-bar-fill: green;
+}*/

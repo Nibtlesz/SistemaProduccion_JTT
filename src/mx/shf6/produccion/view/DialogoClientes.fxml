@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoClientes">
+   <children>
+      <VBox prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" spacing="3.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <TextField fx:id="nombreField" promptText="Nombre" styleClass="textFieldTitulos" text="José Israel Salazar Varela">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="codigoField" layoutX="10.0" layoutY="16.0" prefWidth="150.0" promptText="Código" styleClass="textFieldSubTitulos" text="CL0001">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/WalletIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT" spacing="3.0">
+                           <children>
+                              <Label fx:id="saldoField" styleClass="labelRobotoMedium12" text="\$ 0.00" textFill="#ffffffd9">
+                                 <font>
+                                    <Font name="Roboto Medium" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="labelRobotoLight10" text="Saldo Pendiente" textFill="#ffffffd9">
+                                 <font>
+                                    <Font name="Roboto Light" size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="225.0" layoutY="10.0">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/1x/ProjectIcon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <VBox alignment="CENTER_LEFT" spacing="3.0">
+                           <children>
+                              <Label fx:id="numeroProyectosField" styleClass="labelRobotoMedium12" text="# 0" textFill="#ffffffd9">
+                                 <font>
+                                    <Font name="Roboto Medium" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="labelRobotoLight10" text="Proyectos Realizados" textFill="#ffffffd9">
+                                 <font>
+                                    <Font name="Roboto Light" size="11.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <TabPane styleClass="panelPestana" tabClosingPolicy="UNAVAILABLE" tabMinHeight="32.0" tabMinWidth="80.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+        <tabs>
+          <Tab closable="false" text="Info">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/RfcIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Registro Contribuyente" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="registroContribuyenteField" styleClass="textFieldTitulosDosBlack" text="SHI1311144S9">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/DirectoryIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Ruta Carpeta" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="rutaField" styleClass="textFieldTitulosDosBlack" text="/Proyectos/Clientes/CL0001/">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/PhoneIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Teléfono" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="telefonoField" styleClass="textFieldTitulosDosBlack" text="(791) 913 - 1508">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CustomerDosIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Estado Cliente" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ComboBox fx:id="statusCombo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="134.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/MailIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Correo Electrónico" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="correoField" styleClass="textFieldTitulosDosBlack" text="contacto@gruposhift-f6.com.mx">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="160.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CalendarIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Fecha Registro" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="fechaRegistroField" styleClass="textFieldTitulosDosBlack">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab closable="false" text="Domicilio">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/StreetIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Calle" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="calleField" styleClass="textFieldTitulosDosBlack" text="Avenida Carlos Lazo">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CityIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Localidad" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="localidadField" styleClass="textFieldTitulosDosBlack" text="Ciudad Sahagún">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="109.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/NumberIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Número Exterior" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="numeroExteriorField" styleClass="textFieldTitulosDosBlack" text="51-A">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CountryIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Estado" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ComboBox fx:id="estadoCombo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="134.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/NumberIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Número Interior" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="numeroInteriorField" styleClass="textFieldTitulosDosBlack" text="Sin Número">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/MunicipalIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Municipio" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ComboBox fx:id="municipioCombo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="160.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/ColonyIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Colonia" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="coloniaField" styleClass="textFieldTitulosDosBlack" text="Hidalgo">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CodeIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Código Postal" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="codigoPostalField" prefWidth="150.0" styleClass="textFieldTitulosDosBlack" text="43998">
+                                                   <padding>
+                                                      <Insets left="1.0" />
+                                                   </padding>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="71.0" prefHeight="51.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefWidth="284.0">
+                                       <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="18.0" prefWidth="18.0">
+                                             <children>
+                                                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@images/1x/CountryIcon.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <VBox alignment="CENTER_LEFT" spacing="3.0" styleClass="etiquetaDatosPerfil" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="País" textFill="#000000de">
+                                                   <font>
+                                                      <Font name="Roboto Light" size="11.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets left="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ComboBox fx:id="paisCombo" maxWidth="1.7976931348623157E308" styleClass="campoBuscador" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <HBox alignment="TOP_RIGHT" layoutX="560.0" layoutY="114.0" spacing="3.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="76.0">
+         <children>
+            <ImageView fx:id="guardar" fitHeight="28.0" fitWidth="28.0" onMouseClicked="#btnGuardar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="114.0">
+               <image>
+                  <Image url="@images/1x/SaveIcon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="editar" fitHeight="28.0" fitWidth="28.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#btnEditar" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@images/1x/UpdateIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="eliminar" fitHeight="28.0" fitWidth="28.0" layoutX="34.0" layoutY="10.0" onMouseClicked="#btnEliminar" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@images/1x/DeleteIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#cerrarDialogoButtonHandler" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@images/1x/CloseButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>

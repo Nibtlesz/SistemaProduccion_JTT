@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import mx.shf6.produccion.utilities.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane styleClass="bodyPantallaEspera" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.PantallaOrdenCompra">
+   <children>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="labelRobotoMedium16" text="Ordenes de compra" />
+                        <Label styleClass="labelRobotoMedium14" text="Gestion de las ordenes de compra" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <TextField fx:id="textFieldBusqueda" prefHeight="30.0" prefWidth="350.0" promptText="Buscar" styleClass="campoBuscador">
+                     <font>
+                        <Font name="Roboto" size="12.0" />
+                     </font>
+                  </TextField>
+                  <HBox alignment="CENTER" fillHeight="false" maxHeight="30.0" maxWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="campoBuscador">
+                     <children>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" onMouseClicked="#manejadorBotonBuscar" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@images/1x/MagnifierIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonActualizar" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@images/1x/ActualizarBoton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCrear" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@images/1x/AgregarBoton.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <TableView fx:id="tableViewOrdenCompra" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <PTableColumn fx:id="tableColumnFolio" minWidth="-1.0" percentageWidth="0.05" prefWidth="-1.0" text="Folio" />
+                        <PTableColumn fx:id="tableColumnFechaPedido" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Fecha Pedido" />
+                        <PTableColumn fx:id="tableColumnCliente" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Cliente" />
+                        <PTableColumn fx:id="tableColumnPMP" minWidth="-1.0" percentageWidth="0.05" prefWidth="-1.0" text="PMP" />
+                        <PTableColumn fx:id="tableColumnComentarios" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Comentarios" />
+                        <PTableColumn fx:id="tableColumnAcciones" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Acciones" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

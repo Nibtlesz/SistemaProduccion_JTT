@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?import mx.shf6.produccion.utilities.*?>
+<?import mx.shf6.produccion.utilities.PTableColumn?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="dashBoardCard" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mx.shf6.produccion.view.DialogoDetalleProceso">
+   <children>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="90.0" styleClass="dashBoardCardGray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@images/1x/StartButton.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="3.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="campoTextoDescripcion" focusTraversable="false" prefWidth="500.0" promptText="Nombre" styleClass="textFieldTitulos" text="HOJA DE PROCESO">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                        <TextField fx:id="campoTextoNumero" prefWidth="300.0" promptText="Código" styleClass="textFieldSubTitulos" text="10001E">
+                           <padding>
+                              <Insets left="1.0" />
+                           </padding>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane styleClass="bodyPantallaOverview" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TableView fx:id="tablaDetalleProceso" editable="true" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <PTableColumn fx:id="operacionColumna" minWidth="-1.0" percentageWidth="0.05" prefWidth="56.0" text="Op." />
+                      	<PTableColumn fx:id="descripcionColumna" minWidth="-1.0" percentageWidth="0.3" prefWidth="56.0" text="Descripción" />
+                        <PTableColumn percentageWidth="0.2" prefWidth="56.0" text="Rutas">
+                           <columns>
+                              <PTableColumn fx:id="grupoTrabajoColumna" minWidth="-1.0" percentageWidth="0.1" prefWidth="56.0" text="Grupo" />
+                              <PTableColumn fx:id="centroTrabajoColumna" minWidth="-1.0" percentageWidth="0.1" prefWidth="56.0" text="Centro" />
+                           </columns>
+                        </PTableColumn>
+                        <PTableColumn percentageWidth="0.1" prefWidth="56.0" text="Tiempos">
+                           <columns>
+                            	<PTableColumn fx:id="tiempoPreparacionColumna" minWidth="-1.0" percentageWidth="0.05" prefWidth="56.0" text="Prep." />
+                              	<PTableColumn fx:id="tiempoOperacionColumna" minWidth="-1.0" percentageWidth="0.05" prefWidth="56.0" text="Oper." />
+                           </columns>
+                        </PTableColumn>
+                        <PTableColumn fx:id="componenteColumna" minWidth="-1.0" percentageWidth="0.2" prefWidth="75.0" text="Componente" />
+                        <PTableColumn fx:id="cantidadColumna" minWidth="-1.0" percentageWidth="0.05" prefWidth="75.0" text="Can." />
+                        <PTableColumn fx:id="herramientaColumna" minWidth="-1.0" percentageWidth="0.1" prefWidth="75.0" text="Herramienta" />
+                    </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#manejadorAgregarComponente" text="Agregar" />
+                            <MenuItem mnemonicParsing="false" onAction="#manejadorModificarDetalle" text="Modificar" />
+                            <MenuItem mnemonicParsing="false" onAction="#manejadorBotonQuitarComponente" text="Quitar" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#manejadorBotonCerrar" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <image>
+            <Image url="@images/1x/CloseButton.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+   </children>
+</AnchorPane>
