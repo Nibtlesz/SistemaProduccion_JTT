@@ -42,7 +42,7 @@ public class DetalleComponenteDAO {
 				detalleComponente.setSysPK(resultados.getInt(1));
 				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
 				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getDouble(4));
+				detalleComponente.setCantidad(resultados.getInt(4));
 				detalleComponente.setNotas(resultados.getString(5));
 				arrayListDetalleComponente.add(detalleComponente);
 			}//FIN WHILE
@@ -63,7 +63,7 @@ public class DetalleComponenteDAO {
 				detalleComponente.setSysPK(resultados.getInt(1));
 				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
 				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getDouble(4));
+				detalleComponente.setCantidad(resultados.getInt(4));
 				detalleComponente.setNotas(resultados.getString(5));
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -84,7 +84,7 @@ public class DetalleComponenteDAO {
 				detalleComponente.setSysPK(resultados.getInt(1));
 				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
 				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getDouble(4));
+				detalleComponente.setCantidad(resultados.getInt(4));
 				detalleComponente.setNotas(resultados.getString(5));
 				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
 				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));
@@ -111,7 +111,7 @@ public class DetalleComponenteDAO {
 				detalleComponente.setSysPK(resultados.getInt(1));
 				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
 				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getDouble(4));
+				detalleComponente.setCantidad(resultados.getInt(4));
 				detalleComponente.setNotas(resultados.getString(5));
 				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
 				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));
@@ -137,7 +137,7 @@ public class DetalleComponenteDAO {
 				detalleComponente.setSysPK(resultados.getInt(1));
 				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
 				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getDouble(4));
+				detalleComponente.setCantidad(resultados.getInt(4));
 				detalleComponente.setNotas(resultados.getString(5));
 				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
 				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));

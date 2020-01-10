@@ -192,6 +192,10 @@ public class DetalleProceso {
     	return procesoFK;
     }//FIN METODO
 	
+	public Proceso getProceso(Connection connection) {
+		return ProcesoDAO.readProceso(connection, this.getProcesoFK());
+	}//FIN METODO
+	
 	public void setNombreProceso(String nombreProceso) {
 		this.nombreProceso.set(nombreProceso);
 	}//FIN METODO

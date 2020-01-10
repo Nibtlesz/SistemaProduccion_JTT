@@ -111,7 +111,7 @@ public class DialogoComponente {
 	private void inicializarCombos() {
 		ObservableList<String> listaStatus = FXCollections.observableArrayList("No Visible", "Visible");
 		this.comboBoxStatus.setItems(listaStatus);
-		ObservableList<String> listaComponentes = FXCollections.observableArrayList(TipoComponente.COMPRADO, TipoComponente.MATERIA_PRIMA, TipoComponente.PARTE_PRIMARIA, TipoComponente.SUB_ENSAMBLE, TipoComponente.ENSAMBLE);
+		ObservableList<String> listaComponentes = FXCollections.observableArrayList(TipoComponente.COMPRADO, TipoComponente.MATERIA_PRIMA, TipoComponente.PARTE_PRIMARIA);
 		this.comboBoxTipoComponente.setItems(listaComponentes);
 		this.comboBoxTipoComponente.valueProperty().addListener(new ChangeListener<String>() {
 

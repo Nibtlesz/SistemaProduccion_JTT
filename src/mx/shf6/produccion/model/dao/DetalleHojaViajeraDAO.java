@@ -44,8 +44,8 @@ public class DetalleHojaViajeraDAO {
 				detalleHojaViajera.setDetalleProcesoFK(resultados.getInt(3));
 				detalleHojaViajera.setDetalleProcesoOperacion(resultados.getInt(4));
 				detalleHojaViajera.setDetalleProcesoDescripcion(resultados.getString(5));
-				detalleHojaViajera.setCantidadEnProceso(resultados.getDouble(6));
-				detalleHojaViajera.setCantidadTerminado(resultados.getDouble(7));
+				detalleHojaViajera.setCantidadEnProceso(resultados.getInt(6));
+				detalleHojaViajera.setCantidadTerminado(resultados.getInt(7));
 				detalleHojaViajera.setFechaHoraInicio(resultados.getTimestamp(8));
 				detalleHojaViajera.setFechaHoraFinal(resultados.getTimestamp(9));
 				llistaDetallesHojaViajera.add(detalleHojaViajera);

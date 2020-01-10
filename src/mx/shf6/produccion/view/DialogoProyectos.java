@@ -23,7 +23,6 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.Cliente;
-import mx.shf6.produccion.model.OrdenProduccion;
 //import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.Proyecto;
 import mx.shf6.produccion.model.dao.ProyectoDAO;
@@ -117,7 +116,7 @@ public class DialogoProyectos {
 				//final Button botonListaComponentes = new Button("Lista Componentes");
 				final Button botonEstructuraNiveles = new Button("EstructuraNiveles");
 				final Button botonPartesPrimarias = new Button("PartesPrimarias");
-				final HBox cajaBotones = new HBox(botonVer, botonEditar,botonEliminar,botonArchivo, botonEstructuraNiveles, botonPartesPrimarias);
+				final HBox cajaBotones = new HBox(botonVer, botonEditar,botonEliminar,botonArchivo);
 
 				@Override
 				public void updateItem(String item, boolean empty) {
@@ -218,7 +217,7 @@ public class DialogoProyectos {
 
 						botonPartesPrimarias.setOnAction(event -> {
 							proyecto = getTableView().getItems().get(getIndex());
-							manejadorBotonPartesPrimarias(proyecto);
+							//manejadorBotonPartesPrimarias(proyecto);
 						});//FIN MANEJADDOR
 
 
@@ -273,9 +272,9 @@ public class DialogoProyectos {
 		this.mainApp.iniciarDialogoEstructuraNiveles(proyecto);
 	}//FIN METODO
 
-	private void manejadorBotonPartesPrimarias(Proyecto proyecto) {
+	/*private void manejadorBotonPartesPrimarias(Proyecto proyecto) {
 		this.mainApp.iniciarDialogoPartesPrimarias(proyecto, new OrdenProduccion());
-	}//FIN METODO
+	}//FIN METODO*/
 
 	@FXML private void manejadorBotonCerrar() {
 		this.mainApp.getEscenarioDialogosAlternoSecundario().close();

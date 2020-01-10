@@ -1,11 +1,13 @@
 package mx.shf6.produccion.model;
 
+import java.sql.Connection;
 import java.sql.Timestamp;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import mx.shf6.produccion.model.dao.DetalleProcesoDAO;
 
 public class DetalleHojaViajera {
 	
@@ -15,24 +17,24 @@ public class DetalleHojaViajera {
 	private ObjectProperty<Integer> detalleProcesoFK;
 	private ObjectProperty<Integer> detalleProcesoOperacion;
 	private StringProperty detalleProcesoDescripcion;
-	private ObjectProperty<Double> cantidadEnProceso;
-	private ObjectProperty<Double> cantidadTerminado;
+	private ObjectProperty<Integer> cantidadEnProceso;
+	private ObjectProperty<Integer> cantidadTerminado;
 	private ObjectProperty<Timestamp> fechaHoraInicio;
 	private ObjectProperty<Timestamp> fechaHoraFinal;
 
 	//CONSTRUCTORES
 	public DetalleHojaViajera() {
-		this(0, 0, 0, 0, "", 0.0, 0.0, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
+		this(0, 0, 0, 0, "", 0, 0, new Timestamp(System.currentTimeMillis()), new Timestamp(System.currentTimeMillis()));
 	}//FIN CONSTRUCTOR
 	
-	public DetalleHojaViajera(Integer sysPK, Integer hojaViajeraFK, Integer detalleProcesoFK, Integer detalleProcesoOperacion, String detalleProcesoDescripcion, Double cantidadEnProceso, Double cantidadTerminado, Timestamp fechaHoraInicio, Timestamp fechaHoraFinal) {
+	public DetalleHojaViajera(Integer sysPK, Integer hojaViajeraFK, Integer detalleProcesoFK, Integer detalleProcesoOperacion, String detalleProcesoDescripcion, Integer cantidadEnProceso, Integer cantidadTerminado, Timestamp fechaHoraInicio, Timestamp fechaHoraFinal) {
 		this.sysPK = new SimpleObjectProperty<Integer>(sysPK);
 		this.hojaViajeraFK = new SimpleObjectProperty<Integer>(hojaViajeraFK);
 		this.detalleProcesoFK = new SimpleObjectProperty<Integer>(detalleProcesoFK);
 		this.detalleProcesoOperacion = new SimpleObjectProperty<Integer>(detalleProcesoOperacion);
 		this.detalleProcesoDescripcion = new SimpleStringProperty(detalleProcesoDescripcion);
-		this.cantidadEnProceso = new SimpleObjectProperty<Double>(cantidadEnProceso);
-		this.cantidadTerminado = new SimpleObjectProperty<Double>(cantidadTerminado);
+		this.cantidadEnProceso = new SimpleObjectProperty<Integer>(cantidadEnProceso);
+		this.cantidadTerminado = new SimpleObjectProperty<Integer>(cantidadTerminado);
 		this.fechaHoraInicio = new SimpleObjectProperty<Timestamp>(fechaHoraInicio);
 		this.fechaHoraFinal = new SimpleObjectProperty<Timestamp>(fechaHoraFinal);
 	}//FIN CONSTRUCTOR
@@ -74,6 +76,10 @@ public class DetalleHojaViajera {
 		return this.detalleProcesoFK;
 	}//FIN METODO
 	
+	public DetalleProceso getDetalleProceso(Connection connection) {
+		return DetalleProcesoDAO.readDetalleProceso(connection, this.getDetalleProcesoFK());
+	}//FIN METODO
+	
 	public void setDetalleProcesoOperacion(Integer detalleProcesoOperacion) {
 		this.detalleProcesoOperacion.set(detalleProcesoOperacion);
 	}//FIN METODO
@@ -98,27 +104,27 @@ public class DetalleHojaViajera {
 		return this.detalleProcesoDescripcion;
 	}//FIN METODO
 	
-	public void setCantidadEnProceso(Double cantidadEnProceso) {
+	public void setCantidadEnProceso(Integer cantidadEnProceso) {
 		this.cantidadEnProceso.set(cantidadEnProceso);
 	}//FIN METODO
 	
-	public Double getCantidadEnProceso() {
+	public Integer getCantidadEnProceso() {
 		return this.cantidadEnProceso.get();
 	}//FIN METODO
 	
-	public ObjectProperty<Double> cantidadEnProcesoProperty() {
+	public ObjectProperty<Integer> cantidadEnProcesoProperty() {
 		return this.cantidadEnProceso;
 	}//FIN METODO
 	
-	public void setCantidadTerminado(Double cantidadTerminado) {
+	public void setCantidadTerminado(Integer cantidadTerminado) {
 		this.cantidadTerminado.set(cantidadTerminado);
 	}//FIN METODO
 	
-	public Double getCantidadTermiando() {
+	public Integer getCantidadTermiando() {
 		return this.cantidadTerminado.get();
 	}//FIN METODO
 	
-	public ObjectProperty<Double> cantidadTerminadoProperty() {
+	public ObjectProperty<Integer> cantidadTerminadoProperty() {
 		return this.cantidadTerminado;
 	}//FIN METODO
 	

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -36,7 +35,6 @@ import mx.shf6.produccion.model.DetalleHojaViajera;
 import mx.shf6.produccion.model.DetalleProceso;
 import mx.shf6.produccion.model.HojaViajera;
 import mx.shf6.produccion.model.OrdenProduccion;
-import mx.shf6.produccion.model.Proyecto;
 import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleComponenteDAO;
@@ -55,19 +53,14 @@ public class DialogoPartesPrimarias {
 	//PROPIEDADES
 	private MainApp mainApp;
 	private Connection conexion;
-	private Proyecto proyecto;
 	private OrdenProduccion ordenProduccion;
 	private Componente componenteRaiz;
 	private DetalleComponente componenteHojaViajera;
 	private DetalleComponente detalleComponenteRaiz;
-	private DetalleComponente detalleComponenteSubEnsamble;
 	private ArrayList<DetalleComponente> listaPartePrimaria;
-	private ArrayList<DetalleComponente> listaSubEnsambles;
-	private ArrayList<DetalleComponente> listaEnsambles;
-	private HashSet<DetalleComponente> hs;
 
 	//VARIABLES
-	Double cantidad = 0.0;
+	Integer cantidad = 0;
 	int i = 0;
 	int tamañoArrayPartesPrimarias = 0;
 	String nombreNumeroComponente;
@@ -77,7 +70,6 @@ public class DialogoPartesPrimarias {
 	//COMPONENTES INTERFAZ
 	@FXML private TableView<DetalleComponente> tablaPartesPrimarias;
 	@FXML private PTableColumn<DetalleComponente, String> columnaNumeroPartePrimaria;
-	@FXML private PTableColumn<DetalleComponente, Double> columnaCantidad;
 	@FXML private PTableColumn<DetalleComponente, String> columnaDescripcionPartePrimaria;
 	@FXML private PTableColumn<DetalleComponente, String> columnaDescripcionMateriaPrima;
 	@FXML private PTableColumn<DetalleComponente, String> columnaNumeroMateriaPrima;
@@ -92,25 +84,20 @@ public class DialogoPartesPrimarias {
 	}// FIN METODO
 
 	//ACCESO CLASE PRINCIPAL
-	public void setMainApp(MainApp mainApp, Proyecto proyecto, OrdenProduccion ordenProduccion) {
+	public void setMainApp(MainApp mainApp, OrdenProduccion ordenProduccion) {
 		this.mainApp = mainApp;
 		this.conexion = this.mainApp.getConnection();
-		this.proyecto = proyecto;
 		this.ordenProduccion = ordenProduccion;
 		this.listaPartePrimaria = new ArrayList<DetalleComponente>();
-		this.listaSubEnsambles = new ArrayList<DetalleComponente>();
-		this.listaEnsambles = new ArrayList<DetalleComponente>();
 		this.componenteRaiz = new Componente();
-		this.hs = new HashSet<DetalleComponente>();
 
-		obtenerListaMateriales();
+		obtenerPartesPrimarias(this.ordenProduccion.getComponenteFK());
 		actualizarTabla();
 
 	}//FIN METODO
 
 	private void inicializarTabla(){
 		this.columnaNumeroPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().numeroParteComponenteSuperiorProperty());
-		this.columnaCantidad.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty());
 		this.columnaDescripcionPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().descripcionComponenteSuperiorProperty());
 		this.columnaDescripcionMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().descripcionComponenteInferiorProperty());
 		this.columnaNumeroMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().numeroParteComponenteInferiorProperty());
@@ -204,25 +191,6 @@ public class DialogoPartesPrimarias {
 				this.campoTextoComponente.setText(this.nombreNumeroComponente + " x " + this.ordenProduccion.getCantidad());
 			else
 				this.campoTextoComponente.setText(this.nombreNumeroComponente);
-		}
-
-		if (componenteRaiz.getTipoComponente().equals(TipoComponente.SUB_ENSAMBLE)){
-			detalleComponenteSubEnsamble = new DetalleComponente();
-			detalleComponenteSubEnsamble.setNumeroParteComponenteSuperior(componenteRaiz.getNumeroParte());
-			detalleComponenteSubEnsamble.setCantidad(detalleComponenteRaiz.getCantidad());
-			detalleComponenteSubEnsamble.setDescripcionComponenteSuperior(componenteRaiz.getDescripcion());
-			detalleComponenteSubEnsamble.setDescripcionComponenteInferior(componenteRaiz.getMaterialDescripcion());
-			detalleComponenteSubEnsamble.setTipoComponenteSuperior(componenteRaiz.getTipoComponenteChar());
-			listaSubEnsambles.add(detalleComponenteSubEnsamble);
-		}//FIN IF
-
-		if (componenteRaiz.getTipoComponente().equals(TipoComponente.ENSAMBLE)){
-			detalleComponenteSubEnsamble = new DetalleComponente();
-			detalleComponenteSubEnsamble.setNumeroParteComponenteSuperior(componenteRaiz.getNumeroParte());
-			detalleComponenteSubEnsamble.setDescripcionComponenteSuperior(componenteRaiz.getDescripcion());
-			detalleComponenteSubEnsamble.setTipoComponenteSuperior(componenteRaiz.getTipoComponenteChar());
-			detalleComponenteSubEnsamble.setCantidad(this.ordenProduccion.getCantidad());
-			listaEnsambles.add(detalleComponenteSubEnsamble);
 		}//FIN IF
 
 		ArrayList<DetalleComponente> listaDetalleComponente = new ArrayList<DetalleComponente>();
@@ -245,7 +213,7 @@ public class DialogoPartesPrimarias {
 					detalleComponenteRaiz = new DetalleComponente();
 					detalleComponenteRaiz.setComponenteSuperiorFK(detalleComponente.getComponenteSuperiorFK());
 					detalleComponenteRaiz.setComponenteInferiorFK(detalleComponente.getComponenteInferiorFK());
-					detalleComponenteRaiz.setCantidad(detalleComponente.getCantidad() * this.ordenProduccion.getCantidad());
+					detalleComponenteRaiz.setCantidad(this.ordenProduccion.getCantidad());
 					detalleComponenteRaiz.setTipoComponenteSuperior(componenteRaiz.getTipoComponenteChar());
 					detalleComponenteRaiz.setDescripcionComponenteInferior(detalleComponente.getDescripcionComponenteInferior());
 					detalleComponenteRaiz.setDescripcionComponenteSuperior(detalleComponente.getDescripcionComponenteSuperior());
@@ -256,17 +224,6 @@ public class DialogoPartesPrimarias {
 		}//FIN IF
 	}//FIN METODO
 
-	private void obtenerListaMateriales(){
-		obtenerPartesPrimarias(proyecto.getComponenteFK());
-		hs.addAll(listaSubEnsambles);
-		listaSubEnsambles.clear();
-		listaSubEnsambles.addAll(hs);
-		hs.clear();
-		hs.addAll(listaEnsambles);
-		listaSubEnsambles.addAll(hs);
-		listaPartePrimaria.addAll(listaSubEnsambles);
-	}//FIN METODO
-
 	private boolean accionBotonHojaViajera(DetalleComponente componenteHojaViajera) {
 		
 		HojaViajera hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK());
@@ -274,7 +231,7 @@ public class DialogoPartesPrimarias {
 		Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
 		
 		if (hojaViajera.getSysPK() == 0) {
-			hojaViajera.setCantidad(componenteHojaViajera.getCantidad());
+			hojaViajera.setCantidad(this.ordenProduccion.getCantidad());
 			hojaViajera.setCodigoParoFK(1);
 			hojaViajera.setComponenteFK(ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK());
 			hojaViajera.setNumeroLote(this.ordenProduccion.getLote());
@@ -293,8 +250,8 @@ public class DialogoPartesPrimarias {
 					if (detalleProceso.getOperacion() == 1)
 						detalleHojaViajera.setCantidadEnProceso(hojaViajera.getCantidad());
 					else
-						detalleHojaViajera.setCantidadEnProceso(0.0);
-					detalleHojaViajera.setCantidadTerminado(0.0);
+						detalleHojaViajera.setCantidadEnProceso(0);
+					detalleHojaViajera.setCantidadTerminado(0);
 					if (detalleProceso.getOperacion() == 1)
 						detalleHojaViajera.setFechaHoraInicio(new Timestamp(System.currentTimeMillis()));
 					else
@@ -324,19 +281,6 @@ public class DialogoPartesPrimarias {
 			return true;
 		}
 	}//FIN METODO
-
-	/*private void printHojaViajera(HojaViajera hojaViajera, ArrayList<DetalleProceso> listaDetallesProceso) {
-		Cliente cliente = ClienteDAO.readCliente(this.conexion, this.proyecto.getClienteFK());
-		Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
-		ArrayList<DetalleProceso> listaProcesos = listaDetallesProceso;
-
-		if (componente.getTipoComponente() != TipoComponente.COMPRADO)
-			GenerarDocumento.generaHojaViajera(this.mainApp.getConnection(), cliente, componente, listaProcesos);
-		else 
-			Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "Los componentes miscelaneos no tienen hoja viajera.");
-		//CÓDIGO PARA IMPRIMIR EL JASPER
-
-	}//FIN METODO*/
 
 	//MANEJADORES COMPONENTES
 	private void manejadorVerHojaViajera(DetalleComponente componenteHojaViajera) {

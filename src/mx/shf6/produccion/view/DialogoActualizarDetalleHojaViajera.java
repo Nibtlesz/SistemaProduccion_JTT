@@ -21,9 +21,9 @@ public class DialogoActualizarDetalleHojaViajera {
 	private DetalleHojaViajera detalleHojaViajera;
 	
 	//VARIABLES
-	private int opcion;
-	private Double cantidadActualizar;
-	private int cantidadProcesos;
+	private Integer opcion;
+	private Integer cantidadActualizar;
+	private Integer cantidadProcesos;
 	
 	//CONSTANTES
 	public static final int LIBERAR = 1;
@@ -69,7 +69,7 @@ public class DialogoActualizarDetalleHojaViajera {
 			Notificacion.dialogoAlerta(AlertType.ERROR, "", "El campo \"Actualizar\" no puede estar vacio");
 			return false;
 		}//FIN IF
-		this.cantidadActualizar = Double.valueOf(this.campoTextoActualizar.getText());
+		this.cantidadActualizar = Integer.valueOf(this.campoTextoActualizar.getText());
 		return true;
 	}//FIN METODO
 	

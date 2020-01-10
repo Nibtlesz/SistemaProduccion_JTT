@@ -28,7 +28,7 @@ public class DialogoDetalleComponente {
 	@FXML private TableView<DetalleComponente> tablaDetalleComponente;
 	@FXML private PTableColumn<DetalleComponente, String> columnaNumeroParte;
 	@FXML private PTableColumn<DetalleComponente, String> columnaDescripcion;
-	@FXML private PTableColumn<DetalleComponente, Double> columnaCantidad;
+	@FXML private PTableColumn<DetalleComponente, Integer> columnaCantidad;
 	@FXML private PTableColumn<DetalleComponente, String> columnaNotas;
 	
 	//INICIA COMPONENTES INTERFAZ USUARIO

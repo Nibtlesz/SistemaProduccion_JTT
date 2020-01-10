@@ -29,8 +29,6 @@ import javafx.util.Callback;
 import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.OrdenProduccion;
 import mx.shf6.produccion.model.dao.OrdenProduccionDAO;
-import mx.shf6.produccion.model.dao.ProyectoDAO;
-//import mx.shf6.produccion.model.dao.ProyectoDAO;
 import mx.shf6.produccion.utilities.PTableColumn;
 
 public class PantallaOrdenProduccion {
@@ -51,7 +49,7 @@ public class PantallaOrdenProduccion {
 	@FXML private PTableColumn<OrdenProduccion, String> columnaOrdenCompra;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaNumeroParte;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaDescripcion;
-	@FXML private PTableColumn<OrdenProduccion, Double> columnaCantidad;
+	@FXML private PTableColumn<OrdenProduccion, Integer> columnaCantidad;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaStatus;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaAcciones;
 	@FXML private ComboBox<String> comboStatus;
@@ -219,6 +217,6 @@ public class PantallaOrdenProduccion {
 	
 	//VER LISTA DE MATERIALES
 	private void manejadorBotonListaMateriales(OrdenProduccion ordenProduccion) {
-		this.mainApp.iniciarDialogoPartesPrimarias(ProyectoDAO.readProyectoPorCodigo(this.conexion, ordenProduccion.getNumeroParte()), ordenProduccion);
+		this.mainApp.iniciarDialogoPartesPrimarias(ordenProduccion);
 	}//FIN METODO	
 }//FIN CLASE

@@ -37,7 +37,7 @@ public class HojaViajeraDAO {
 			ResultSet resultados = sentencia.executeQuery(consulta);
 			while (resultados.next()) {
 				hojaViajera.setSysPK(resultados.getInt(1));
-				hojaViajera.setCantidad(resultados.getDouble(2));
+				hojaViajera.setCantidad(resultados.getInt(2));
 				hojaViajera.setCodigoParoFK(resultados.getInt(3));
 				hojaViajera.setDescripcionParo(resultados.getString(4));
 				hojaViajera.setComponenteFK(resultados.getInt(5));

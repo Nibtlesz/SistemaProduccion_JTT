@@ -13,7 +13,7 @@ public class DetalleComponente {
 	private ObjectProperty<Integer> sysPK;
 	private ObjectProperty<Integer> componenteSuperiorFK;
 	private ObjectProperty<Integer> componenteInferiorFK;
-	private ObjectProperty<Double> cantidad;
+	private ObjectProperty<Integer> cantidad;
 	private StringProperty notas;
 	private StringProperty descripcionComponenteInferior;
 	private StringProperty numeroParteComponenteInferior;
@@ -26,14 +26,14 @@ public class DetalleComponente {
 
 
 	public DetalleComponente() {
-		this(0, 0, 0, 0.0, "", "", "", "", "", "", "", "");
+		this(0, 0, 0, 0, "", "", "", "", "", "", "", "");
 	}//FIN CONSTRUCTOR
 
-	public DetalleComponente(int sysPK, int componenteSuperiorFK, int componenteInferiorFK, double cantidad, String notas, String descripcionComponenteInferior, String numeroParteComponenteInferior, String numeroDescripcionComponenteIferior, String descripcionComponenteSuperior, String numeroParteComponenteSuperior, String tipoComponenteInferior, String tipoComponenteSuperior) {
+	public DetalleComponente(int sysPK, int componenteSuperiorFK, int componenteInferiorFK, Integer cantidad, String notas, String descripcionComponenteInferior, String numeroParteComponenteInferior, String numeroDescripcionComponenteIferior, String descripcionComponenteSuperior, String numeroParteComponenteSuperior, String tipoComponenteInferior, String tipoComponenteSuperior) {
 		this.sysPK = new SimpleObjectProperty<Integer>(sysPK);
 		this.componenteSuperiorFK = new SimpleObjectProperty<Integer>(componenteSuperiorFK);
 		this.componenteInferiorFK = new SimpleObjectProperty<Integer>(componenteInferiorFK);
-		this.cantidad = new SimpleObjectProperty<Double>(cantidad);
+		this.cantidad = new SimpleObjectProperty<Integer>(cantidad);
 		this.notas = new SimpleStringProperty(notas);
 		this.descripcionComponenteInferior = new SimpleStringProperty(descripcionComponenteInferior);
 		this.numeroParteComponenteInferior = new SimpleStringProperty(numeroParteComponenteInferior);
@@ -88,15 +88,15 @@ public class DetalleComponente {
 		return ComponenteDAO.readComponente(connection, this.getComponenteInferiorFK());
 	}//FIN METODO
 
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad.set(cantidad);
 	}//FIN METODO
 
-	public Double getCantidad()	{
+	public Integer getCantidad()	{
 		return this.cantidad.get();
 	}//FIN METODO
 
-	public ObjectProperty<Double> cantidadProperty() {
+	public ObjectProperty<Integer> cantidadProperty() {
 		return this.cantidad;
 	}//FIN METODO
 

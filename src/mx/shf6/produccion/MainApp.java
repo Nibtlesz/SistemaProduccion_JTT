@@ -260,9 +260,6 @@ public class MainApp extends Application {
 	private void configurarBaseDatos() {
 		LeerArchivo.leerArchivo();
 		this.conexionBD = new ConnectionDB(LeerArchivo.nameDB, LeerArchivo.hostDB, LeerArchivo.userDB, LeerArchivo.passwordDB);
-		//this.conexionBD = new ConnectionDB("produccion_mfg","104.254.247.249", "ManufacturasG", "WaAYq3PN6qREb+!w");
-		//this.conexionBD = new ConnectionDB("produccion_mfg","192.168.0.100", "ManufacturasG", "WaAYq3PN6qREb+!w");
-		//this.conexionBD = new ConnectionDB("produccion_mfg","192.168.0.216", "conn01", "Simons83Mx");
 		this.conexion = conexionBD.conectarMySQL();
 		this.sesionActiva = false;
 		this.conexionBD.start();
@@ -1430,7 +1427,7 @@ public class MainApp extends Application {
 		}//FIN TRY/CATCH
 	}//FIN METODO
 
-	public void iniciarDialogoPartesPrimarias(Proyecto proyecto, OrdenProduccion ordenProduccion) {
+	public void iniciarDialogoPartesPrimarias(OrdenProduccion ordenProduccion) {
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(MainApp.class.getResource("view/DialogoPartesPrimarias.fxml"));
@@ -1440,7 +1437,7 @@ public class MainApp extends Application {
 			Scene escenaDialogoPartesPrimarias = this.iniciarEscenarioDialogos(this.dialogoPartesPrimarias);
 			this.escenarioDialogos.setScene(escenaDialogoPartesPrimarias);
 			DialogoPartesPrimarias dialogoPartesPrimarias = fxmlLoader.getController();
-			dialogoPartesPrimarias.setMainApp(this, proyecto, ordenProduccion);
+			dialogoPartesPrimarias.setMainApp(this, ordenProduccion);
 
 		    this.escenarioDialogos.showAndWait();
 		} catch(IOException | IllegalStateException ex) {

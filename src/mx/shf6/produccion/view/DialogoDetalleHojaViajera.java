@@ -43,8 +43,8 @@ public class DialogoDetalleHojaViajera {
 	@FXML private TableView<DetalleHojaViajera> tablaDetalleHojaViajera;
 	@FXML private PTableColumn<DetalleHojaViajera, Integer> columnaOperacion;
 	@FXML private PTableColumn<DetalleHojaViajera, String> columnaProceso;
-	@FXML private PTableColumn<DetalleHojaViajera, Double> columnaEnProceso;
-	@FXML private PTableColumn<DetalleHojaViajera, Double> ColumnaTerminado;
+	@FXML private PTableColumn<DetalleHojaViajera, Integer> columnaEnProceso;
+	@FXML private PTableColumn<DetalleHojaViajera, Integer> ColumnaTerminado;
 	@FXML private PTableColumn<DetalleHojaViajera, Timestamp> columnaFHInicio;
 	@FXML private PTableColumn<DetalleHojaViajera, Timestamp> columnaFHFinal;
 	@FXML private Label campoTextoTitulo;

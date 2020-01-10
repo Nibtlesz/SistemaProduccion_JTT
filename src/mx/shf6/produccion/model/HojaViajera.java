@@ -9,7 +9,7 @@ public class HojaViajera {
 
 	//PROPIEDADES
 	private ObjectProperty<Integer> sysPK;
-	private ObjectProperty<Double> cantidad;
+	private ObjectProperty<Integer> cantidad;
 	private ObjectProperty<Integer> codigoParoFK;
 	private StringProperty descripcionParo;
 	private ObjectProperty<Integer> componenteFK;
@@ -26,13 +26,13 @@ public class HojaViajera {
 	
 	//CONSTRUCTOR VACIO
 	public HojaViajera() {
-		this(0, 0.0, 0, "", 0, "", 0, "", 0);
+		this(0, 0, 0, "", 0, "", 0, "", 0);
 	}//FIN CONSTRUCTOR
 	
 	//CONSTRUCTOR LLENO
-	public HojaViajera(Integer sysPK, Double cantidad, Integer codigoParoFK, String descripcionParo, Integer componenteFK, String numeroParte, Integer ordenProduccionFK, String numeroLote, Integer status) {
+	public HojaViajera(Integer sysPK, Integer cantidad, Integer codigoParoFK, String descripcionParo, Integer componenteFK, String numeroParte, Integer ordenProduccionFK, String numeroLote, Integer status) {
 		this.sysPK = new SimpleObjectProperty<Integer>(sysPK);
-		this.cantidad = new SimpleObjectProperty<Double>(cantidad);
+		this.cantidad = new SimpleObjectProperty<Integer>(cantidad);
 		this.codigoParoFK = new SimpleObjectProperty<Integer>(codigoParoFK);
 		this.descripcionParo = new SimpleStringProperty(descripcionParo);
 		this.componenteFK = new SimpleObjectProperty<Integer>(componenteFK);
@@ -57,15 +57,15 @@ public class HojaViajera {
 	//FIN METODOS DE ACCESO A SYSPK
 	
 	//METODOS DE ACCESO A CANTIDAD
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad.set(cantidad);
 	}//FIN METODO
 	
-	public Double getCantidad() {
+	public Integer getCantidad() {
 		return cantidad.get();
 	}//FIN METODO
 	
-	public ObjectProperty<Double> cantidadProperty() {
+	public ObjectProperty<Integer> cantidadProperty() {
 		return cantidad;
 	}//FIN METODO
 	//FIN METODOS DE ACCESO A CANTIDAD

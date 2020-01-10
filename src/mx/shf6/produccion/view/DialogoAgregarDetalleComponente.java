@@ -76,7 +76,7 @@ public class DialogoAgregarDetalleComponente {
 		else {
 			this.detalleComponente.setComponenteSuperiorFK(this.componente.getSysPK());
 			this.detalleComponente.setComponenteInferiorFK(ComponenteDAO.readComponenteNumeroParte(this.mainApp.getConnection(), this.comboBoxComponentes.getSelectionModel().getSelectedItem()).getSysPK());
-			this.detalleComponente.setCantidad(Double.parseDouble(this.campoTextoCantidad.getText()));
+			this.detalleComponente.setCantidad(Integer.parseInt(this.campoTextoCantidad.getText()));
 			this.detalleComponente.setNotas(this.campoTextoNotas.getText());
 			this.mainApp.getEscenarioDialogosAlterno().close();
 		}//FIN METODO

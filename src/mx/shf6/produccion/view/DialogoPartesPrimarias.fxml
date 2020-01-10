@@ -31,7 +31,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" spacing="5.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonImprimir" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonImprimir" pickOnBounds="true" preserveRatio="true" visible="false">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -66,9 +66,8 @@
                   <TableView fx:id="tablaPartesPrimarias" maxHeight="1.7976931348623157E308" prefHeight="449.0" prefWidth="798.0" styleClass="tablaDatosDetalle">
                      <columns>
                         <PTableColumn fx:id="columnaNumeroPartePrimaria" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Diseño" />
-                        <PTableColumn fx:id="columnaCantidad" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Cantidad" />
                         <PTableColumn fx:id="columnaDescripcionPartePrimaria" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Descripción" />
-                        <PTableColumn fx:id="columnaDescripcionMateriaPrima" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Materia Prima" />
+                        <PTableColumn fx:id="columnaDescripcionMateriaPrima" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Materia Prima" />
                         <PTableColumn fx:id="columnaNumeroMateriaPrima" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Material" />
                         <PTableColumn fx:id="columnaAcciones" maxWidth="1.7976931348623157E308" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Acciones" />
                      </columns>

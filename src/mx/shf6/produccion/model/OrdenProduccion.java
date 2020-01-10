@@ -19,7 +19,7 @@ public class OrdenProduccion {
 	private ObjectProperty<Integer> componenteFK;
 	private StringProperty cNumeroParte;
 	private StringProperty cDescripcion;
-	private ObjectProperty<Double> cantidad;
+	private ObjectProperty<Integer> cantidad;
 	private ObjectProperty<Date> fechaEntrega;
 	
 	//CONSTANTES
@@ -30,11 +30,11 @@ public class OrdenProduccion {
 	
 	//CONSTRUCTOR VACIO
 	public OrdenProduccion() {
-		this(0, new Date(System.currentTimeMillis()), "", 0, 0, "", "", 0, "", "", 0.0, new Date(System.currentTimeMillis()));
+		this(0, new Date(System.currentTimeMillis()), "", 0, 0, "", "", 0, "", "", 0, new Date(System.currentTimeMillis()));
 	}//FIN CONSTRUCTOR
 	
 	//CONSTRUCTOR LLENO
-	public OrdenProduccion(Integer sysPK, Date fecha, String lote, Integer status, Integer detalleOrdenCompraFK, String cliente, String ordenCompra, Integer componenteFK, String cNumeroParte, String cDescripcion, Double cantidad, Date fechaEntrega) {
+	public OrdenProduccion(Integer sysPK, Date fecha, String lote, Integer status, Integer detalleOrdenCompraFK, String cliente, String ordenCompra, Integer componenteFK, String cNumeroParte, String cDescripcion, Integer cantidad, Date fechaEntrega) {
 		this.sysPK = new SimpleObjectProperty<Integer>(sysPK);
 		this.fecha = new SimpleObjectProperty<Date>(fecha);
 		this.lote = new SimpleStringProperty(lote);
@@ -45,7 +45,7 @@ public class OrdenProduccion {
 		this.componenteFK = new SimpleObjectProperty<Integer>(componenteFK);
 		this.cNumeroParte = new SimpleStringProperty(cNumeroParte);
 		this.cDescripcion =  new SimpleStringProperty(cDescripcion);
-		this.cantidad = new SimpleObjectProperty<Double>(cantidad);
+		this.cantidad = new SimpleObjectProperty<Integer>(cantidad);
 		this.fechaEntrega = new SimpleObjectProperty<Date>(fechaEntrega);
 	}//FIN CONSTRUCTOR
 	
@@ -187,15 +187,15 @@ public class OrdenProduccion {
 	}//FIN METODO
 	//FIN METODOS DE ACCESO A COMPONENTE
 	
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad.set(cantidad);
 	}//FIN METODO
 	
-	public Double getCantidad() {
+	public Integer getCantidad() {
 		return this.cantidad.get();
 	}//FIN METODO
 	
-	public ObjectProperty<Double> cantidadProperty() {
+	public ObjectProperty<Integer> cantidadProperty() {
 		return this.cantidad;
 	}//FIN METODO
 	

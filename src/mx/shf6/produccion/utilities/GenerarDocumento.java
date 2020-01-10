@@ -106,7 +106,7 @@ public class GenerarDocumento {
 			if (procesito.getCantidad() == 0)
 				parameters.put("pCantidad", " ");
 			else
-				parameters.put("pcantidad", procesito.getCantidad().toString());
+				parameters.put("pCantidad", procesito.getCantidad().toString());
 
 			if (procesito.getOrdenamiento() == 0)
 				parameters.put("pOrdenamiento", " ");

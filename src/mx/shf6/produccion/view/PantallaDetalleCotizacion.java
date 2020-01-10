@@ -55,7 +55,7 @@ public class PantallaDetalleCotizacion {
 
 	public static final int CREAR = 1;
 	public static final int EDITAR = 2;
-	Double cantidad = 0.0;
+	Integer cantidad = 0;
 	int i = 0;
 	int tamañoArrayPartesPrimarias = 0;
 	String nombreNumeroComponente;

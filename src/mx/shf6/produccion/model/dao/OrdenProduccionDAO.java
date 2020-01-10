@@ -76,7 +76,7 @@ public class OrdenProduccionDAO {
 				orden.setComponenteFK(resultados.getInt(8));
 				orden.setNumeroParte(resultados.getString(9));
 				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getDouble(11));
+				orden.setCantidad(resultados.getInt(11));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -109,7 +109,7 @@ public class OrdenProduccionDAO {
 				orden.setComponenteFK(resultados.getInt(8));
 				orden.setNumeroParte(resultados.getString(9));
 				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getDouble(11));
+				orden.setCantidad(resultados.getInt(11));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -144,7 +144,7 @@ public class OrdenProduccionDAO {
 				orden.setComponenteFK(resultados.getInt(8));
 				orden.setNumeroParte(resultados.getString(9));
 				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getDouble(11));
+				orden.setCantidad(resultados.getInt(11));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -178,7 +178,7 @@ public class OrdenProduccionDAO {
 				orden.setComponenteFK(resultados.getInt(8));
 				orden.setNumeroParte(resultados.getString(9));
 				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getDouble(11));
+				orden.setCantidad(resultados.getInt(11));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {

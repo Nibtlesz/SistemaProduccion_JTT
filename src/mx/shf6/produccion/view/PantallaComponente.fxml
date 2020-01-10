@@ -38,8 +38,8 @@
                         <RadioMenuItem fx:id="checkMenuMateriaPrima" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Materias Primas" toggleGroup="$TipoComponente" />
                         <RadioMenuItem fx:id="checkMenuMiscelaneo" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Miscelaneos" toggleGroup="$TipoComponente" />
                         <RadioMenuItem fx:id="checkMenuPartePrimaria" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Partes Primarias" toggleGroup="$TipoComponente" />
-                        <RadioMenuItem fx:id="checkMenuSubEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Sub Ensables" toggleGroup="$TipoComponente" />
-                        <RadioMenuItem fx:id="checkMenuEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Ensambles" toggleGroup="$TipoComponente" />
+                        <RadioMenuItem fx:id="checkMenuSubEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Sub Ensables" toggleGroup="$TipoComponente" visible="false" />
+                        <RadioMenuItem fx:id="checkMenuEnsamble" mnemonicParsing="false" onAction="#manejadorBotonActualizar" text="Ensambles" toggleGroup="$TipoComponente" visible="false" />
                     </items>
                      <graphic>
                         <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
