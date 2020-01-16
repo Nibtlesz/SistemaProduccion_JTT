@@ -15,11 +15,7 @@
          <children>
             <HBox prefHeight="50.0" spacing="10.0">
                <children>
-                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/1x/StartButton.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                   <VBox alignment="CENTER_LEFT" fillWidth="false" spacing="3.0" HBox.hgrow="ALWAYS">
                      <children>
                         <TextField fx:id="textFieldCliente" editable="false" focusTraversable="false" prefWidth="300.0" promptText="Nombre" styleClass="textFieldTitulos" text="Cliente">
@@ -54,9 +50,8 @@
                   <TableView fx:id="tableViewDetalleOrdenCompra" editable="true" styleClass="tablaDatosDetalle">
                      <columns>
                         <PTableColumn fx:id="tableColumnDiseno" percentageWidth="0.2" prefWidth="75.0" text="Diseño" />
-                        <PTableColumn fx:id="tableColumnDescripcion" percentageWidth="0.2" prefWidth="75.0" text="Descripción" />
-                        <PTableColumn fx:id="tableColumnEntregaFinal" percentageWidth="0.15" prefWidth="75.0" text="Entrega final" />
-                        <PTableColumn fx:id="tableColumnPorEntregar" percentageWidth="0.15" prefWidth="75.0" text="Por entregar" />
+                        <PTableColumn fx:id="tableColumnDescripcion" percentageWidth="0.4" prefWidth="75.0" text="Descripción" />
+                        <PTableColumn fx:id="tableColumnPorEntregar" percentageWidth="0.1" prefWidth="75.0" text="Por entregar" />
                         <PTableColumn fx:id="tableColumnSaldo" percentageWidth="0.1" prefWidth="75.0" text="Saldo" />
                         <PTableColumn fx:id="tableColumnAcciones" percentageWidth="0.2" prefWidth="75.0" text="Acciones" />
                      </columns>

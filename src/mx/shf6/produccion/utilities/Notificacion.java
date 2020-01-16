@@ -22,7 +22,7 @@ public class Notificacion {
         Alert alert = new Alert(AlertType.ERROR);
         alert.initStyle(StageStyle.UTILITY);
         alert.setTitle("Alerta del Sistema");
-        alert.setHeaderText("Manufacturas G | Error en el sistema");
+        alert.setHeaderText("Sistema Producción | Error en el sistema");
         alert.setContentText("Ocurrio un error inesperado durante la ejecución del sistema: \n" + ex.getMessage());
 
         // Create expandable Exception.
@@ -59,7 +59,7 @@ public class Notificacion {
         Alert alert = new Alert(AlertType.ERROR);
         alert.initStyle(StageStyle.UTILITY);
         alert.setTitle("Información del Sistema");
-        alert.setHeaderText("Manufacturas G");
+        alert.setHeaderText("Sistema Producción");
         //alert.setContentText("Ocurrio un error inesperado durante la ejecución del sistema: \n" + mensaje);
 
         // Create expandable Exception.

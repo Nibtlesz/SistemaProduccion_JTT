@@ -57,7 +57,7 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCrear" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#manejadorBotonCrear" pickOnBounds="true" preserveRatio="true" visible="false">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -74,10 +74,9 @@
                <children>
                   <TableView fx:id="tableViewOrdenCompra" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
                      <columns>
-                        <PTableColumn fx:id="tableColumnFolio" minWidth="-1.0" percentageWidth="0.05" prefWidth="-1.0" text="Folio" />
+                        <PTableColumn fx:id="tableColumnFolio" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Folio" />
                         <PTableColumn fx:id="tableColumnFechaPedido" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Fecha Pedido" />
                         <PTableColumn fx:id="tableColumnCliente" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Cliente" />
-                        <PTableColumn fx:id="tableColumnPMP" minWidth="-1.0" percentageWidth="0.05" prefWidth="-1.0" text="PMP" />
                         <PTableColumn fx:id="tableColumnComentarios" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Comentarios" />
                         <PTableColumn fx:id="tableColumnAcciones" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Acciones" />
                      </columns>

@@ -222,8 +222,8 @@ public class MainApp extends Application {
 
 	//CONSTANTES
 	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.100\\SistemaProduccion\\Ficheros\\";
-	//public static final String RAIZ_SERVIDOR = "\\\\192.168.1.107\\SistemaProduccion\\Ficheros\\";
-	public static final String RAIZ_SERVIDOR = "\\\\192.168.0.216\\Ingeniería y Planeación\\PruebasFicherosJTT\\";
+	public static final String RAIZ_SERVIDOR = "\\\\192.168.1.107\\SistemaProduccion\\Ficheros\\";
+	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.216\\Ingeniería y Planeación\\PruebasFicherosJTT\\";
 
 	//VARIABLES
 	private double xOffset = 0.0;

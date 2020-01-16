@@ -2,7 +2,6 @@ package mx.shf6.produccion.view;
 
 import java.security.SecureRandom;
 import java.sql.Connection;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -50,7 +49,6 @@ public class DialogoDetalleOrdenCompra {
 	@FXML private TableView<DetalleOrdenCompra> tableViewDetalleOrdenCompra;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDiseno;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDescripcion;
-	@FXML private PTableColumn<DetalleOrdenCompra, Date> tableColumnEntregaFinal;
 	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnPorEntregar;
 	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnSaldo;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnAcciones;
@@ -75,7 +73,6 @@ public class DialogoDetalleOrdenCompra {
 	private void initTabla() {
 		this.tableColumnDiseno.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().numeroParteProperty());
 		this.tableColumnDescripcion.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().descripcionProperty());
-		this.tableColumnEntregaFinal.setCellValueFactory(cellData -> cellData.getValue().entregaFinalProperty());
 		this.tableColumnPorEntregar.setCellValueFactory(cellData -> cellData.getValue().porEntregarProperty());
 		this.tableColumnSaldo.setCellValueFactory(cellData -> cellData.getValue().saldoProperty());
 		initColumnaAcciones();

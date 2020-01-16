@@ -56,7 +56,7 @@ public class PantallaSesion {
 				Notificacion.dialogoAlerta(AlertType.INFORMATION, "Contraseña incorrecta", "Lo sentimos la contraseña con la que intentas ingresar no es la correcta, si la has olvidado, por favor ponte en contacto con el administrador del sistema.");
 				return false;
 			case UsuarioDAO.ACCESO_CORRECTO:
-				this.mainApp.setUsuario(UsuarioDAO.readPorCampo(this.mainApp.getConnection(), "Usuario", campoTextoUsuario.getText()).get(0));
+				this.mainApp.setUsuario(UsuarioDAO.readPorCampo(this.mainApp.getConnection(), "uf_Usuario", campoTextoUsuario.getText()).get(0));
 				return true;
 			default:
 				return false;

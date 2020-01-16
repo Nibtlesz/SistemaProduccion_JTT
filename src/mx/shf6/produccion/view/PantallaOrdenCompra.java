@@ -67,7 +67,6 @@ public class PantallaOrdenCompra {
 	@FXML private PTableColumn<OrdenCompra, String> tableColumnFolio;
 	@FXML private PTableColumn<OrdenCompra, Date> tableColumnFechaPedido;
 	@FXML private PTableColumn<OrdenCompra, String> tableColumnCliente;
-	@FXML private PTableColumn<OrdenCompra, String> tableColumnPMP;
 	@FXML private PTableColumn<OrdenCompra, String> tableColumnComentarios;
 	@FXML private PTableColumn<OrdenCompra, String> tableColumnAcciones;
 	@FXML private TextField textFieldBusqueda;
@@ -88,7 +87,6 @@ public class PantallaOrdenCompra {
 		this.tableColumnFolio.setCellValueFactory(cellData -> cellData.getValue().folioProperty());
 		this.tableColumnFechaPedido.setCellValueFactory(cellData -> cellData.getValue().fechaPedidoProperty());
 		this.tableColumnCliente.setCellValueFactory(cellData -> cellData.getValue().getClienteFK().nombreProperty());
-		this.tableColumnPMP.setCellValueFactory(cellData -> cellData.getValue().pmpProperty());
 		this.tableColumnComentarios.setCellValueFactory(cellData -> cellData.getValue().comentariosProperty());
 		initColumnaAcciones();
 	}//FIN METODO
@@ -102,7 +100,7 @@ public class PantallaOrdenCompra {
 				final Button botonEliminar = new Button("Eliminar");
 				final Button botonDetalles = new Button("Detalles");
 				final Button botonEnviar = new Button("Enviar");
-				final HBox cajaBotones = new HBox(botonVer, botonEditar, botonEliminar, botonDetalles, botonEnviar);
+				final HBox cajaBotones = new HBox(botonVer, botonDetalles);
 				
 				@Override
 				public void updateItem(String item, boolean empty) {
@@ -233,8 +231,7 @@ public class PantallaOrdenCompra {
 			arrayListColumnas.add("FechaEntrega");
 			arrayListColumnas.add("Cantidad");
 			arrayListColumnas.add("Tipo");
-			arrayListColumnas.add("Proceso");
-			arrayListColumnas.add("PMP");		
+			arrayListColumnas.add("Proceso");		
 				
 			try {
 				//NOMBRE DE LAS FILAS

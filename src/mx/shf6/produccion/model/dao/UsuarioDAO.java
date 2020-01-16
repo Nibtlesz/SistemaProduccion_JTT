@@ -23,7 +23,7 @@ public class UsuarioDAO {
 
 	//METODO PARA HACER CREATE EN LA TABLA USUARIOS
 	public static final boolean crear(Connection connection, Usuario usuario){
-		String query=" INSERT INTO usuarios (Usuario, Contrasena, CorreoElectronico, FechaRegistro, FechaBloqueo, Status, GrupoUsuarioFK, EmpleadoFK) VALUES ( ?, aes_encrypt(?, 'ShiftF6'), ?, CURDATE(), ?, ?, ?, ?)";
+		String query=" INSERT INTO ut_usuarios (uf_Usuario, uf_Contrasena, uf_CorreoElectronico, uf_FechaRegistro, uf_FechaBloqueo, uf_Status, uf_GrupoUsuarioFK, uf_EmpleadoFK) VALUES ( ?, aes_encrypt(?, 'ShiftF6'), ?, CURDATE(), ?, ?, ?, ?)";
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
 			preparedStatement.setString(1, usuario.getUsuario());
@@ -47,7 +47,7 @@ public class UsuarioDAO {
 	//METODO PARA LEER REGISTROS EN LA TABLA USUARIOS. EMMANUEL OSTRIA
 	public static final ArrayList<Usuario> readTodos(Connection connection){
 		ArrayList<Usuario> arrayListUsuario = new ArrayList<Usuario>();
-		String query = "SELECT usuarios.Sys_PK, Usuario, aes_decrypt(Contrasena, 'ShiftF6'), CorreoElectronico, FechaRegistro, FechaBloqueo, Status, GrupoUsuarioFK, gruposusuario.Nombre, empleados.Nombre FROM usuarios INNER JOIN gruposusuario ON usuarios.GrupoUsuarioFK = gruposusuario.Sys_PK INNER JOIN empleados ON usuarios.EmpleadoFK = empleados.Sys_PK ORDER BY usuarios.Sys_PK";
+		String query = "SELECT ut_usuarios.Sys_PK, uf_Usuario, aes_decrypt(uf_Contrasena, 'ShiftF6'), uf_CorreoElectronico, uf_FechaRegistro, uf_FechaBloqueo, uf_Status, uf_GrupoUsuarioFK, ut_gruposusuario.uf_Nombre, ut_empleados.uf_Nombre FROM ut_usuarios INNER JOIN ut_gruposusuario ON ut_usuarios.uf_GrupoUsuarioFK = ut_gruposusuario.Sys_PK INNER JOIN ut_empleados ON ut_usuarios.uf_EmpleadoFK = ut_empleados.Sys_PK ORDER BY ut_usuarios.Sys_PK";
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
@@ -74,7 +74,7 @@ public class UsuarioDAO {
 	//METODO PARA OBTENER REGISTROS SEGUN SU USUARIO O CORREO
 	public static final ArrayList<Usuario> readPorUsuarioCorreoLike (Connection connection, String like){
 		ArrayList<Usuario> arrayListUsuario = new ArrayList<Usuario>();
-		String query= "SELECT usuarios.Sys_PK, Usuario, aes_decrypt(Contrasena, 'ShiftF6'), CorreoElectronico, FechaRegistro, FechaBloqueo, Status, GrupoUsuarioFK, gruposusuario.Nombre, empleados.Nombre FROM usuarios INNER JOIN gruposusuario ON usuarios.GrupoUsuarioFK = gruposusuario.Sys_PK INNER JOIN empleados ON empleados.Sys_PK = usuarios.EmpleadoFK WHERE Usuario LIKE '%" + like + "%' OR CorreoElectronico LIKE '%" + like + "%'";
+		String query= "SELECT ut_usuarios.Sys_PK, uf_Usuario, aes_decrypt(uf_Contrasena, 'ShiftF6'), uf_CorreoElectronico, uf_FechaRegistro, uf_FechaBloqueo, uf_Status, uf_GrupoUsuarioFK, ut_gruposusuario.uf_Nombre, ut_empleados.uf_Nombre FROM ut_usuarios INNER JOIN ut_gruposusuario ON ut_usuarios.uf_GrupoUsuarioFK = ut_gruposusuario.Sys_PK INNER JOIN ut_empleados ON ut_empleados.Sys_PK = ut_usuarios.uf_EmpleadoFK WHERE uf_Usuario LIKE '%" + like + "%' OR uf_CorreoElectronico LIKE '%" + like + "%'";
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(query);
@@ -102,7 +102,7 @@ public class UsuarioDAO {
 	//METODO PARA HACER SELECT EN LA TABLA USUARIOS
 	public static final ArrayList<Usuario> readPorCampo(Connection connection, String campoBusqueda, String valorBusqueda) {
 		ArrayList<Usuario> arrayListUsuario = new ArrayList<Usuario>();
-		String query = "SELECT Sys_PK, Usuario, aes_decrypt(Contrasena, 'ShiftF6'), CorreoElectronico, FechaRegistro, FechaBloqueo, Status, GrupoUsuarioFK, EmpleadoFK FROM usuarios WHERE "+campoBusqueda+" = ? ORDER BY Sys_PK";
+		String query = "SELECT Sys_PK, uf_Usuario, aes_decrypt(uf_Contrasena, 'ShiftF6'), uf_CorreoElectronico, uf_FechaRegistro, uf_FechaBloqueo, uf_Status, uf_GrupoUsuarioFK, uf_EmpleadoFK FROM ut_usuarios WHERE "+campoBusqueda+" = ? ORDER BY Sys_PK";
 			try {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, valorBusqueda);
@@ -130,7 +130,7 @@ public class UsuarioDAO {
 
 	//METODO PARA ACTUALIZAR UN REGITRO
 	public static final boolean update(Connection connection, Usuario usuario){
-		String query = "UPDATE usuarios SET Usuario = ?, Contrasena = aes_encrypt(?, 'ShiftF6'), CorreoElectronico = ?, FechaBloqueo = ?, Status = ?, GrupoUsuarioFK = ? WHERE Sys_PK = ?";
+		String query = "UPDATE ut_usuarios SET uf_Usuario = ?, uf_Contrasena = aes_encrypt(?, 'ShiftF6'), uf_CorreoElectronico = ?, uf_FechaBloqueo = ?, uf_Status = ?, uf_GrupoUsuarioFK = ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(query);
 			preparedStatement.setString(1, usuario.getUsuario());
@@ -154,7 +154,7 @@ public class UsuarioDAO {
 
 	//METODO PARA HACER DELETE EN LA TABLA USUARIOS
 	public static final boolean eliminar(Connection connection, Usuario usuario) {
-		String query = "DELETE FROM usuarios WHERE Sys_PK= ?";
+		String query = "DELETE FROM ut_usuarios WHERE uf_Sys_PK= ?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, usuario.getSysPk());
@@ -180,7 +180,7 @@ public class UsuarioDAO {
 	//METODO PARA VALIDAR SI UN USUARIO ESTA REGISTRADO Y/O BLOQUEDO Y SI HA ESCRITO CORRECTAMENTE SU CONTRASEÑA
 	public static final int validarUsuario(Connection connection, String nombreUsuario, String contrasena) {
 		Usuario usuario = new Usuario();
-		ArrayList<Usuario> resultadoUsuario = readPorCampo(connection, "usuario", nombreUsuario);
+		ArrayList<Usuario> resultadoUsuario = readPorCampo(connection, "uf_Usuario", nombreUsuario);
 		if (resultadoUsuario.size() != 0) {
 			usuario = (Usuario) resultadoUsuario.get(0);
 			if(usuario.getUsuario().equals(nombreUsuario)) {
@@ -202,7 +202,7 @@ public class UsuarioDAO {
 
 	//METDODO PARA OBTENER EL ULTIMO SYSPK REGISTRADO EN LA TABAL USUARIOS
 	public static final int ultimoSysPk(Connection connection) {
-		String query="SELECT Sys_PK FROM usuarios order by Sys_PK asc";
+		String query="SELECT uf_Sys_PK FROM ut_usuarios order by Sys_PK asc";
 		int ultimoSysPk=0;
 		try {
 			Statement statement = connection.createStatement();

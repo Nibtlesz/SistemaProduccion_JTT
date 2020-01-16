@@ -15,7 +15,7 @@ public class PuestoDAO {
  
 	// METODO PARA CREAR UN REGISTRO
 	public static boolean createPuesto(Connection connection, Puesto puesto) {
-		String consulta = "INSERT INTO puestos (Codigo, Descripcion) VALUES (?, ?)";
+		String consulta = "INSERT INTO ut_puestos (uf_Codigo, uf_Descripcion) VALUES (?, ?)";
 		try {
 		PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 		sentenciaPreparada.setString(1, puesto.getCodigo());
@@ -31,7 +31,7 @@ public class PuestoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<Puesto> readPuesto(Connection connection) {
 		ArrayList<Puesto> arrayListPuesto = new ArrayList<Puesto>();
-		String consulta = "SELECT Sys_PK, Codigo, Descripcion FROM puestos order by Codigo ASC";
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_puestos order by uf_Codigo ASC";
 		try {
 		Statement sentencia = connection.createStatement();
 		ResultSet resultados = sentencia.executeQuery(consulta);
@@ -51,7 +51,7 @@ public class PuestoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static Puesto readPuesto(Connection connection, int sysPK) {
 		Puesto puesto = new Puesto();
-		String consulta = "SELECT Sys_PK, Codigo, Descripcion from puestos WHERE Sys_PK = " + sysPK;
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_puestos WHERE Sys_PK = " + sysPK;
 		try {
 		Statement sentencia = connection.createStatement();
 		ResultSet resultados = sentencia.executeQuery(consulta);
@@ -69,7 +69,7 @@ public class PuestoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<Puesto> readPuestoLike(Connection connection, String like) {
 		ArrayList<Puesto> arrayListPuesto = new ArrayList<Puesto>();
-		String consulta = "SELECT Sys_PK, Codigo, Descripcion FROM puestos WHERE Codigo LIKE '%" + like + "%' OR Descripcion LIKE '%" + like + "%'";
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_puestos WHERE uf_Codigo LIKE '%" + like + "%' OR uf_Descripcion LIKE '%" + like + "%'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -88,7 +88,7 @@ public class PuestoDAO {
 
 	// METODO PARA EDITAR UN REGISTRO
 	public static boolean updatePuesto(Connection connection, Puesto puesto) {
-		String consulta = "UPDATE puestos SET Codigo = ?, Descripcion = ? WHERE Sys_PK = ?";
+		String consulta = "UPDATE ut_puestos SET uf_Codigo = ?, uf_Descripcion = ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, puesto.getCodigo());
@@ -104,7 +104,7 @@ public class PuestoDAO {
 
 	// METODO PARA ELIMINAR UN REGISTRO
 	public static boolean deletePuesto(Connection connection, Puesto puesto) {
-		String consulta = "DELETE FROM puestos WHERE Sys_PK = ?";
+		String consulta = "DELETE FROM ut_puestos WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setInt(1, puesto.getSysPK());

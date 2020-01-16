@@ -13,7 +13,7 @@ public class CentroTrabajoDAO {
 
 	// METODO PARA CREAR UN REGISTRO
 	public static boolean createCentroTrabajo(Connection connection, CentroTrabajo centroTrabajo) {
-		String consulta = "INSERT INTO centrostrabajo (Codigo, Descripcion, GrupoTrabajoFK) VALUES (?, ?, ?)";
+		String consulta = "INSERT INTO ut_centrotrabajo (uf_Codigo, uf_Descripcion, uf_GrupoTrabajoFK) VALUES (?, ?, ?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, centroTrabajo.getCodigo());
@@ -30,7 +30,7 @@ public class CentroTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<CentroTrabajo> readCentroTrabajo(Connection connection) {
 		ArrayList<CentroTrabajo> arrayListCentroTrabajo = new ArrayList<CentroTrabajo>();
-		String consulta = "SELECT centrostrabajo.Sys_PK, centrostrabajo.Codigo, centrostrabajo.Descripcion, centrostrabajo.GrupoTrabajoFK, grupostrabajo.Codigo FROM centrostrabajo INNER JOIN grupostrabajo ON centrostrabajo.GrupoTrabajoFK = grupostrabajo.Sys_PK ORDER BY centrostrabajo.codigo";
+		String consulta = "SELECT ut_centrotrabajo.Sys_PK, ut_centrotrabajo.uf_Codigo, ut_centrotrabajo.uf_Descripcion, ut_centrotrabajo.uf_GrupoTrabajoFK, ut_grupotrabajo.uf_Codigo FROM ut_centrotrabajo INNER JOIN ut_grupotrabajo ON ut_centrotrabajo.uf_GrupoTrabajoFK = ut_grupotrabajo.Sys_PK ORDER BY ut_centrotrabajo.uf_codigo";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -52,7 +52,7 @@ public class CentroTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static CentroTrabajo readCentroTrabajo(Connection connection, int sysPK) {
 		CentroTrabajo centrotrabajo = new CentroTrabajo();
-		String consulta = "SELECT Sys_PK, Codigo, Descripcion, GrupoTrabajoFK FROM centrostrabajo WHERE Sys_PK = " + sysPK + " ORDER BY Codigo";
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion, uf_GrupoTrabajoFK FROM ut_centrotrabajo WHERE Sys_PK = " + sysPK + " ORDER BY uf_Codigo";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -71,7 +71,7 @@ public class CentroTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<CentroTrabajo> readCentroTrabajoLike(Connection connection, String like) {
 		ArrayList<CentroTrabajo> arrayListaCentroTrabajo = new ArrayList<CentroTrabajo>();
-		String consulta = "SELECT centrostrabajo.Sys_PK, centrostrabajo.Codigo, centrostrabajo.Descripcion, grupostrabajo.Codigo FROM centrostrabajo INNER JOIN grupostrabajo ON centrostrabajo.GrupoTrabajoFK = grupostrabajo.Sys_PK WHERE centrostrabajo.Codigo LIKE '%"+ like + "%' OR centrostrabajo.Descripcion LIKE '%" + like + "%'";
+		String consulta = "SELECT ut_centrotrabajo.Sys_PK, ut_centrotrabajo.uf_Codigo, ut_centrotrabajo.uf_Descripcion, ut_grupotrabajo.uf_Codigo FROM ut_centrotrabajo INNER JOIN ut_grupotrabajo ON ut_centrotrabajo.uf_GrupoTrabajoFK = ut_grupotrabajo.Sys_PK WHERE ut_centrotrabajo.uf_Codigo LIKE '%"+ like + "%' OR ut_centrotrabajo.uf_Descripcion LIKE '%" + like + "%'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -93,7 +93,7 @@ public class CentroTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static CentroTrabajo readCentroTrabajoNombre(Connection connection, String nombre) {
 		CentroTrabajo centrotrabajo = new CentroTrabajo();
-		String consulta = "SELECT centrostrabajo.Sys_PK, centrostrabajo.Codigo, centrostrabajo.Descripcion, centrostrabajo.GrupoTrabajoFK FROM centrostrabajo INNER JOIN grupostrabajo ON centrostrabajo.GrupoTrabajoFK = grupostrabajo.Sys_PK WHERE centrostrabajo.Descripcion = '" + nombre + "'";
+		String consulta = "SELECT ut_centrotrabajo.Sys_PK, ut_centrotrabajo.uf_Codigo, ut_centrotrabajo.uf_Descripcion, ut_centrotrabajo.uf_GrupoTrabajoFK FROM ut_centrotrabajo INNER JOIN ut_grupotrabajo ON ut_centrotrabajo.uf_GrupoTrabajoFK = ut_grupotrabajo.Sys_PK WHERE ut_centrotrabajo.uf_Descripcion = '" + nombre + "'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -111,7 +111,7 @@ public class CentroTrabajoDAO {
 	
 	// METODO PARA EDITAR UN REGISTRO
 	public static boolean updateCentroTrabajo(Connection connection, CentroTrabajo centrotrabajo) {
-		String consulta = "UPDATE centrostrabajo SET Codigo = ?, Descripcion = ?, GrupoTrabajoFK = ? WHERE Sys_PK = ?";
+		String consulta = "UPDATE ut_centrotrabajo SET uf_Codigo = ?, uf_Descripcion = ?, uf_GrupoTrabajoFK = ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, centrotrabajo.getCodigo());
@@ -128,7 +128,7 @@ public class CentroTrabajoDAO {
 
 	// METODO PARA ELIMINAR UN REGISTRO
 	public static boolean deleteCentroTrabajo(Connection connection, CentroTrabajo centroTrabajo) {
-		String consulta = "DELETE FROM centrostrabajo WHERE Sys_PK = ?";
+		String consulta = "DELETE FROM ut_centrotrabajo WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setInt(1, centroTrabajo.getSysPK());

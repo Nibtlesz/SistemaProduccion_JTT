@@ -32,7 +32,7 @@ public class OrdenCompraDAO {
 	
 	public static final ArrayList<OrdenCompra> read(Connection connection) {
 		ArrayList<OrdenCompra> arrayListOrdenCompra = new ArrayList<OrdenCompra>();
-		String query = "SELECT * FROM infoordencompras";
+		String query = "SELECT * FROM infoordencompras WHERE OrdenCompraDocumento = 2";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(query);
@@ -41,18 +41,15 @@ public class OrdenCompraDAO {
 				ordenCompra.setSysPK(resultados.getInt("OrdenCompraSysPK"));
 				ordenCompra.setFechaPedido(resultados.getDate("OrdenCompraFechaPedido"));
 				ordenCompra.setFolio(resultados.getString("OrdenCompraFolio"));
-				ordenCompra.setPMP(resultados.getString("OrdenCompraPMP"));
 				ordenCompra.setComentarios(resultados.getString("OrdenCompraComentarios"));
 				Cliente cliente = new Cliente();
 				cliente.setSysPK(resultados.getInt("OrdenCompraClienteSysPK"));
 				cliente.setCodigo(resultados.getString("OrdenCompraClientesCodigo"));
 				cliente.setNombre(resultados.getString("OrdenCompraClientesNombre"));
 				cliente.setStatus(resultados.getInt("OrdenCompraClientesStatus"));
-				cliente.setFechaRegistro(resultados.getDate("OrdenCompraClientesFechaRegistro"));
 				cliente.setRegistroContribuyente(resultados.getString("OrdenCompraClientesRegistroContribuyente"));
 				cliente.setTelefono(resultados.getString("OrdenCompraClientesTelefono"));
 				cliente.setCorreo(resultados.getString("OrdenCompraClientesCorreo"));
-				cliente.setRutaCarpeta(resultados.getString("OrdenCompraClientesRutaCarpeta"));
 				cliente.setDomicilioFK(resultados.getInt("OrdenCompraClientesDomicilioFK"));
 				ordenCompra.setClienteFK(cliente);
 				arrayListOrdenCompra.add(ordenCompra);
