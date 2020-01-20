@@ -50,9 +50,9 @@
                   <TableView fx:id="tableViewDetalleOrdenCompra" editable="true" styleClass="tablaDatosDetalle">
                      <columns>
                         <PTableColumn fx:id="tableColumnDiseno" percentageWidth="0.2" prefWidth="75.0" text="Diseño" />
-                        <PTableColumn fx:id="tableColumnDescripcion" percentageWidth="0.4" prefWidth="75.0" text="Descripción" />
-                        <PTableColumn fx:id="tableColumnPorEntregar" percentageWidth="0.1" prefWidth="75.0" text="Por entregar" />
-                        <PTableColumn fx:id="tableColumnSaldo" percentageWidth="0.1" prefWidth="75.0" text="Saldo" />
+                        <PTableColumn fx:id="tableColumnDescripcion" percentageWidth="0.3" prefWidth="75.0" text="Descripción" />
+                        <PTableColumn fx:id="tableColumnPorEntregar" percentageWidth="0.15" prefWidth="75.0" text="Por entregar" />
+                        <PTableColumn fx:id="tableColumnSaldo" percentageWidth="0.15" prefWidth="75.0" text="En producción" />
                         <PTableColumn fx:id="tableColumnAcciones" percentageWidth="0.2" prefWidth="75.0" text="Acciones" />
                      </columns>
                      <contextMenu>

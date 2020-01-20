@@ -16,11 +16,12 @@ public class OrdenProduccionDAO {
 
 	//METODO PARA CREAR UN REGISTRO
 	public static boolean createOrdenProduccion(Connection connection, OrdenProduccion ordenProduccion) {
-		String consulta = "INSERT INTO ut_ordenesproduccion (uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK) VALUES (CURDATE(),?,0,?)";
+		String consulta = "INSERT INTO ut_ordenesproduccion (uf_Fecha, uf_Lote, uf_Cantidad, uf_Status, uf_DVentaFK) VALUES (CURDATE(),?,?,0,?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, ordenProduccion.getLote());
-			sentenciaPreparada.setInt(2, ordenProduccion.getDetalleCotizacionFK());
+			sentenciaPreparada.setInt(2, ordenProduccion.getCantidad());
+			sentenciaPreparada.setInt(3, ordenProduccion.getDetalleCotizacionFK());
 			sentenciaPreparada.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -32,7 +33,7 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO PARA GRAFICAS
 	public static ArrayList<OrdenProduccion> readLoteProduccion(Connection connection) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_Status != 3 AND uf_Status != 4";
+		String consulta = "SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Cantidad, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_Status != 3 AND uf_Status != 4";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -41,8 +42,9 @@ public class OrdenProduccionDAO {
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
 				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
+				orden.setCantidad(resultados.getInt(4));
+				orden.setStatus(resultados.getInt(5));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(6));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -55,7 +57,7 @@ public class OrdenProduccionDAO {
 	public static ArrayList<OrdenProduccion> readOrdenProduccion(Connection connection) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
 		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
-				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, ut_ordenesproduccion.uf_Cantidad " + 
 				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
 				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
 				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
@@ -89,7 +91,7 @@ public class OrdenProduccionDAO {
 	public static ArrayList<OrdenProduccion> dateOrdenProduccion(Connection connection, Date fechaInicio, Date fechaFinal) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
 		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
-				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, ut_ordenesproduccion.uf_Cantidad " + 
 				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
 				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
 				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
@@ -123,7 +125,7 @@ public class OrdenProduccionDAO {
 	public static ArrayList<OrdenProduccion> searchOrdenProduccion(Connection connection, String like) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
 		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
-				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, ut_ordenesproduccion.uf_Cantidad " + 
 				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
 				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
 				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
@@ -158,7 +160,7 @@ public class OrdenProduccionDAO {
 	public static ArrayList<OrdenProduccion> statusOrdenProduccion(Connection connection, int status) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
 		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
-				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, ut_ordenesproduccion.uf_Cantidad " + 
 				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
 				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
 				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
@@ -190,7 +192,7 @@ public class OrdenProduccionDAO {
 	
 	public static OrdenProduccion searchOrdenProduccion(Connection connection, int detalleOrdenCompraFK) {
 		OrdenProduccion orden = new OrdenProduccion();
-		String consulta = " SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_DVentaFK = " + detalleOrdenCompraFK;
+		String consulta = " SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Cantidad, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_DVentaFK = " + detalleOrdenCompraFK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -198,8 +200,9 @@ public class OrdenProduccionDAO {
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
 				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
+				orden.setCantidad(resultados.getInt(4));
+				orden.setStatus(resultados.getInt(5));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(6));
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -223,7 +226,7 @@ public class OrdenProduccionDAO {
 	}//FIN METODO
 	
 	public static final int sysPKOrdenProduccion(Connection connection, String lote) {
-		String query = "SELECT Sys_PK FROM ordenesproduccion WHERE Lote = '" + lote + "' AND Status != 3 AND Status != 4";
+		String query = "SELECT Sys_PK FROM ut_ordenesproduccion WHERE uf_Lote = '" + lote + "' AND uf_Status != 3 AND uf_Status != 4";
 		int sysPK = 0;
 		try {
 			Statement statement = connection.createStatement();
@@ -240,7 +243,7 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER LA ORDEN PRODUCCION SEGUN EL LOTE
     public static final OrdenProduccion loteOrdenProduccion (Connection connection, String lote) {
         OrdenProduccion orden = new OrdenProduccion();
-        String query = "SELECT Sys_PK, Fecha, Lote, Status, DetalleOrdenCompraFK FROM ordenesproduccion WHERE lote = '" + lote + "'";
+        String query = "SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Cantidad, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_Lote = '" + lote + "'";
         try {
             Statement sentencia = connection.createStatement();
             ResultSet resultados = sentencia.executeQuery(query);
@@ -248,32 +251,16 @@ public class OrdenProduccionDAO {
             	orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
 				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
+				orden.setCantidad(resultados.getInt(4));
+				orden.setStatus(resultados.getInt(5));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(6));
             }//FIN WHILE
         }catch(SQLException ex) {
             Notificacion.dialogoException(ex);
         }//FIN TRY-CATCH
         return orden;
     }//FIN METODO
-	
-	//METODO PARA OBTENER LA FECHA INICIAL Y FECHA DE ENTREGA DEL LOTE
-	public static final OrdenProduccion fechasPorLote(Connection connection, int sysPK){
-		OrdenProduccion orden = new OrdenProduccion();
-		String query = "SELECT ordenesproduccion.Fecha, detallecotizaciones.FechaEntrega FROM  ordenesproduccion INNER JOIN detalleordencompras ON ordenesproduccion.DetalleOrdenCompraFK = detalleordencompras.Sys_PK WHERE ordenesproduccion.Sys_PK = " + sysPK;
-		try {
-			Statement sentencia = connection.createStatement();
-			ResultSet resultados = sentencia.executeQuery(query);
-			while(resultados.next()) {
-				orden.setFecha(resultados.getDate(1));
-				orden.setFechaEntrega(resultados.getDate(2));
-			}//FIN WHILE
-		}catch (SQLException ex) {
-			Notificacion.dialogoException(ex);
-		}//FIN TRY-CATCH
-		return orden;
-	}//FIN METODO
-		
+			
 	public static ObservableList<OrdenProduccion> toObservableList(ArrayList<OrdenProduccion> arrayList) {
 		ObservableList<OrdenProduccion> listaObservableOrdenProduccion = FXCollections.observableArrayList();
 		for (OrdenProduccion orden : arrayList) 

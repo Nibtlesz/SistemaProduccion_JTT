@@ -87,6 +87,7 @@ import mx.shf6.produccion.view.DialogoDetalleHojaViajera;
 import mx.shf6.produccion.view.DialogoDetalleOrdenCompra;
 import mx.shf6.produccion.view.DialogoDetalleProceso;
 import mx.shf6.produccion.view.DialogoEmpleado;
+import mx.shf6.produccion.view.DialogoEnProduccion;
 import mx.shf6.produccion.view.DialogoEsquemaSeguridad;
 import mx.shf6.produccion.view.DialogoEstadoCuentaCliente;
 import mx.shf6.produccion.view.DialogoEstructuraNiveles;
@@ -219,6 +220,7 @@ public class MainApp extends Application {
 	private AnchorPane dialogoAgregarDetalleOrdenCompra;
 	private AnchorPane dialogoDetalleEntregaOrdenCompra;
 	private AnchorPane dialogoAgregarDetalleEntregaOrdenCompra;
+	private AnchorPane dialogoEnProduccion;
 
 	//CONSTANTES
 	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.100\\SistemaProduccion\\Ficheros\\";
@@ -1653,6 +1655,24 @@ public class MainApp extends Application {
 			this.escenarioDialogosAlternoSecundario.setScene(escenaDialogoAgregarDetalleEntregaOrdenCompra);
 			DialogoAgregarDetalleEntregaOrdenCompra dialogoAgregarDetalleEntregaOrdenCompra = fxmlLoader.getController();
 			dialogoAgregarDetalleEntregaOrdenCompra.setMainApp(this, detalleEntregaOrdenCompra, detalleOrdenCompra);
+			
+			this.escenarioDialogosAlternoSecundario.showAndWait();
+		} catch(IOException | IllegalStateException ex) {
+			Notificacion.dialogoException(ex);
+		}//FIN TRY/CATCH
+	}//FIN METODO
+	
+	public void iniciarDialogoEnProduccion(DetalleOrdenCompra detalleOrdenCompra) {
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(MainApp.class.getResource("view/DialogoEnProduccion.fxml"));
+			
+			this.dialogoEnProduccion = (AnchorPane) fxmlLoader.load();
+			
+			Scene escenaDialogoEnProduccion = this.iniciarEscenarioDialogosAlternoSecundario(this.dialogoEnProduccion);
+			this.escenarioDialogosAlternoSecundario.setScene(escenaDialogoEnProduccion);
+			DialogoEnProduccion dialogoEnProduccion = fxmlLoader.getController();
+			dialogoEnProduccion.setMainApp(this, detalleOrdenCompra);
 			
 			this.escenarioDialogosAlternoSecundario.showAndWait();
 		} catch(IOException | IllegalStateException ex) {

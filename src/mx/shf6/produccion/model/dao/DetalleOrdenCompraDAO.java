@@ -147,19 +147,11 @@ public class DetalleOrdenCompraDAO {
 	}//FIN METODO
 	
 	public static final boolean update(Connection connection, DetalleOrdenCompra detalleOrdenCompra) {
-		String query = "UPDATE detalleordencompras SET PlanoOrdenamiento = ?, Item = ?, FechaCliente = ?, EntregaFinal = ?, PorEntregar = ?, Saldo = ?, ProcesoPintura = ?, OrdenCompraFK = ?, ComponenteFK = ? WHERE Sys_PK = ?";
+		String query = "UPDATE dventa SET uf_EnProduccion = uf_EnProduccion + ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(query);
-			sentenciaPreparada.setString(1, detalleOrdenCompra.getPlanoOrdenamiento());
-			sentenciaPreparada.setString(2, detalleOrdenCompra.getItem());
-			sentenciaPreparada.setDate(3, detalleOrdenCompra.getFechaCliente());
-			sentenciaPreparada.setDate(4, detalleOrdenCompra.getEntregaFinal());
-			sentenciaPreparada.setInt(5, detalleOrdenCompra.getPorEntregar());
-			sentenciaPreparada.setInt(6, detalleOrdenCompra.getSaldo());
-			sentenciaPreparada.setString(7, detalleOrdenCompra.getProcesoPintura());
-			sentenciaPreparada.setInt(8, detalleOrdenCompra.getOrdenCompraFK().getSysPK());
-			sentenciaPreparada.setInt(9, detalleOrdenCompra.getComponenteFK().getSysPK());
-			sentenciaPreparada.setInt(10, detalleOrdenCompra.getSysPK());
+			sentenciaPreparada.setInt(1, detalleOrdenCompra.getSaldo());
+			sentenciaPreparada.setInt(2, detalleOrdenCompra.getSysPK());
 			sentenciaPreparada.execute();
 			return true;
 		} catch(SQLException ex) {

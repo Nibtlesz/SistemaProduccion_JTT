@@ -1,13 +1,7 @@
 package mx.shf6.produccion.view;
 
-import java.security.SecureRandom;
 import java.sql.Connection;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -15,25 +9,21 @@ import javafx.geometry.Insets;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.DetalleOrdenCompra;
-import mx.shf6.produccion.model.DetalleOrdenProduccion;
 import mx.shf6.produccion.model.OrdenCompra;
-import mx.shf6.produccion.model.OrdenProduccion;
 import mx.shf6.produccion.model.dao.DetalleOrdenCompraDAO;
-import mx.shf6.produccion.model.dao.DetalleOrdenProduccionDAO;
-import mx.shf6.produccion.model.dao.OrdenProduccionDAO;
 import mx.shf6.produccion.utilities.Notificacion;
 import mx.shf6.produccion.utilities.PTableColumn;
 
@@ -50,6 +40,7 @@ public class DialogoDetalleOrdenCompra {
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDiseno;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDescripcion;
 	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnPorEntregar;
+	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnSaldo;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnAcciones;
 	@FXML private TextField textFieldFolio;
 	@FXML private TextField textFieldCliente;
@@ -73,6 +64,7 @@ public class DialogoDetalleOrdenCompra {
 		this.tableColumnDiseno.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().numeroParteProperty());
 		this.tableColumnDescripcion.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().descripcionProperty());
 		this.tableColumnPorEntregar.setCellValueFactory(cellData -> cellData.getValue().porEntregarProperty());
+		this.tableColumnSaldo.setCellValueFactory(cellData -> cellData.getValue().saldoProperty());
 		initColumnaAcciones();
 	}//FIN METODO
 	
@@ -208,6 +200,9 @@ public class DialogoDetalleOrdenCompra {
 	}//FIN METODO
 	
 	private void manejadorBotonIniciarProduccion(DetalleOrdenCompra detalleOrdenCompra) {
-		
+		if (detalleOrdenCompra.getPorEntregar() == detalleOrdenCompra.getSaldo())
+			Notificacion.dialogoAlerta(AlertType.ERROR, "", "Todas tus piezas estan en producción");
+		else
+			this.mainApp.iniciarDialogoEnProduccion(detalleOrdenCompra);
 	}//FIN METODO
 }//FIN CLASE
