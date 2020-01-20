@@ -121,9 +121,10 @@
                      <columns>
                         <PTableColumn fx:id="columnaNumeroParte" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="# Parte" />
                         <PTableColumn fx:id="columnaDescripcion" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Descripción" />
+                        <PTableColumn fx:id="columnaExistencia" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Existencia" />
                         <PTableColumn fx:id="columnaTipoComponente" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Tipo" />
                         <PTableColumn fx:id="columnaCosto" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Costo" />
-                        <PTableColumn fx:id="columnaNotas" minWidth="-1.0" percentageWidth="0.3" prefWidth="-1.0" text="Notas" />
+                        <PTableColumn fx:id="columnaNotas" minWidth="-1.0" percentageWidth="0.2" prefWidth="-1.0" text="Notas" />
                         <PTableColumn fx:id="columnaStatus" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Status" />
                         <PTableColumn fx:id="columnaAcciones" minWidth="-1.0" percentageWidth="0.1" prefWidth="-1.0" text="Acciones" />
                      </columns>

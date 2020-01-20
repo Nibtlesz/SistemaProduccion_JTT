@@ -52,6 +52,7 @@ public class PantallaComponente {
 	@FXML private TableView<Componente> tablaComponente;
 	@FXML private PTableColumn<Componente, String> columnaNumeroParte;
 	@FXML private PTableColumn<Componente, String> columnaDescripcion;
+	@FXML private PTableColumn<Componente, Double> columnaExistencia;
 	@FXML private PTableColumn<Componente, String> columnaTipoComponente;
 	//@FXML private PTableColumn<Componente, String> columnaTipoMaterial;
 	@FXML private PTableColumn<Componente, Double> columnaCosto;
@@ -94,6 +95,7 @@ public class PantallaComponente {
 	private void inicializaTabla() {
 		this.columnaNumeroParte.setCellValueFactory(cellData -> cellData.getValue().numeroParteProperty());
 		this.columnaDescripcion.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
+		//this.columnaCantidad.setCellValueFactory(cellData -> cellData.getValue().existenciaProperty());
 		this.columnaTipoComponente.setCellValueFactory(cellData -> cellData.getValue().tipoComponenteProperty());
 		//this.columnaTipoMaterial.setCellValueFactory(cellData -> cellData.getValue().getMaterial(this.mainApp.getConnection()).descripcionProperty());
 		this.columnaCosto.setCellValueFactory(cellData -> cellData.getValue().costoProperty());

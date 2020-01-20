@@ -40,6 +40,7 @@ public class DialogoMaterial {
 	@FXML private PTableColumn<Material, Integer> columnaSysPK;
 	@FXML private PTableColumn<Material, String> columnaCodigo;
 	@FXML private PTableColumn<Material, String> columnaDescripcion;
+	@FXML private PTableColumn<Material, Double> columnaExistencia;
 	@FXML private PTableColumn<Material, String> columnaGradoMaterial;
 	@FXML private PTableColumn<Material, String> columnaStatus;
 	@FXML private PTableColumn<Material, String> columnaAcciones;
@@ -74,6 +75,7 @@ public class DialogoMaterial {
 		this.columnaSysPK.setCellValueFactory(cellData -> cellData.getValue().sysPKProperty());
 		this.columnaCodigo.setCellValueFactory(cellData -> cellData.getValue().codigoProperty());
 		this.columnaDescripcion.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
+		//this.columnaCantidad.setCellValueFactory(cellData -> cellData.getValue().existenciaProperty());
 		this.columnaGradoMaterial.setCellValueFactory(cellData -> cellData.getValue().gradoMaterialProperty());
 		this.columnaStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 		this.inicializarColumnaAcciones();
