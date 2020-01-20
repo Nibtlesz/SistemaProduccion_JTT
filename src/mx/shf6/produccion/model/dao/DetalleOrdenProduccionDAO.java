@@ -14,7 +14,7 @@ public class DetalleOrdenProduccionDAO {
 	
 	//METODO PARA CREAR UN REGISTRO
 	public static boolean createDetalleOrdenProduccion(Connection connection, DetalleOrdenProduccion detalleOrdenProduccion) {
-		String consulta = "INSERT INTO detalleordenesproduccion (NumeroSerie, Status, OrdenProduccionFK) VALUES (?, 0, ?)";
+		String consulta = "INSERT INTO ut_detalleordenesproduccion (uf_NumeroSerie, uf_Status, uf_OrdenProduccionFK) VALUES (?, 0, ?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, detalleOrdenProduccion.getNumeroSerie());
@@ -29,7 +29,7 @@ public class DetalleOrdenProduccionDAO {
 	
 	public static ArrayList<DetalleOrdenProduccion> readDetalleLoteProduccion(Connection connection) {
 		ArrayList<DetalleOrdenProduccion> listaDetalleLoteProduccion = new ArrayList<DetalleOrdenProduccion>();
-		String consulta = "SELECT Sys_PK, NumeroSerie, Status, OrdenProduccionFK FROM detalleordenesproduccion";
+		String consulta = "SELECT Sys_PK, uf_NumeroSerie, uf_Status, uf_OrdenProduccionFK FROM ut_detalleordenesproduccion";
 		try {
 			Statement sentencia =connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -51,9 +51,9 @@ public class DetalleOrdenProduccionDAO {
 		ArrayList<DetalleOrdenProduccion> listaDetalleLoteProduccion = new ArrayList<DetalleOrdenProduccion>();
 		String consulta = "";
 		if (orden < 0)
-			consulta = "SELECT Sys_PK, NumeroSerie, Status, OrdenProduccionFK FROM detalleordenesproduccion WHERE Status != 4";
+			consulta = "SELECT Sys_PK, uf_NumeroSerie, uf_Status, uf_OrdenProduccionFK FROM ut_detalleordenesproduccion WHERE uf_Status != 4";
 		else
-			consulta = "SELECT Sys_PK, NumeroSerie, Status, OrdenProduccionFK FROM detalleordenesproduccion  WHERE OrdenProduccionFK = " + orden + " AND Status != 4";
+			consulta = "SELECT Sys_PK, uf_NumeroSerie, uf_Status, uf_OrdenProduccionFK FROM ut_detalleordenesproduccion  WHERE uf_OrdenProduccionFK = " + orden + " AND uf_Status != 4";
 		try {
 			Statement sentencia =connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -73,7 +73,7 @@ public class DetalleOrdenProduccionDAO {
 	
 	public static DetalleOrdenProduccion searchOrdenProduccion(Connection connection, int sysPK) {
 		DetalleOrdenProduccion detalleOrden = new DetalleOrdenProduccion();
-		String consulta = "SELECT Sys_PK, NumeroSerie, OrdenProduccionFK, Status FROM detalleordenesproduccion WHERE OrdenProduccionFK =" + sysPK;
+		String consulta = "SELECT Sys_PK, uf_NumeroSerie, uf_OrdenProduccionFK, uf_Status FROM ut_detalleordenesproduccion WHERE uf_OrdenProduccionFK =" + sysPK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -82,11 +82,10 @@ public class DetalleOrdenProduccionDAO {
 				detalleOrden.setNumeroSerie(resultados.getString(2));
 				detalleOrden.setOrdenProduccionFK(resultados.getInt(3));
 				detalleOrden.setStatus(resultados.getInt(4));
-			}
+			}//FIN WHILE
 		} catch (SQLException e) {
 			Notificacion.dialogoException(e);
-		}
+		}//FIN TRY/CATCH
 		return detalleOrden;
-	}
-	
+	}//FIN METODO	
 }//FIN CLASE

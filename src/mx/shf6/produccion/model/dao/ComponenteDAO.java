@@ -86,7 +86,7 @@ public class ComponenteDAO {
 	//METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<Componente> readComponente(Connection connection) {
 		ArrayList<Componente> arrayListComponente = new ArrayList<Componente>();
-		String consulta = "SELECT Sys_PK, NumeroParte, Descripcion, Largo, UnidadLargo, Ancho, UnidadAncho, Alto, UnidadAlto, Grado, Espesor, UnidadEspesor, DiametroExterno, UnidadDExt, DiametroInterno, UnidadDInt, Alto2, UnidadAlto2, AnchoTotal, UnidadAnchoTotal, CodigoCatalogo, TipoComponente, Costo, CostoDirecto, CostoIndirecto, MaterialFK, TipoMiscelaneoFK, TipoMateriaPrimaFK, AcabadoFK, TratamientoFK, Notas, Status, Consecutivo, ClienteFK, EsInterno, Hilos, Revision FROM componentes";
+		String consulta = "SELECT Sys_PK, Codigo, Descripcion FROM producto";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -95,42 +95,6 @@ public class ComponenteDAO {
 				componente.setSysPK(resultados.getInt(1));
 				componente.setNumeroParte(resultados.getString(2));
 				componente.setDescripcion(resultados.getString(3));
-				Dimensiones dimensiones = new Dimensiones();
-				dimensiones.setLargo(resultados.getDouble(4));
-				dimensiones.setUnidadLargo(resultados.getString(5));
-				dimensiones.setAncho(resultados.getDouble(6));
-				dimensiones.setUnidadAncho(resultados.getString(7));
-				dimensiones.setAlto(resultados.getDouble(8));
-				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
-				dimensiones.setEspesor(resultados.getDouble(11));
-				dimensiones.setUnidadEspesor(resultados.getString(12));
-				dimensiones.setDiametroExterior(resultados.getDouble(13));
-				dimensiones.setUnidadDExt(resultados.getString(14));
-				dimensiones.setDiametroInterior(resultados.getDouble(15));
-				dimensiones.setUnidadDInt(resultados.getString(16));
-				dimensiones.setAlto2(resultados.getDouble(17));
-				dimensiones.setUnidadAlto2(resultados.getString(18));
-				dimensiones.setAnchoTotal(resultados.getDouble(19));
-				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setDimensiones(dimensiones);
 				arrayListComponente.add(componente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -142,7 +106,7 @@ public class ComponenteDAO {
 	//METODO PARA OBTENER UN REGISTRO
 	public static Componente readComponente(Connection connection, int sysPK) {
 		Componente componente = new Componente();
-		String consulta = "SELECT componentes.Sys_PK, componentes.NumeroParte, componentes.Descripcion, componentes.Largo, componentes.UnidadLargo, componentes.Ancho, componentes.UnidadAncho, componentes.Alto, componentes.UnidadAlto, componentes.Grado, componentes.Espesor, componentes.UnidadEspesor, componentes.DiametroExterno, componentes.UnidadDExt, componentes.DiametroInterno, componentes.UnidadDInt, componentes.Alto2, componentes.UnidadAlto2, componentes.AnchoTotal, componentes.UnidadAnchoTotal, componentes.CodigoCatalogo, componentes.TipoComponente, componentes.Costo, componentes.CostoDirecto, componentes.CostoIndirecto, componentes.MaterialFK, componentes.TipoMiscelaneoFK, componentes.TipoMateriaPrimaFK, componentes.AcabadoFK, componentes.TratamientoFK, componentes.Notas, componentes.Status, componentes.Consecutivo, componentes.ClienteFK, componentes.EsInterno, componentes.Hilos, componentes.Revision, materiales.Descripcion FROM componentes  INNER JOIN materiales ON componentes.MaterialFK = materiales.Sys_PK WHERE componentes.Sys_PK =  " + sysPK;
+		String consulta = "SELECT Sys_PK, Codigo, Descripcion FROM producto WHERE Sys_PK =  " + sysPK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -150,43 +114,6 @@ public class ComponenteDAO {
 				componente.setSysPK(resultados.getInt(1));
 				componente.setNumeroParte(resultados.getString(2));
 				componente.setDescripcion(resultados.getString(3));
-				Dimensiones dimensiones = new Dimensiones();
-				dimensiones.setLargo(resultados.getDouble(4));
-				dimensiones.setUnidadLargo(resultados.getString(5));
-				dimensiones.setAncho(resultados.getDouble(6));
-				dimensiones.setUnidadAncho(resultados.getString(7));
-				dimensiones.setAlto(resultados.getDouble(8));
-				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
-				dimensiones.setEspesor(resultados.getDouble(11));
-				dimensiones.setUnidadEspesor(resultados.getString(12));
-				dimensiones.setDiametroExterior(resultados.getDouble(13));
-				dimensiones.setUnidadDExt(resultados.getString(14));
-				dimensiones.setDiametroInterior(resultados.getDouble(15));
-				dimensiones.setUnidadDInt(resultados.getString(16));
-				dimensiones.setAlto2(resultados.getDouble(17));
-				dimensiones.setUnidadAlto2(resultados.getString(18));
-				dimensiones.setAnchoTotal(resultados.getDouble(19));
-				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setMaterialDescripcion(resultados.getString(38));
-				componente.setDimensiones(dimensiones);
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -253,7 +180,7 @@ public class ComponenteDAO {
 	//METODO PARA OBTENER UN REGISTRO
 	public static Componente readComponenteNumeroParte(Connection connection, String numeroParte) {
 		Componente componente = new Componente();
-		String consulta = "SELECT Sys_PK, NumeroParte, Descripcion, Largo, UnidadLargo, Ancho, UnidadAncho, Alto, UnidadAlto, Grado, Espesor, UnidadEspesor, DiametroExterno, UnidadDExt, DiametroInterno, UnidadDInt, Alto2, UnidadAlto2, AnchoTotal, UnidadAnchoTotal, CodigoCatalogo, TipoComponente, Costo, CostoDirecto, CostoIndirecto, MaterialFK, TipoMiscelaneoFK, TipoMateriaPrimaFK, AcabadoFK, TratamientoFK, Notas, Status, Consecutivo, ClienteFK, EsInterno, Hilos, Revision FROM componentes WHERE NumeroParte = '" + numeroParte + "'";
+		String consulta = "SELECT Sys_PK, Codigo, Descripcion FROM producto WHERE Codigo = '" + numeroParte + "'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -261,42 +188,6 @@ public class ComponenteDAO {
 				componente.setSysPK(resultados.getInt(1));
 				componente.setNumeroParte(resultados.getString(2));
 				componente.setDescripcion(resultados.getString(3));
-				Dimensiones dimensiones = new Dimensiones();
-				dimensiones.setLargo(resultados.getDouble(4));
-				dimensiones.setUnidadLargo(resultados.getString(5));
-				dimensiones.setAncho(resultados.getDouble(6));
-				dimensiones.setUnidadAncho(resultados.getString(7));
-				dimensiones.setAlto(resultados.getDouble(8));
-				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
-				dimensiones.setEspesor(resultados.getDouble(11));
-				dimensiones.setUnidadEspesor(resultados.getString(12));
-				dimensiones.setDiametroExterior(resultados.getDouble(13));
-				dimensiones.setUnidadDExt(resultados.getString(14));
-				dimensiones.setDiametroInterior(resultados.getDouble(15));
-				dimensiones.setUnidadDInt(resultados.getString(16));
-				dimensiones.setAlto2(resultados.getDouble(17));
-				dimensiones.setUnidadAlto2(resultados.getString(18));
-				dimensiones.setAnchoTotal(resultados.getDouble(19));
-				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setDimensiones(dimensiones);
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);

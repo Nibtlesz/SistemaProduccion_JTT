@@ -58,9 +58,9 @@ public class ProcesoDAO {
 
 	public static Proceso readProcesoHoja(Connection connection, int procesoFK) {
 		Proceso proceso = new Proceso();
-		String consulta = "SELECT ut_procesos.Sys_PK, ut_procesos.Fecha, ut_centrotrabajo.uf_Descripcion, producto.Codigo, producto.Descripcion, ut_empleados.uf_Nombre,"
+		String consulta = "SELECT ut_procesos.Sys_PK, ut_procesos.uf_Fecha, ut_centrotrabajo.uf_Descripcion, producto.Codigo, producto.Descripcion, ut_empleados.uf_Nombre,"
 				+ " ut_procesos.uf_ProductoFK FROM ut_procesos INNER JOIN ut_empleados ON ut_procesos.uf_EmpleadoFK = ut_empleados.Sys_PK " + 
-				" INNER JOIN producto ON ut_procesos.uf_ProductoFK = producto.Sys_PK INNER JOIN ut_centrotrabajo ON ut_procesos.uf_CentroTrabajoFK = ut_centrostrabajo.Sys_PK"
+				" INNER JOIN producto ON ut_procesos.uf_ProductoFK = producto.Sys_PK INNER JOIN ut_centrotrabajo ON ut_procesos.uf_CentroTrabajoFK = ut_centrotrabajo.Sys_PK"
 				+ " WHERE ut_procesos.Sys_PK = " + procesoFK;
 		try {
 			Statement sentencia = connection.createStatement();
@@ -71,11 +71,8 @@ public class ProcesoDAO {
 				proceso.setNombreCentroTrabajo(resultados.getString(3));
 				proceso.setDescripcionComponente(resultados.getString(4));
 				proceso.setNombreComponente(resultados.getString(5));
-				proceso.setNombreCliente(resultados.getString(6));
-				proceso.setNombreEmpleado(resultados.getString(7));
-				proceso.setRevisionComponente(resultados.getString(8));
-				proceso.setDebit(resultados.getInt(9));
-				proceso.setComponenteFK(resultados.getInt(10));
+				proceso.setNombreEmpleado(resultados.getString(6));
+				proceso.setComponenteFK(resultados.getInt(7));
 			}//FIN WHILE
 		} catch(SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -150,8 +147,8 @@ public class ProcesoDAO {
 			try {
 				PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 				sentenciaPreparada.setDate(1, proceso.getFecha());
-				sentenciaPreparada.setInt(2, proceso.getCentroTrabajoFK());
-				sentenciaPreparada.setInt(3, proceso.getComponenteFK());
+				sentenciaPreparada.setInt(2, proceso.getComponenteFK());
+				sentenciaPreparada.setInt(3, proceso.getCentroTrabajoFK());
 				sentenciaPreparada.setInt(4, proceso.getEmpleadoFK());	
 				sentenciaPreparada.setInt(5, proceso.getSysPK());
 				sentenciaPreparada.execute();

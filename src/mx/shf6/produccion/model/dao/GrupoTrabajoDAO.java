@@ -50,7 +50,7 @@ public class GrupoTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static GrupoTrabajo readGrupoTrabajo(Connection connection, int sysPK) {
 		GrupoTrabajo grupotrabajo = new GrupoTrabajo();
-		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupostrabajo WHERE Sys_PK = " + sysPK ;
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupotrabajo WHERE Sys_PK = " + sysPK ;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -69,7 +69,7 @@ public class GrupoTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static GrupoTrabajo readGrupoTrabajoNombre(Connection connection, String nombre) {
 		GrupoTrabajo grupotrabajo = new GrupoTrabajo();
-		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupostrabajo WHERE uf_Codigo = '" + nombre + "'" ;
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupotrabajo WHERE uf_Codigo = '" + nombre + "'" ;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -88,7 +88,7 @@ public class GrupoTrabajoDAO {
 	// METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<GrupoTrabajo> readGrupoTrabajoLike(Connection connection, String like) {
 		ArrayList<GrupoTrabajo> arrayListaGrupoTrabajo = new ArrayList<GrupoTrabajo>();
-		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupostrabajo WHERE uf_Codigo LIKE '%" + like + "%' OR uf_Descripcion LIKE '%" + like + "%'";
+		String consulta = "SELECT Sys_PK, uf_Codigo, uf_Descripcion FROM ut_grupotrabajo WHERE uf_Codigo LIKE '%" + like + "%' OR uf_Descripcion LIKE '%" + like + "%'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -107,7 +107,7 @@ public class GrupoTrabajoDAO {
 
 	// METODO PARA EDITAR UN REGISTRO
 	public static boolean updateGrupoTrabajo(Connection connection, GrupoTrabajo grupotrabajo) {
-		String consulta = "UPDATE ut_grupostrabajo SET uf_Codigo = ?, uf_Descripcion = ? WHERE Sys_PK = ?";
+		String consulta = "UPDATE ut_grupotrabajo SET uf_Codigo = ?, uf_Descripcion = ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, grupotrabajo.getCodigo());
@@ -123,7 +123,7 @@ public class GrupoTrabajoDAO {
 
 	// METODO PARA ELIMINAR UN REGISTRO
 	public static boolean deleteGrupoTrabajo(Connection connection, GrupoTrabajo grupotrabajo) {
-		String consulta = "DELETE FROM ut_grupostrabajo WHERE Sys_PK = ?";
+		String consulta = "DELETE FROM ut_grupotrabajo WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setInt(1, grupotrabajo.getSysPK());

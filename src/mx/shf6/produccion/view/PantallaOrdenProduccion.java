@@ -44,7 +44,6 @@ public class PantallaOrdenProduccion {
 	@FXML private TextField campoTextoBusqueda;
 	@FXML private TableView<OrdenProduccion> tablaOrdenProduccion;
 	@FXML private PTableColumn<OrdenProduccion, Date> columnaFecha;
-	@FXML private PTableColumn<OrdenProduccion, String> columnaLote;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaCliente;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaOrdenCompra;
 	@FXML private PTableColumn<OrdenProduccion, String> columnaNumeroParte;
@@ -123,7 +122,6 @@ public class PantallaOrdenProduccion {
 	//INICIALIZA LOS COMPONENTES DE LA TABLA DE ORDENPRODUCCION
 	private void inicializaTabla() {
 		this.columnaFecha.setCellValueFactory(cellData -> cellData.getValue().fechaProperty());
-		this.columnaLote.setCellValueFactory(cellData -> cellData.getValue().loteProperty());
 		this.columnaCliente.setCellValueFactory(cellData -> cellData.getValue().clienteProperty());
 		this.columnaOrdenCompra.setCellValueFactory(cellData -> cellData.getValue().ordenCompraProperty());
 		this.columnaNumeroParte.setCellValueFactory(cellData -> cellData.getValue().numeroParteProperty());

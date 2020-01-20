@@ -82,13 +82,12 @@
                   <TableView fx:id="tablaOrdenProduccion" maxHeight="1.7976931348623157E308" styleClass="tablaDatosDetalle" VBox.vgrow="ALWAYS">
                     <columns>
                       <PTableColumn fx:id="columnaFecha" percentageWidth="0.1" prefWidth="75.0" text="Fecha" />
-                        <PTableColumn fx:id="columnaOrdenCompra" percentageWidth="0.05" prefWidth="75.0" text="O.C" />
+                        <PTableColumn fx:id="columnaOrdenCompra" percentageWidth="0.1" prefWidth="75.0" text="O.C" />
                         <PTableColumn fx:id="columnaCliente" percentageWidth="0.2" prefWidth="75.0" text="Cliente" />
                         <PTableColumn fx:id="columnaNumeroParte" percentageWidth="0.1" prefWidth="75.0" text="Proyecto" />
                         <PTableColumn fx:id="columnaDescripcion" percentageWidth="0.2" prefWidth="75.0" text="Descripcion" />
                         <PTableColumn fx:id="columnaCantidad" percentageWidth="0.05" prefWidth="75.0" text="Cantidad" />
                         <PTableColumn fx:id="columnaStatus" percentageWidth="0.05" prefWidth="75.0" text="Status" />
-                      <PTableColumn fx:id="columnaLote" percentageWidth="0.05" prefWidth="75.0" text="PMP" />
                         <PTableColumn fx:id="columnaAcciones" percentageWidth="0.2" prefWidth="75.0" text="Acciones" />
                     </columns>
                   </TableView>

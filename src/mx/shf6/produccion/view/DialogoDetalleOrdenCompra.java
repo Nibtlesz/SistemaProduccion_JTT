@@ -50,7 +50,6 @@ public class DialogoDetalleOrdenCompra {
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDiseno;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnDescripcion;
 	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnPorEntregar;
-	@FXML private PTableColumn<DetalleOrdenCompra, Integer> tableColumnSaldo;
 	@FXML private PTableColumn<DetalleOrdenCompra, String> tableColumnAcciones;
 	@FXML private TextField textFieldFolio;
 	@FXML private TextField textFieldCliente;
@@ -74,7 +73,6 @@ public class DialogoDetalleOrdenCompra {
 		this.tableColumnDiseno.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().numeroParteProperty());
 		this.tableColumnDescripcion.setCellValueFactory(cellData -> cellData.getValue().getComponenteFK().descripcionProperty());
 		this.tableColumnPorEntregar.setCellValueFactory(cellData -> cellData.getValue().porEntregarProperty());
-		this.tableColumnSaldo.setCellValueFactory(cellData -> cellData.getValue().saldoProperty());
 		initColumnaAcciones();
 	}//FIN METODO
 	
@@ -87,7 +85,7 @@ public class DialogoDetalleOrdenCompra {
 				final Button botonEliminar = new Button("B");
 				final Button botonEntrega = new Button("P");
 				final Button botonIniciarOrdenProduccion = new Button("I");
-				final HBox cajaBotones = new HBox(botonVer, botonEditar, botonEliminar, botonEntrega, botonIniciarOrdenProduccion);
+				final HBox cajaBotones = new HBox(botonIniciarOrdenProduccion);
 				
 				@Override
 				public void updateItem(String item, boolean empty) {
@@ -179,25 +177,6 @@ public class DialogoDetalleOrdenCompra {
 		this.textFieldFolio.setText("No. Folio: " + this.ordenCompra.getFolio());
 	}//FIN METODO
 	
-	public String generarNumeroSerie() {
-		String result = new SecureRandom().ints(0,36)
-	            .mapToObj(i -> Integer.toString(i, 36))
-	            .map(String::toUpperCase).distinct().limit(8).collect(Collectors.joining());
-		
-		return result;
-	}//FIN METODO
-	
-	public String generarLote() {
-		int syspk = (OrdenProduccionDAO.ultimoSysPK(this.mainApp.getConnection()) + 1);
-		Month mes = LocalDate.now().getMonth();
-        String nombre = mes.getDisplayName(TextStyle.FULL, new Locale("es", "ES"));
-        char[] l = nombre.toUpperCase().toCharArray();
-        String m = String.valueOf(l[0])+String.valueOf(l[1])+String.valueOf(l[2]);
-        String fechaSys = String.valueOf(LocalDate.now().getDayOfMonth()) + m + String.valueOf(LocalDate.now().getYear() + String.valueOf(syspk));
-        
-        return fechaSys;
-	}//FIN METODO
-	
 	//MANEJADORES
 	@FXML private void manejadorBotonCerrar() {
 		this.mainApp.getEscenarioDialogos().close();
@@ -229,28 +208,6 @@ public class DialogoDetalleOrdenCompra {
 	}//FIN METODO
 	
 	private void manejadorBotonIniciarProduccion(DetalleOrdenCompra detalleOrdenCompra) {
-		OrdenProduccion ordenProduccion = new OrdenProduccion();
-		ordenProduccion = OrdenProduccionDAO.searchOrdenProduccion(mainApp.getConnection(), detalleOrdenCompra.getSysPK());
 		
-		if (ordenProduccion.getSysPK() == 0) {
-			if (Notificacion.dialogoPreguntar("Confirmación para generar una orden de trabajo", "¿Desea generar una orden de trabajo?")){
-				OrdenProduccion orden = new OrdenProduccion();
-				orden.setLote(generarLote());
-				orden.setDetalleOrdenCompraFK(detalleOrdenCompra.getSysPK());
-				
-    			if (OrdenProduccionDAO.createOrdenProduccion(mainApp.getConnection(), orden)) {
-    				for (int i = 0; i < detalleOrdenCompra.getPorEntregar(); i++) {
-    					int syspk = OrdenProduccionDAO.ultimoSysPK(mainApp.getConnection());
-    					DetalleOrdenProduccion detalleOrden = new DetalleOrdenProduccion();
-    					detalleOrden.setNumeroSerie(generarNumeroSerie());
-    					detalleOrden.setOrdenProduccionFK(syspk);
-    					DetalleOrdenProduccionDAO.createDetalleOrdenProduccion(mainApp.getConnection(), detalleOrden);
-    				}//FIN FOR		            				
-    				Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "Se generó su orden de producción correctamente");
-    			}//FIN IF
-			}//FIN IF
-		} else {
-			Notificacion.dialogoAlerta(AlertType.ERROR, "", "En este registro ya se generó su orden de producción");		
-		}//FIN IF ELSE
-	}
+	}//FIN METODO
 }//FIN CLASE

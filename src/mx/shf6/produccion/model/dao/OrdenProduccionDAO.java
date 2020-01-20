@@ -16,7 +16,7 @@ public class OrdenProduccionDAO {
 
 	//METODO PARA CREAR UN REGISTRO
 	public static boolean createOrdenProduccion(Connection connection, OrdenProduccion ordenProduccion) {
-		String consulta = "INSERT INTO ordenesproduccion (Fecha, Lote, Status, DetalleOrdenCompraFK) VALUES (CURDATE(),?,0,?)";
+		String consulta = "INSERT INTO ut_ordenesproduccion (uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK) VALUES (CURDATE(),?,0,?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, ordenProduccion.getLote());
@@ -32,7 +32,7 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO PARA GRAFICAS
 	public static ArrayList<OrdenProduccion> readLoteProduccion(Connection connection) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT Sys_PK, Fecha, Lote, Status, DetalleOrdenCompraFK FROM ordenesproduccion WHERE Status != 3 AND Status != 4";
+		String consulta = "SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_Status != 3 AND uf_Status != 4";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -54,13 +54,13 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO PANTALLAORDENPRODUCCION
 	public static ArrayList<OrdenProduccion> readOrdenProduccion(Connection connection) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT ordenesproduccion.Sys_PK, ordenesproduccion.Fecha, ordencompras.PMP, ordenesproduccion.Status, \r\n" + 
-				"ordenesproduccion.DetalleOrdenCompraFK, clientes.Nombre, ordencompras.Folio, componentes.Sys_PK, componentes.NumeroParte, componentes.Descripcion, detalleordencompras.PorEntregar \r\n" + 
-				"FROM ordenesproduccion INNER JOIN detalleordencompras ON ordenesproduccion.DetalleOrdenCompraFK = detalleordencompras.Sys_PK\r\n" + 
-				"INNER JOIN componentes ON detalleordencompras.ComponenteFK = componentes.Sys_PK\r\n" + 
-				"INNER JOIN ordencompras ON detalleordencompras.OrdenCompraFK = ordencompras.Sys_PK\r\n" + 
-				"INNER JOIN clientes ON ordencompras.ClienteFK = clientes.Sys_PK"
-				+ " ORDER BY  Fecha ASC";
+		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
+				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
+				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
+				"INNER JOIN cliente ON venta.ICliente = cliente.Sys_PK"
+				+ " ORDER BY  uf_Fecha ASC";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -68,15 +68,15 @@ public class OrdenProduccionDAO {
 				OrdenProduccion orden = new OrdenProduccion();
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
-				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
-				orden.setCliente(resultados.getString(6));
-				orden.setOrdenCompra(resultados.getString(7));
-				orden.setComponenteFK(resultados.getInt(8));
-				orden.setNumeroParte(resultados.getString(9));
-				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getInt(11));
+				orden.setStatus(resultados.getInt(3));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(4));
+				orden.setCliente(resultados.getString(5));
+				orden.setLote(resultados.getString(6));
+				orden.setOrdenCompra(resultados.getString(6));
+				orden.setComponenteFK(resultados.getInt(7));
+				orden.setNumeroParte(resultados.getString(8));
+				orden.setDescripcion(resultados.getString(9));
+				orden.setCantidad(resultados.getInt(10));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -88,12 +88,13 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO POR FECHA
 	public static ArrayList<OrdenProduccion> dateOrdenProduccion(Connection connection, Date fechaInicio, Date fechaFinal) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT ordenesproduccion.Sys_PK, ordenesproduccion.Fecha, ordencompras.PMP, ordenesproduccion.Status, ordenesproduccion.DetalleOrdenCompraFK, clientes.Nombre, ordencompras.Folio, componentes.Sys_PK, componentes.NumeroParte, componentes.Descripcion, detalleordencompras.PorEntregar" + 
-				" FROM ordenesproduccion INNER JOIN detalleordencompras ON ordenesproduccion.DetalleOrdenCompraFK = detalleordencompras.Sys_PK " +  
-				"INNER JOIN componentes ON detalleordencompras.ComponenteFK = componentes.Sys_PK " + 
-				"INNER JOIN ordencompras ON detalleordencompras.OrdenCompraFK = ordencompras.Sys_PK " + 
-				"INNER JOIN clientes ON ordencompras.ClienteFK = clientes.Sys_PK " +
-				" WHERE ordenesproduccion.Fecha BETWEEN '"+ fechaInicio +"' AND '" + fechaFinal +"' ORDER BY Fecha ASC";
+		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
+				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
+				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
+				"INNER JOIN cliente ON venta.ICliente = cliente.Sys_PK" +
+				" WHERE ut_ordenesproduccion.uf_Fecha BETWEEN '"+ fechaInicio +"' AND '" + fechaFinal +"' ORDER BY uf_Fecha ASC";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -101,15 +102,15 @@ public class OrdenProduccionDAO {
 				OrdenProduccion orden = new OrdenProduccion();
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
-				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
-				orden.setCliente(resultados.getString(6));
-				orden.setOrdenCompra(resultados.getString(7));
-				orden.setComponenteFK(resultados.getInt(8));
-				orden.setNumeroParte(resultados.getString(9));
-				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getInt(11));
+				orden.setStatus(resultados.getInt(3));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(4));
+				orden.setCliente(resultados.getString(5));
+				orden.setLote(resultados.getString(6));
+				orden.setOrdenCompra(resultados.getString(6));
+				orden.setComponenteFK(resultados.getInt(7));
+				orden.setNumeroParte(resultados.getString(8));
+				orden.setDescripcion(resultados.getString(9));
+				orden.setCantidad(resultados.getInt(10));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -121,14 +122,14 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO POR BUSQUEDA
 	public static ArrayList<OrdenProduccion> searchOrdenProduccion(Connection connection, String like) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT ordenesproduccion.Sys_PK, ordenesproduccion.Fecha, ordencompras.PMP, ordenesproduccion.Status, \r\n" + 
-				"ordenesproduccion.DetalleOrdenCompraFK, clientes.Nombre, ordencompras.Folio, componentes.Sys_PK, componentes.NumeroParte, componentes.Descripcion, detalleordencompras.PorEntregar \r\n" +  
-				"FROM ordenesproduccion INNER JOIN detalleordencompras ON ordenesproduccion.DetalleOrdenCompraFK = detalleordencompras.Sys_PK " + 
-				"INNER JOIN componentes ON detalleordencompras.ComponenteFK = componentes.Sys_PK\r\n" + 
-				"INNER JOIN ordencompras ON detalleordencompras.OrdenCompraFK = ordencompras.Sys_PK\r\n" + 
-				"INNER JOIN clientes ON ordencompras.ClienteFK = clientes.Sys_PK WHERE clientes.Nombre LIKE '%" + like + " %' "
-				+ "OR cotizaciones.Referencia LIKE '%" + like + "%' OR ordenesproduccion.Lote LIKE '%" + like + "%' OR proyectos.Codigo LIKE '%" + like + "%'"
-				+ " OR componentes.NumeroParte LIKE '%" + like + "%'";
+		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
+				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
+				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
+				"INNER JOIN cliente ON venta.ICliente = cliente.Sys_PK"
+				+ " WHERE clientes.Nombre LIKE '%" + like + " %' "
+				+ "OR venta.Referencia LIKE '%" + like + "%' OR producto.Codigo LIKE '%" + like + "%'";
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -136,15 +137,15 @@ public class OrdenProduccionDAO {
 				OrdenProduccion orden = new OrdenProduccion();
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
-				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
-				orden.setCliente(resultados.getString(6));
-				orden.setOrdenCompra(resultados.getString(7));
-				orden.setComponenteFK(resultados.getInt(8));
-				orden.setNumeroParte(resultados.getString(9));
-				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getInt(11));
+				orden.setStatus(resultados.getInt(3));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(4));
+				orden.setCliente(resultados.getString(5));
+				orden.setLote(resultados.getString(6));
+				orden.setOrdenCompra(resultados.getString(6));
+				orden.setComponenteFK(resultados.getInt(7));
+				orden.setNumeroParte(resultados.getString(8));
+				orden.setDescripcion(resultados.getString(9));
+				orden.setCantidad(resultados.getInt(10));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -156,13 +157,13 @@ public class OrdenProduccionDAO {
 	//METODO PARA OBTENER UN REGISTRO POR STATUS
 	public static ArrayList<OrdenProduccion> statusOrdenProduccion(Connection connection, int status) {
 		ArrayList<OrdenProduccion> arrayListaOrdenProduccion = new ArrayList<OrdenProduccion>();
-		String consulta = "SELECT ordenesproduccion.Sys_PK, ordenesproduccion.Fecha, ordencompras.PMP, ordenesproduccion.Status, \r\n" + 
-				"ordenesproduccion.DetalleOrdenCompraFK, clientes.Nombre, ordencompras.Folio, componentes.Sys_PK, componentes.NumeroParte, componentes.Descripcion, detalleordencompras.PorEntregar \r\n" +  
-				"FROM ordenesproduccion INNER JOIN detalleordencompras ON ordenesproduccion.DetalleOrdenCompraFK = detalleordencompras.Sys_PK " + 
-				"INNER JOIN componentes ON detalleordencompras.ComponenteFK = componentes.Sys_PK\r\n" + 
-				"INNER JOIN ordencompras ON detalleordencompras.OrdenCompraFK = ordencompras.Sys_PK\r\n" + 
-				"INNER JOIN clientes ON ordencompras.ClienteFK = clientes.Sys_PK \r\n"
-				+ "WHERE ordenesproduccion.Status = " + status;
+		String consulta = "SELECT ut_ordenesproduccion.Sys_PK, ut_ordenesproduccion.uf_Fecha, ut_ordenesproduccion.uf_Status, " + 
+				"ut_ordenesproduccion.uf_DVentaFK, cliente.Nombre, venta.Referencia, producto.Sys_PK, producto.Codigo, producto.Descripcion, dventa.Cantidad " + 
+				"FROM ut_ordenesproduccion INNER JOIN dventa ON ut_ordenesproduccion.uf_DVentaFK = dventa.Sys_PK " + 
+				"INNER JOIN producto ON dventa.IProducto = producto.Sys_PK " + 
+				"INNER JOIN venta ON dventa.FK_Venta_Detalle = venta.Sys_PK " + 
+				"INNER JOIN cliente ON venta.ICliente = cliente.Sys_PK"
+				+ " WHERE ut_ordenesproduccion.uf_Status = " + status;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -170,15 +171,15 @@ public class OrdenProduccionDAO {
 				OrdenProduccion orden = new OrdenProduccion();
 				orden.setSysPK(resultados.getInt(1));
 				orden.setFecha(resultados.getDate(2));
-				orden.setLote(resultados.getString(3));
-				orden.setStatus(resultados.getInt(4));
-				orden.setDetalleOrdenCompraFK(resultados.getInt(5));
-				orden.setCliente(resultados.getString(6));
-				orden.setOrdenCompra(resultados.getString(7));
-				orden.setComponenteFK(resultados.getInt(8));
-				orden.setNumeroParte(resultados.getString(9));
-				orden.setDescripcion(resultados.getString(10));
-				orden.setCantidad(resultados.getInt(11));
+				orden.setStatus(resultados.getInt(3));
+				orden.setDetalleOrdenCompraFK(resultados.getInt(4));
+				orden.setCliente(resultados.getString(5));
+				orden.setLote(resultados.getString(6));
+				orden.setOrdenCompra(resultados.getString(6));
+				orden.setComponenteFK(resultados.getInt(7));
+				orden.setNumeroParte(resultados.getString(8));
+				orden.setDescripcion(resultados.getString(9));
+				orden.setCantidad(resultados.getInt(10));
 				arrayListaOrdenProduccion.add(orden);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -189,7 +190,7 @@ public class OrdenProduccionDAO {
 	
 	public static OrdenProduccion searchOrdenProduccion(Connection connection, int detalleOrdenCompraFK) {
 		OrdenProduccion orden = new OrdenProduccion();
-		String consulta = " SELECT Sys_PK, Fecha, Lote, Status, DetalleOrdenCompraFK FROM ordenesproduccion WHERE DetalleOrdenCompraFK = " + detalleOrdenCompraFK;
+		String consulta = " SELECT Sys_PK, uf_Fecha, uf_Lote, uf_Status, uf_DVentaFK FROM ut_ordenesproduccion WHERE uf_DVentaFK = " + detalleOrdenCompraFK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -207,7 +208,7 @@ public class OrdenProduccionDAO {
 	}//FIN METODO
 	
 	public static final int ultimoSysPK(Connection connection) {
-		String query = "SELECT Sys_PK FROM ordenesproduccion order by Sys_PK asc";
+		String query = "SELECT Sys_PK FROM ut_ordenesproduccion order by Sys_PK asc";
 		int ultimoSyspk = 0;
 		try {
 			Statement statement = connection.createStatement();

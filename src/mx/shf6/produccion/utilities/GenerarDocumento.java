@@ -20,7 +20,6 @@ import mx.shf6.produccion.model.Proceso;
 import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.Usuario;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
-import mx.shf6.produccion.model.dao.DetalleComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleCotizacionDAO;
 import mx.shf6.produccion.model.dao.DetalleProcesoDAO;
 import mx.shf6.produccion.model.dao.EmpleadoDAO;
@@ -82,7 +81,7 @@ public class GenerarDocumento {
 	}//END METHOD
 
 
-	public static void generarHojaProceso(Connection conexion, int sysPK) {
+	public static void generarHojaProceso(Connection conexion, int sysPK, int componenteFK) {
 		JasperReport jasperReport;
 		try {
 			Proceso procesito = new Proceso();
@@ -118,8 +117,8 @@ public class GenerarDocumento {
 				parameters.put("pDebit", " ");
 			else
 				parameters.put("pDebit", procesito.getDebit().toString());
-			DetalleComponente detalleComponente = DetalleComponenteDAO.readDetalleComponenteSuperiorFKObject(conexion, procesito.getComponenteFK());
-			Componente componente = ComponenteDAO.readComponente(conexion, detalleComponente.getComponenteInferiorFK());
+			//DetalleComponente detalleComponente = DetalleComponenteDAO.readDetalleComponenteSuperiorFKObject(conexion, procesito.getComponenteFK());
+			Componente componente = ComponenteDAO.readComponente(conexion, componenteFK);
 			parameters.put("pMaterial", componente.getNumeroParte());
 			parameters.put("Parameter1", itemsTabla);
 			parameters.put("pElaboro", procesito.getEmpleado());

@@ -100,7 +100,7 @@ public class PantallaOrdenCompra {
 				final Button botonEliminar = new Button("Eliminar");
 				final Button botonDetalles = new Button("Detalles");
 				final Button botonEnviar = new Button("Enviar");
-				final HBox cajaBotones = new HBox(botonVer, botonDetalles);
+				final HBox cajaBotones = new HBox(botonDetalles);
 				
 				@Override
 				public void updateItem(String item, boolean empty) {

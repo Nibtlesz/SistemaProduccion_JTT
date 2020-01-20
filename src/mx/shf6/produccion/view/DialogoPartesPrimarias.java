@@ -159,7 +159,7 @@ public class DialogoPartesPrimarias {
 
 		            	botonProceso.setOnAction(event -> {
 		            		componenteHojaViajera = getTableView().getItems().get(getIndex());
-		            		GenerarDocumento.generarHojaProceso(mainApp.getConnection(), ProcesoDAO.readProcesoComponenteFK(conexion, ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()));
+		            		GenerarDocumento.generarHojaProceso(mainApp.getConnection(), ProcesoDAO.readProcesoComponenteFK(conexion, ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()), componenteRaiz.getSysPK());
 		            	});
 
 						botonDibujo.setOnAction(event -> {
