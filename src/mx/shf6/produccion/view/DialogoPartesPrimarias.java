@@ -1,12 +1,8 @@
 package mx.shf6.produccion.view;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,8 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Callback;
 import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.Componente;
@@ -35,7 +29,6 @@ import mx.shf6.produccion.model.DetalleHojaViajera;
 import mx.shf6.produccion.model.DetalleProceso;
 import mx.shf6.produccion.model.HojaViajera;
 import mx.shf6.produccion.model.OrdenProduccion;
-import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleHojaViajeraDAO;
@@ -43,7 +36,6 @@ import mx.shf6.produccion.model.dao.DetalleProcesoDAO;
 import mx.shf6.produccion.model.dao.HojaViajeraDAO;
 import mx.shf6.produccion.model.dao.ProcesoDAO;
 import mx.shf6.produccion.utilities.GenerarDocumento;
-import mx.shf6.produccion.utilities.GestorArchivos;
 import mx.shf6.produccion.utilities.Notificacion;
 import mx.shf6.produccion.utilities.PTableColumn;
 import mx.shf6.produccion.utilities.TransaccionSQL;
@@ -97,10 +89,10 @@ public class DialogoPartesPrimarias {
 	}//FIN METODO
 
 	private void inicializarTabla(){
-		this.columnaNumeroPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().numeroParteComponenteSuperiorProperty());
-		this.columnaDescripcionPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().descripcionComponenteSuperiorProperty());
-		this.columnaDescripcionMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().descripcionComponenteInferiorProperty());
-		this.columnaNumeroMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().numeroParteComponenteInferiorProperty());
+		this.columnaNumeroPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().getCodigo().numeroParteProperty());
+		this.columnaDescripcionPartePrimaria.setCellValueFactory(cellData -> cellData.getValue().getCodigo().descripcionProperty());
+		this.columnaDescripcionMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().getMaterialFK().descripcionProperty());
+		this.columnaNumeroMateriaPrima.setCellValueFactory(cellData -> cellData.getValue().getMaterialFK().codigoProperty());
 		iniciarColumnaAcciones();
 	}//FIN METODO
 
@@ -113,7 +105,7 @@ public class DialogoPartesPrimarias {
 				final Button botonHojaViajera = new Button("HojaViajera");
 				final Button botonProceso = new Button("HojaProceso");
 				final Button botonDibujo = new Button("HojaProceso");
-				final HBox acciones = new HBox(botonHojaViajera, botonProceso, botonDibujo);
+				final HBox acciones = new HBox(botonHojaViajera);
 
 				//PARA MOSTRAR LOS DIALOGOS
 				@Override
@@ -159,12 +151,12 @@ public class DialogoPartesPrimarias {
 
 		            	botonProceso.setOnAction(event -> {
 		            		componenteHojaViajera = getTableView().getItems().get(getIndex());
-		            		GenerarDocumento.generarHojaProceso(mainApp.getConnection(), ProcesoDAO.readProcesoComponenteFK(conexion, ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()), componenteRaiz.getSysPK());
+		            		//GenerarDocumento.generarHojaProceso(mainApp.getConnection(), ProcesoDAO.readProcesoComponenteFK(conexion, ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()), componenteRaiz.getSysPK());
 		            	});
 
 						botonDibujo.setOnAction(event -> {
 							componenteHojaViajera = getTableView().getItems().get(getIndex());
-							manejadorBotonDibujo(ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()));
+							//manejadorBotonDibujo(ComponenteDAO.readComponenteNumeroParte(conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()));
 						});//FIN MANEJADDOR
 
 		        		setGraphic(acciones);
@@ -176,71 +168,46 @@ public class DialogoPartesPrimarias {
 		};//FIN METODO
 		columnaAcciones.setCellFactory(cellFactory);
 	}//FIN METODO
+	
+	private void obtenerPartesPrimarias(int componenteFK){
+		componenteRaiz = ComponenteDAO.readComponente(conexion, componenteFK);
+		this.nombreNumeroComponente = componenteRaiz.getNumeroParte();
+		this.campoTextoComponente.setText(this.nombreNumeroComponente + " x " + this.ordenProduccion.getCantidad());
+
+		ArrayList<DetalleComponente> listaDetalleComponente = new ArrayList<DetalleComponente>();
+		listaDetalleComponente = DetalleComponenteDAO.readDetalleComponenteSuperiorFK(conexion, componenteFK);
+		for(DetalleComponente detalleComponente : listaDetalleComponente){
+			detalleComponente.setCantidad(this.ordenProduccion.getCantidad());
+			listaPartePrimaria.add(detalleComponente);
+			cantidad = detalleComponente.getCantidad();
+			detalleComponenteRaiz = new DetalleComponente();
+			detalleComponenteRaiz.setCodigo(detalleComponente.getCodigo());
+			detalleComponenteRaiz.setMaterialFK(detalleComponente.getMaterialFK());
+			detalleComponenteRaiz.setCantidad(this.ordenProduccion.getCantidad());
+		}//FIN FOR
+	}//FIN METODO
 
 	private void actualizarTabla(){
 		this.tablaPartesPrimarias.setItems(null);
 		this.tablaPartesPrimarias.setItems(FXCollections.observableArrayList(this.listaPartePrimaria));
 	}//FIN METODO
 
-	private void obtenerPartesPrimarias(int componenteFK){
-		i++;
-		componenteRaiz = ComponenteDAO.readComponente(conexion, componenteFK);
-		if(i==1){
-			this.nombreNumeroComponente = componenteRaiz.getNumeroParte();
-			if (Double.compare(this.ordenProduccion.getCantidad(), 0.0) > 0)
-				this.campoTextoComponente.setText(this.nombreNumeroComponente + " x " + this.ordenProduccion.getCantidad());
-			else
-				this.campoTextoComponente.setText(this.nombreNumeroComponente);
-		}//FIN IF
-
-		ArrayList<DetalleComponente> listaDetalleComponente = new ArrayList<DetalleComponente>();
-		if(componenteRaiz.getTipoComponente().equals(TipoComponente.ENSAMBLE) || componenteRaiz.getTipoComponente().equals(TipoComponente.SUB_ENSAMBLE) || componenteRaiz.getTipoComponente().equals(TipoComponente.PARTE_PRIMARIA) || componenteRaiz.getTipoComponente().equals(TipoComponente.COMPRADO)){
-			listaDetalleComponente = DetalleComponenteDAO.readDetalleComponenteSuperiorFK(conexion, componenteFK);
-				for(DetalleComponente detalleComponente : listaDetalleComponente){
-					if(componenteRaiz.getTipoComponente().equals(TipoComponente.PARTE_PRIMARIA)){
-						detalleComponente.setCantidad(cantidad * this.ordenProduccion.getCantidad());
-						listaPartePrimaria.add(detalleComponente);
-					}else if (componenteRaiz.getTipoComponente().equals(TipoComponente.COMPRADO)){
-						if(!detalleComponenteRaiz.getTipoComponenteSuperior().equals(TipoComponente.PARTE_PRIMARIA)){
-							detalleComponenteRaiz.setDescripcionComponenteSuperior("");
-							detalleComponenteRaiz.setNumeroParteComponenteSuperior(detalleComponenteRaiz.getNumeroParteComponenteInferior());
-							detalleComponenteRaiz.setNumeroParteComponenteInferior("");
-							detalleComponenteRaiz.setTipoComponenteSuperior("C");
-							listaPartePrimaria.add(detalleComponenteRaiz);
-						}//FIN IF
-					}//FIN IF ELSE
-					cantidad = detalleComponente.getCantidad();
-					detalleComponenteRaiz = new DetalleComponente();
-					detalleComponenteRaiz.setComponenteSuperiorFK(detalleComponente.getComponenteSuperiorFK());
-					detalleComponenteRaiz.setComponenteInferiorFK(detalleComponente.getComponenteInferiorFK());
-					detalleComponenteRaiz.setCantidad(this.ordenProduccion.getCantidad());
-					detalleComponenteRaiz.setTipoComponenteSuperior(componenteRaiz.getTipoComponenteChar());
-					detalleComponenteRaiz.setDescripcionComponenteInferior(detalleComponente.getDescripcionComponenteInferior());
-					detalleComponenteRaiz.setDescripcionComponenteSuperior(detalleComponente.getDescripcionComponenteSuperior());
-					detalleComponenteRaiz.setNumeroParteComponenteInferior(detalleComponente.getNumeroParteComponenteInferior());
-					detalleComponenteRaiz.setNumeroParteComponenteSuperior(detalleComponente.getNumeroParteComponenteSuperior());
-					obtenerPartesPrimarias(detalleComponente.getComponenteInferiorFK());
-				}//FIN FOR
-		}//FIN IF
-	}//FIN METODO
-
 	private boolean accionBotonHojaViajera(DetalleComponente componenteHojaViajera) {
-		
-		HojaViajera hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK());
-		ArrayList<DetalleProceso> listaDetallesProceso = DetalleProcesoDAO.readDetalleProcesoFK(this.conexion, ProcesoDAO.readProcesoComponenteFK(this.conexion, ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()));
+		HojaViajera hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK());
+		ArrayList<DetalleProceso> listaDetallesProceso = DetalleProcesoDAO.readDetalleProcesoFK(this.conexion, ProcesoDAO.readProcesoComponenteFK(this.conexion, ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK()));
 		Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
 		
 		if (hojaViajera.getSysPK() == 0) {
 			hojaViajera.setCantidad(this.ordenProduccion.getCantidad());
 			hojaViajera.setCodigoParoFK(1);
-			hojaViajera.setComponenteFK(ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK());
+			hojaViajera.setComponenteFK(ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK());
 			hojaViajera.setNumeroLote(this.ordenProduccion.getLote());
 			hojaViajera.setOrdenProduccionFK(this.ordenProduccion.getSysPK());
 			hojaViajera.setStatus(HojaViajera.EN_PROCESO);
 			TransaccionSQL.setStatusTransaccion(this.conexion, TransaccionSQL.AUTOCOMMIT_OFF);
 			if (HojaViajeraDAO.createControlOperaciones(this.conexion, hojaViajera)) {
-				hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK());
-				listaDetallesProceso = DetalleProcesoDAO.readDetalleProcesoFK(this.conexion, ProcesoDAO.readProcesoComponenteFK(this.conexion, ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getNumeroParteComponenteSuperior()).getSysPK()));
+				hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK());
+				listaDetallesProceso = DetalleProcesoDAO.readDetalleProcesoFK(this.conexion, ProcesoDAO.readProcesoComponenteFK(this.conexion, ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK()));
 				for (DetalleProceso detalleProceso : listaDetallesProceso) {
 					DetalleHojaViajera detalleHojaViajera = new DetalleHojaViajera();
 					detalleHojaViajera.setDetalleProcesoOperacion(detalleProceso.getOperacion());
@@ -266,7 +233,6 @@ public class DialogoPartesPrimarias {
 				Notificacion.dialogoAlerta(AlertType.CONFIRMATION, "", "La hoja viajera se genero de forma correcta");
 				//printHojaViajera(hojaViajera, listaDetallesProceso);
 				
-				if (componente.getTipoComponente() != TipoComponente.COMPRADO)
 					this.mainApp.iniciarDialogoDetalleHojaViajera(hojaViajera, listaDetallesProceso);
 				return true;
 			} else {
@@ -276,7 +242,6 @@ public class DialogoPartesPrimarias {
 			}//FIN IF/ELSE
 		} else {
 			//printHojaViajera(hojaViajera, listaDetallesProceso);
-			if (componente.getTipoComponente() != TipoComponente.COMPRADO)
 				this.mainApp.iniciarDialogoDetalleHojaViajera(hojaViajera, listaDetallesProceso);
 			return true;
 		}
@@ -299,7 +264,7 @@ public class DialogoPartesPrimarias {
 	}//FIN METODO
 
 	private void manejadorBotonDibujo(Componente componente) {
-		String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + componente.getNumeroParte() + ".pdf";
+	/*	String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + componente.getNumeroParte() + ".pdf";
 		File archivoDibujo = new File(rutaArchivoDibujo);
 		if (archivoDibujo.exists()) {
 			//Notificacion.dialogoAlerta(AlertType.CONFIRMATION, "", "El archivo se va abrir...");
@@ -326,7 +291,7 @@ public class DialogoPartesPrimarias {
 				else
 					Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "El archivo no se pudo cargar al sistema");
 			}//FIN IF ELSE
-		}//FIN IF/ELSE
+		}//FIN IF/ELSE*/
 	}//FIN METODO
 
 }//FIN CLASE

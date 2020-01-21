@@ -192,10 +192,7 @@ public class GenerarDocumento {
 			parameters.put("NoDiseño", componente.getNumeroParte());
 			parameters.put("Descripcion", componente.getDescripcion());
 			parameters.put("ListaProcesos", itemsTabla);
-			if (componente.getTipoComponente() == TipoComponente.ENSAMBLE || componente.getTipoComponente() == TipoComponente.SUB_ENSAMBLE)
-				jasperReport = (JasperReport) JRLoader.loadObjectFromFile("resources/HojaViajeraEnsamble.jasper");
-			else
-				jasperReport = (JasperReport) JRLoader.loadObjectFromFile("resources/HojaViajera.jasper");
+			jasperReport = (JasperReport) JRLoader.loadObjectFromFile("resources/HojaViajera.jasper");
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,  new JREmptyDataSource());
 			JasperViewer jasperView = new JasperViewer(jasperPrint, false);
 			jasperView.setVisible(true);

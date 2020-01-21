@@ -90,7 +90,6 @@ import mx.shf6.produccion.view.DialogoEmpleado;
 import mx.shf6.produccion.view.DialogoEnProduccion;
 import mx.shf6.produccion.view.DialogoEsquemaSeguridad;
 import mx.shf6.produccion.view.DialogoEstadoCuentaCliente;
-import mx.shf6.produccion.view.DialogoEstructuraNiveles;
 import mx.shf6.produccion.view.DialogoGrupoTrabajo;
 import mx.shf6.produccion.view.DialogoGrupoUsuario;
 import mx.shf6.produccion.view.DialogoActualizarDetalleHojaViajera;
@@ -115,7 +114,6 @@ import mx.shf6.produccion.view.PantallaClientes;
 import mx.shf6.produccion.view.PantallaComponente;
 import mx.shf6.produccion.view.PantallaCotizaciones;
 //import mx.shf6.produccion.view.PantallaDashboard;
-import mx.shf6.produccion.view.PantallaDetalleCotizacion;
 import mx.shf6.produccion.view.PantallaEmpleado;
 import mx.shf6.produccion.view.PantallaExistencia;
 import mx.shf6.produccion.view.PantallaGrupoTrabajo;
@@ -154,7 +152,7 @@ public class MainApp extends Application {
 	private AnchorPane pantallaEspera;
 	private AnchorPane pantallaClientes;
 	private AnchorPane pantallaCotizaciones;
-	private AnchorPane pantallaDetalleCotizacion;
+	//private AnchorPane pantallaDetalleCotizacion;
 	private AnchorPane pantallaComponente;
 	private AnchorPane pantallaPuesto;
 	private AnchorPane pantallaGrupoTrabajo;
@@ -201,7 +199,7 @@ public class MainApp extends Application {
 	private AnchorPane dialogoUsuario;
 	private AnchorPane dialogoPermiso;
 	private AnchorPane dialogoAgregarPermiso;
-	private AnchorPane dialogoEstructuraNiveles;
+	//private AnchorPane dialogoEstructuraNiveles;
 	private AnchorPane dialogoPartesPrimarias;
 	private AnchorPane pantallaOrdenProduccion;
 	private AnchorPane dialogoTipoMateriaPrima;
@@ -552,18 +550,18 @@ public class MainApp extends Application {
 
 	//INICIAR PANTALLA DETALLE COTIZACIONES
 	public void iniciarPantallaDetalleCotizacion(Cotizacion cotizacion) {
-		try {
+	/*	try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(MainApp.class.getResource("view/PantallaDetalleCotizacion.fxml"));
 			this.pantallaDetalleCotizacion = (AnchorPane) fxmlLoader.load();
 			Scene escenaDetalleCotizacion = this.iniciarEscenarioDialogosAlterno(this.pantallaDetalleCotizacion);
 			this.escenarioDialogos.setScene(escenaDetalleCotizacion);
 			PantallaDetalleCotizacion pantallaDetalleCotizacion = fxmlLoader.getController();
-			pantallaDetalleCotizacion.setMainApp(this, cotizacion);
+			//pantallaDetalleCotizacion.setMainApp(this, cotizacion);
 			this.escenarioDialogos.showAndWait();
 		} catch (IOException | IllegalStateException ex) {
 			Notificacion.dialogoException(ex);
-		}//FIN TRY/CATCH
+		}//FIN TRY/CATCH*/
 	}//FIN METODO
 
 	//INICIAR PANTALLA TIPO PRODUCTO
@@ -1412,7 +1410,7 @@ public class MainApp extends Application {
     }//FIN METODO
 
 	public void iniciarDialogoEstructuraNiveles(Proyecto proyecto) {
-		try{
+		/*try{
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(MainApp.class.getResource("view/DialogoEstructuraNiveles.fxml"));
 
@@ -1426,7 +1424,7 @@ public class MainApp extends Application {
 		    this.escenarioDialogos.showAndWait();
 		} catch(IOException | IllegalStateException ex) {
 			Notificacion.dialogoException(ex);
-		}//FIN TRY/CATCH
+		}//FIN TRY/CATCH*/
 	}//FIN METODO
 
 	public void iniciarDialogoPartesPrimarias(OrdenProduccion ordenProduccion) {

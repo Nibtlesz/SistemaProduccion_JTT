@@ -83,7 +83,6 @@ public class DetalleOrdenCompraDAO {
 				dimensiones.setUnidadAncho(resultados.getString("DetalleOrdenComprasComponantesUnidadAncho"));
 				dimensiones.setAlto(resultados.getDouble("DetalleOrdenComprasComponentesAlto"));
 				dimensiones.setUnidadAlto(resultados.getString("DetalleOrdenComprasComponentesUnidadAlto"));
-				componente.setGradoMaterial(resultados.getString("DetalleOrdenComprasComponentesGrado"));
 				dimensiones.setEspesor(resultados.getDouble("DetalleOrdenComprasComponentesEspesor"));
 				dimensiones.setUnidadEspesor(resultados.getString("DetalleOrdenComprasComponentesUnidadEspesor"));
 				dimensiones.setDiametroExterior(resultados.getDouble("DetalleOrdenComprasComponentesDiametroExterno"));
@@ -94,24 +93,6 @@ public class DetalleOrdenCompraDAO {
 				dimensiones.setUnidadAlto2(resultados.getString("DetalleOrdenComprasComponentesUnidadAlto2"));
 				dimensiones.setAnchoTotal(resultados.getDouble("DetalleOrdenComprasComponentesAnchoTotal"));
 				dimensiones.setUnidadAnchoTotal(resultados.getString("DetalleOrdenComprasComponentesUnidadAnchoTotal"));
-				dimensiones.setCodigoCatalogo(resultados.getString("DetalleOrdenComprasComponentesCodigoCatalogo"));
-				componente.setTipoComponente(resultados.getString("DetalleOrdenComprasComponentesTipoComponente"));
-				componente.setCosto(resultados.getDouble("DetalleOrdenComprasComponentesCosto"));
-				componente.setCostoDirecto(resultados.getDouble("DetalleOrdenComprasComponentesCostoDirecto"));
-				componente.setCostoIndirecto(resultados.getDouble("DetalleOrdenComprasComponentesCostoIndirecto"));
-				componente.setMaterialFK(resultados.getInt("DetalleOrdenComprasComponentesMaterialFK"));;
-				componente.setTipoMiscelaneoFK(resultados.getInt("DetalleOrdenComprasComponentesTipoMiscelaneoFK"));
-				componente.setTipoMateriaPrimaFK(resultados.getInt("DetalleOrdenComprasComponentesTipoMateriaPrimaFK"));
-				componente.setAcabadoFK(resultados.getInt("DetalleOrdenComprasComponentesAcabadoFK"));
-				componente.setTratamientoFK(resultados.getInt("DetalleOrdenComprasTratamientoFK"));
-				componente.setNotas(resultados.getString("DetalleOrdenComprasComponentesNotas"));
-				componente.setStatus(resultados.getInt("DetalleOrdenComprasComponentesStatus"));
-				componente.setConsecutivo(resultados.getInt("DetalleOrdenComprasComponentesConsecutivo"));
-				componente.setClienteFK(resultados.getInt("OrdenCompraClienteSysPK"));
-				componente.setEsInterno(resultados.getInt("DetalleOrdenComprasComponentesEsInterno"));
-				componente.setHilos(resultados.getString("DetalleOrdenComprasComponentesHilos"));
-				componente.setRevision(resultados.getString("DetalleOrdenComprasComponentesRevision"));
-				componente.setDimensiones(dimensiones);
 				detalleOrdenCompra.setComponenteFK(componente);
 				arrayListDetalleOrdenCompra.add(detalleOrdenCompra);
 			}//FIN WHILE

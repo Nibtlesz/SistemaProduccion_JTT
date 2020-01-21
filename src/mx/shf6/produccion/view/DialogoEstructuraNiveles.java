@@ -24,7 +24,7 @@ import mx.shf6.produccion.model.dao.DetalleComponenteDAO;
 
 public class DialogoEstructuraNiveles {
 
-	//PROPIEDADES
+/*	//PROPIEDADES
 	private MainApp mainApp;
 	private Connection conexion;
 	@SuppressWarnings("unused")
@@ -104,8 +104,7 @@ public class DialogoEstructuraNiveles {
 		}//FIN IF
 
 		ArrayList<DetalleComponente> listaDetalleComponente = new ArrayList<DetalleComponente>();
-		if(componenteRaiz.getTipoComponente().equals(TipoComponente.ENSAMBLE) || componenteRaiz.getTipoComponente().equals(TipoComponente.SUB_ENSAMBLE)){
-			listaDetalleComponente = DetalleComponenteDAO.readDetalleComponenteSuperiorFK(conexion, componenteFK);
+		
 			if(i==1){
 				for(DetalleComponente detalleComponente : listaDetalleComponente){
 					TreeItem<DetalleComponente> nodo = new TreeItem<>(detalleComponente);
@@ -119,7 +118,7 @@ public class DialogoEstructuraNiveles {
 				obtenerArbol(detalleComponente.getComponenteInferiorFK(), nodo);
 				}//FIN FOR
 			}//FIN IF ELSE
-		}//FIN IF
+
 	}//FIN METODO
 
 	//MANEJADORES COMPONENTES
@@ -130,5 +129,5 @@ public class DialogoEstructuraNiveles {
 	@FXML private void manejadorBotonCerrar() {
 		this.mainApp.getEscenarioDialogos().close();
 	}//FIN METODO
-
+*/
 }

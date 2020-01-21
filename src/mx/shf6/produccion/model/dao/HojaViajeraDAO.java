@@ -12,15 +12,14 @@ public class HojaViajeraDAO {
 	
 	//METODO PARA CREAR UN REGISTRO
 	public static boolean createControlOperaciones(Connection connection, HojaViajera hojaViajera) {
-		String consulta = "INSERT INTO controloperaciones (Cantidad, CodigoParoFK, ComponenteFK, OrdenProduccionFK, Referencia, Status) VALUES (?, ?, ?, ?, ?, ?)";
+		String consulta = "INSERT INTO ut_controloperaciones (uf_Cantidad, uf_status, uf_CodigoParoFK, uf_ProductoFK, uf_OrdenProduccionFK) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setDouble(1,hojaViajera.getCantidad());
-			sentenciaPreparada.setInt(2, hojaViajera.getCodigoParoFK());
-			sentenciaPreparada.setInt(3, hojaViajera.getComponenteFK());
-			sentenciaPreparada.setInt(4, hojaViajera.getOrdenProduccionFK());
-			sentenciaPreparada.setString(5, "NA");
-			sentenciaPreparada.setInt(6, hojaViajera.getStatus());
+			sentenciaPreparada.setInt(2, hojaViajera.getStatus());
+			sentenciaPreparada.setInt(3, hojaViajera.getCodigoParoFK());
+			sentenciaPreparada.setInt(4, hojaViajera.getComponenteFK());
+			sentenciaPreparada.setInt(5, hojaViajera.getOrdenProduccionFK());
 			sentenciaPreparada.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -31,7 +30,7 @@ public class HojaViajeraDAO {
 	
 	public static HojaViajera readHojaViajeraPorOrdenProduccionComponente(Connection connection, Integer ordenProduccionFK, Integer componenteFK) {
 		HojaViajera hojaViajera = new HojaViajera();
-		String consulta = "SELECT controloperaciones.Sys_PK, controloperaciones.Cantidad, controloperaciones.CodigoParoFK, codigosparo.Descripcion, controloperaciones.ComponenteFK, componentes.NumeroParte, controloperaciones.OrdenProduccionFK, controloperaciones.Referencia, controloperaciones.Status FROM controloperaciones INNER JOIN codigosparo ON controloperaciones.CodigoParoFK = codigosparo.Sys_PK INNER JOIN componentes ON controloperaciones.ComponenteFK = componentes.Sys_PK WHERE controloperaciones.OrdenProduccionFK = " + ordenProduccionFK + " AND controloperaciones.ComponenteFK = " + componenteFK;
+		String consulta = "SELECT ut_controloperaciones.Sys_PK, ut_controloperaciones.uf_Cantidad, ut_controloperaciones.uf_CodigoParoFK, ut_codigosparo.uf_Descripcion, ut_controloperaciones.uf_ProductoFK, producto.Codigo, ut_controloperaciones.uf_OrdenProduccionFK FROM ut_controloperaciones INNER JOIN ut_codigosparo ON ut_controloperaciones.uf_CodigoParoFK = ut_codigosparo.Sys_PK INNER JOIN producto ON ut_controloperaciones.uf_ProductoFK = producto.Sys_PK WHERE ut_controloperaciones.uf_OrdenProduccionFK = " + ordenProduccionFK + " AND ut_controloperaciones.uf_ProductoFK = " + componenteFK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
@@ -43,7 +42,6 @@ public class HojaViajeraDAO {
 				hojaViajera.setComponenteFK(resultados.getInt(5));
 				hojaViajera.setNumeroParte(resultados.getString(6));
 				hojaViajera.setOrdenProduccionFK(resultados.getInt(7));
-				hojaViajera.setStatus(resultados.getInt(9));
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);

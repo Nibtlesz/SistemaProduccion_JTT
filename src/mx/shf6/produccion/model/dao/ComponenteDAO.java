@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -23,58 +22,6 @@ public class ComponenteDAO {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, componente.getNumeroParte());
 			sentenciaPreparada.setString(2, componente.getDescripcion());
-			sentenciaPreparada.setDouble(3, componente.getDimensiones().getLargo());
-			sentenciaPreparada.setString(4, componente.getDimensiones().getUnidadLargo());
-			sentenciaPreparada.setDouble(5, componente.getDimensiones().getAncho());
-			sentenciaPreparada.setString(6, componente.getDimensiones().getUnidadAncho());
-			sentenciaPreparada.setDouble(7, componente.getDimensiones().getAlto());
-			sentenciaPreparada.setString(8, componente.getDimensiones().getUnidadAlto());
-			sentenciaPreparada.setString(9, componente.getGradoMaterial());
-			sentenciaPreparada.setDouble(10, componente.getDimensiones().getEspesor());
-			sentenciaPreparada.setString(11, componente.getDimensiones().getUnidadEspesor());
-			sentenciaPreparada.setDouble(12, componente.getDimensiones().getDiametroExterior());
-			sentenciaPreparada.setString(13, componente.getDimensiones().getUnidadDExt());
-			sentenciaPreparada.setDouble(14, componente.getDimensiones().getDiametroInterior());
-			sentenciaPreparada.setString(15, componente.getDimensiones().getUnidadDInt());
-			sentenciaPreparada.setDouble(16, componente.getDimensiones().getAlto2());
-			sentenciaPreparada.setString(17, componente.getDimensiones().getUnidadAlto2());
-			sentenciaPreparada.setDouble(18, componente.getDimensiones().getAnchoTotal());
-			sentenciaPreparada.setString(19, componente.getDimensiones().getUnidadAnchoTotal());
-			sentenciaPreparada.setString(20, componente.getDimensiones().getCodigoCatalogo());
-			sentenciaPreparada.setString(21, componente.getTipoComponenteChar());
-			sentenciaPreparada.setDouble(22, componente.getCosto());
-			sentenciaPreparada.setDouble(23, componente.getCostoDirecto());
-			sentenciaPreparada.setDouble(24, componente.getCostoIndirecto());
-			if (componente.getMaterialFK() > 0)
-				sentenciaPreparada.setInt(25, componente.getMaterialFK());
-			else
-				sentenciaPreparada.setNull(25, Types.INTEGER);
-			if (componente.getTipoMiscelaneoFK() > 0)
-				sentenciaPreparada.setInt(26, componente.getTipoMiscelaneoFK());
-			else
-				sentenciaPreparada.setNull(26, Types.INTEGER);
-			if (componente.getTipoMateriaPrimaFK() > 0)
-				sentenciaPreparada.setInt(27, componente.getTipoMateriaPrimaFK());
-			else
-				sentenciaPreparada.setNull(27, Types.INTEGER);
-			if (componente.getAcabadoFK() > 0)
-				sentenciaPreparada.setInt(28, componente.getAcabadoFK());
-			else
-				sentenciaPreparada.setNull(28, Types.INTEGER);
-			if (componente.getTratamientoFK() > 0)
-				sentenciaPreparada.setInt(29, componente.getTratamientoFK());
-			else
-				sentenciaPreparada.setNull(29, Types.INTEGER);
-			sentenciaPreparada.setString(30, componente.getNotas());
-			sentenciaPreparada.setInt(31, componente.getStatusFK());
-			sentenciaPreparada.setInt(32, componente.getConsecutivo());
-			if (componente.getclienteFK() > 0)
-				sentenciaPreparada.setInt(33, componente.getclienteFK());
-			else
-				sentenciaPreparada.setNull(33, Types.INTEGER);
-			sentenciaPreparada.setInt(34, componente.getEsInterno());
-			sentenciaPreparada.setString(35, componente.getHilos());
-			sentenciaPreparada.setString(36, componente.getRevision());
 			sentenciaPreparada.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -140,7 +87,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAncho(resultados.getString(7));
 				dimensiones.setAlto(resultados.getDouble(8));
 				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
 				dimensiones.setEspesor(resultados.getDouble(11));
 				dimensiones.setUnidadEspesor(resultados.getString(12));
 				dimensiones.setDiametroExterior(resultados.getDouble(13));
@@ -151,24 +97,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAlto2(resultados.getString(18));
 				dimensiones.setAnchoTotal(resultados.getDouble(19));
 				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setDimensiones(dimensiones);
 				arrayListComponente.add(componente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -214,7 +142,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAncho(resultados.getString(7));
 				dimensiones.setAlto(resultados.getDouble(8));
 				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
 				dimensiones.setEspesor(resultados.getDouble(11));
 				dimensiones.setUnidadEspesor(resultados.getString(12));
 				dimensiones.setDiametroExterior(resultados.getDouble(13));
@@ -225,24 +152,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAlto2(resultados.getString(18));
 				dimensiones.setAnchoTotal(resultados.getDouble(19));
 				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setDimensiones(dimensiones);
 				arrayListComponente.add(componente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -273,7 +182,6 @@ public class ComponenteDAO {
 					dimensiones.setUnidadAncho(resultados.getString(7));
 					dimensiones.setAlto(resultados.getDouble(8));
 					dimensiones.setUnidadAlto(resultados.getString(9));
-					componente.setGradoMaterial(resultados.getString(10));
 					dimensiones.setEspesor(resultados.getDouble(11));
 					dimensiones.setUnidadEspesor(resultados.getString(12));
 					dimensiones.setDiametroExterior(resultados.getDouble(13));
@@ -283,25 +191,7 @@ public class ComponenteDAO {
 					dimensiones.setAlto2(resultados.getDouble(17));
 					dimensiones.setUnidadAlto2(resultados.getString(18));
 					dimensiones.setAnchoTotal(resultados.getDouble(19));
-					dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-					dimensiones.setCodigoCatalogo(resultados.getString(21));
-					componente.setTipoComponente(resultados.getString(22));
-					componente.setCosto(resultados.getDouble(23));
-					componente.setCostoDirecto(resultados.getDouble(24));
-					componente.setCostoIndirecto(resultados.getDouble(25));
-					componente.setMaterialFK(resultados.getInt(26));;
-					componente.setTipoMiscelaneoFK(resultados.getInt(27));
-					componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-					componente.setAcabadoFK(resultados.getInt(29));
-					componente.setTratamientoFK(resultados.getInt(30));
-					componente.setNotas(resultados.getString(31));
-					componente.setStatus(resultados.getInt(32));
-					componente.setConsecutivo(resultados.getInt(33));
-					componente.setClienteFK(resultados.getInt(34));
-					componente.setEsInterno(resultados.getInt(35));
-					componente.setHilos(resultados.getString(36));
-					componente.setRevision(resultados.getString(37));
-					componente.setDimensiones(dimensiones);
+					dimensiones.setUnidadAnchoTotal(resultados.getString(20));;
 					arrayListComponente.add(componente);
 				}//FIN WHILE
 			} catch (SQLException ex) {
@@ -347,7 +237,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAncho(resultados.getString(7));
 				dimensiones.setAlto(resultados.getDouble(8));
 				dimensiones.setUnidadAlto(resultados.getString(9));
-				componente.setGradoMaterial(resultados.getString(10));
 				dimensiones.setEspesor(resultados.getDouble(11));
 				dimensiones.setUnidadEspesor(resultados.getString(12));
 				dimensiones.setDiametroExterior(resultados.getDouble(13));
@@ -358,24 +247,6 @@ public class ComponenteDAO {
 				dimensiones.setUnidadAlto2(resultados.getString(18));
 				dimensiones.setAnchoTotal(resultados.getDouble(19));
 				dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-				dimensiones.setCodigoCatalogo(resultados.getString(21));
-				componente.setTipoComponente(resultados.getString(22));
-				componente.setCosto(resultados.getDouble(23));
-				componente.setCostoDirecto(resultados.getDouble(24));
-				componente.setCostoIndirecto(resultados.getDouble(25));
-				componente.setMaterialFK(resultados.getInt(26));;
-				componente.setTipoMiscelaneoFK(resultados.getInt(27));
-				componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-				componente.setAcabadoFK(resultados.getInt(29));
-				componente.setTratamientoFK(resultados.getInt(30));
-				componente.setNotas(resultados.getString(31));
-				componente.setStatus(resultados.getInt(32));
-				componente.setConsecutivo(resultados.getInt(33));
-				componente.setClienteFK(resultados.getInt(34));
-				componente.setEsInterno(resultados.getInt(35));
-				componente.setHilos(resultados.getString(36));
-				componente.setRevision(resultados.getString(37));
-				componente.setDimensiones(dimensiones);
 				arrayListComponentesEnsambleCliente.add(componente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -403,7 +274,6 @@ public class ComponenteDAO {
 					dimensiones.setUnidadAncho(resultados.getString(7));
 					dimensiones.setAlto(resultados.getDouble(8));
 					dimensiones.setUnidadAlto(resultados.getString(9));
-					componente.setGradoMaterial(resultados.getString(10));
 					dimensiones.setEspesor(resultados.getDouble(11));
 					dimensiones.setUnidadEspesor(resultados.getString(12));
 					dimensiones.setDiametroExterior(resultados.getDouble(13));
@@ -414,24 +284,6 @@ public class ComponenteDAO {
 					dimensiones.setUnidadAlto2(resultados.getString(18));
 					dimensiones.setAnchoTotal(resultados.getDouble(19));
 					dimensiones.setUnidadAnchoTotal(resultados.getString(20));
-					dimensiones.setCodigoCatalogo(resultados.getString(21));
-					componente.setTipoComponente(resultados.getString(22));
-					componente.setCosto(resultados.getDouble(23));
-					componente.setCostoDirecto(resultados.getDouble(24));
-					componente.setCostoIndirecto(resultados.getDouble(25));
-					componente.setMaterialFK(resultados.getInt(26));;
-					componente.setTipoMiscelaneoFK(resultados.getInt(27));
-					componente.setTipoMateriaPrimaFK(resultados.getInt(28));
-					componente.setAcabadoFK(resultados.getInt(29));
-					componente.setTratamientoFK(resultados.getInt(30));
-					componente.setNotas(resultados.getString(31));
-					componente.setStatus(resultados.getInt(32));
-					componente.setConsecutivo(resultados.getInt(33));
-					componente.setClienteFK(resultados.getInt(34));
-					componente.setEsInterno(resultados.getInt(35));
-					componente.setHilos(resultados.getString(36));
-					componente.setRevision(resultados.getString(37));
-					componente.setDimensiones(dimensiones);
 					arrayListComponentesEnsambleCliente.add(componente);
 				}//FIN WHILE
 			} catch (SQLException ex) {
@@ -453,58 +305,6 @@ public class ComponenteDAO {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
 			sentenciaPreparada.setString(1, componente.getNumeroParte());
 			sentenciaPreparada.setString(2, componente.getDescripcion());
-			sentenciaPreparada.setDouble(3, componente.getDimensiones().getLargo());
-			sentenciaPreparada.setString(4, componente.getDimensiones().getUnidadLargo());
-			sentenciaPreparada.setDouble(5, componente.getDimensiones().getAncho());
-			sentenciaPreparada.setString(6, componente.getDimensiones().getUnidadAncho());
-			sentenciaPreparada.setDouble(7, componente.getDimensiones().getAlto());
-			sentenciaPreparada.setString(8, componente.getDimensiones().getUnidadAlto());
-			sentenciaPreparada.setString(9, componente.getGradoMaterial());
-			sentenciaPreparada.setDouble(10, componente.getDimensiones().getEspesor());
-			sentenciaPreparada.setString(11, componente.getDimensiones().getUnidadEspesor());
-			sentenciaPreparada.setDouble(12, componente.getDimensiones().getDiametroExterior());
-			sentenciaPreparada.setString(13, componente.getDimensiones().getUnidadDExt());
-			sentenciaPreparada.setDouble(14, componente.getDimensiones().getDiametroInterior());
-			sentenciaPreparada.setString(15, componente.getDimensiones().getUnidadDInt());
-			sentenciaPreparada.setDouble(16, componente.getDimensiones().getAlto2());
-			sentenciaPreparada.setString(17, componente.getDimensiones().getUnidadAlto2());
-			sentenciaPreparada.setDouble(18, componente.getDimensiones().getAnchoTotal());
-			sentenciaPreparada.setString(19, componente.getDimensiones().getUnidadAnchoTotal());
-			sentenciaPreparada.setString(20, componente.getDimensiones().getCodigoCatalogo());
-			sentenciaPreparada.setString(21, componente.getTipoComponenteChar());
-			sentenciaPreparada.setDouble(22, componente.getCosto());
-			sentenciaPreparada.setDouble(23, componente.getCostoDirecto());
-			sentenciaPreparada.setDouble(24, componente.getCostoIndirecto());
-			if (componente.getMaterialFK() > 0)
-				sentenciaPreparada.setInt(25, componente.getMaterialFK());
-			else
-				sentenciaPreparada.setNull(25, Types.INTEGER);
-			if (componente.getTipoMiscelaneoFK() > 0)
-				sentenciaPreparada.setInt(26, componente.getTipoMiscelaneoFK());
-			else
-				sentenciaPreparada.setNull(26, Types.INTEGER);
-			if (componente.getTipoMateriaPrimaFK() > 0)
-				sentenciaPreparada.setInt(27, componente.getTipoMateriaPrimaFK());
-			else
-				sentenciaPreparada.setNull(27, Types.INTEGER);
-			if (componente.getAcabadoFK() > 0)
-				sentenciaPreparada.setInt(28, componente.getAcabadoFK());
-			else
-				sentenciaPreparada.setNull(28, Types.INTEGER);
-			if (componente.getTratamientoFK() > 0)
-				sentenciaPreparada.setInt(29, componente.getTratamientoFK());
-			else
-				sentenciaPreparada.setNull(29, Types.INTEGER);
-			sentenciaPreparada.setString(30, componente.getNotas());
-			sentenciaPreparada.setInt(31, componente.getStatusFK());
-			sentenciaPreparada.setInt(32, componente.getConsecutivo());
-			if (componente.getclienteFK() > 0)
-				sentenciaPreparada.setInt(33, componente.getclienteFK());
-			else
-				sentenciaPreparada.setNull(33, Types.INTEGER);
-			sentenciaPreparada.setInt(34, componente.getEsInterno());
-			sentenciaPreparada.setString(35, componente.getHilos());
-			sentenciaPreparada.setString(36, componente.getRevision());
 			sentenciaPreparada.setInt(37, componente.getSysPK());
 			sentenciaPreparada.execute();
 			return true;

@@ -53,7 +53,7 @@ import javafx.geometry.Pos;
 @SuppressWarnings("unused")
 public class PantallaDetalleCotizacion {
 
-	public static final int CREAR = 1;
+	/*public static final int CREAR = 1;
 	public static final int EDITAR = 2;
 	Integer cantidad = 0;
 	int i = 0;
@@ -125,7 +125,7 @@ public class PantallaDetalleCotizacion {
 		if(i==1){
 			this.nombreNumeroComponente = componenteRaiz.getNumeroParte();
 		}
-
+/*
 		if (componenteRaiz.getTipoComponente().equals(TipoComponente.SUB_ENSAMBLE)){
 			detalleComponenteSubEnsamble = new DetalleComponente();
 			detalleComponenteSubEnsamble.setNumeroParteComponenteSuperior(componenteRaiz.getNumeroParte());
@@ -231,6 +231,6 @@ public class PantallaDetalleCotizacion {
 		}else
 			Notificacion.dialogoAlerta(AlertType.ERROR, "Mensaje Sistema", "Seleccione el elemento que desea borrar.");
 		actualizarTabla();
-	}//FIN METODO
+	}//FIN METODO*/
 		
 }//FIN CLASE

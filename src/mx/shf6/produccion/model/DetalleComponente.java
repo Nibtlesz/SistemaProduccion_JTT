@@ -6,42 +6,48 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import mx.shf6.produccion.model.dao.ComponenteDAO;
+import mx.shf6.produccion.model.dao.AcabadoDAO;
+import mx.shf6.produccion.model.dao.MaterialDAO;
+import mx.shf6.produccion.model.dao.TipoMateriaPrimaDAO;
+import mx.shf6.produccion.model.dao.TipoMiscelaneoDAO;
+import mx.shf6.produccion.model.dao.TratamientoDAO;
+import mx.shf6.produccion.utilities.Dimensiones;
 
 public class DetalleComponente {
 
 	private ObjectProperty<Integer> sysPK;
-	private ObjectProperty<Integer> componenteSuperiorFK;
-	private ObjectProperty<Integer> componenteInferiorFK;
-	private ObjectProperty<Integer> cantidad;
+	private ObjectProperty<Componente> codigo;
+	private ObjectProperty<Dimensiones> dimensiones;
+	private StringProperty gradoMaterial;
+	private ObjectProperty<Material> materialFK;
+	private ObjectProperty<Integer> tipoMiscelaneoFK;
+	private ObjectProperty<Integer> tipoMateriaPrimaFK;
+	private ObjectProperty<Integer> acabadoFK;
+	private ObjectProperty<Integer> tratamientoFK;
 	private StringProperty notas;
-	private StringProperty descripcionComponenteInferior;
-	private StringProperty numeroParteComponenteInferior;
-	private StringProperty numeroDescripcionComponenteIferior;
-	private StringProperty descripcionComponenteSuperior;
-	private StringProperty numeroParteComponenteSuperior;
-	private StringProperty tipoComponenteInferior;
-	private StringProperty tipoComponenteSuperior;
-
-
+	private StringProperty status;
+	private StringProperty revision;
+	
+	private ObjectProperty<Integer> cantidad;
 
 	public DetalleComponente() {
-		this(0, 0, 0, 0, "", "", "", "", "", "", "", "");
+		this(0, new Componente(), new Dimensiones(), "", new Material(), 0, 0, 0, 0, "", "", "",0);
 	}//FIN CONSTRUCTOR
 
-	public DetalleComponente(int sysPK, int componenteSuperiorFK, int componenteInferiorFK, Integer cantidad, String notas, String descripcionComponenteInferior, String numeroParteComponenteInferior, String numeroDescripcionComponenteIferior, String descripcionComponenteSuperior, String numeroParteComponenteSuperior, String tipoComponenteInferior, String tipoComponenteSuperior) {
+	public DetalleComponente(int sysPK, Componente codigo, Dimensiones dimensiones, String gradoMaterial, Material materialFK, int tipoMiscelaneoFK, int tipoMateriaPrimaFK, int acabadoFK, int tratamientoFK, String notas, String status, String revision, int cantidad) {
 		this.sysPK = new SimpleObjectProperty<Integer>(sysPK);
-		this.componenteSuperiorFK = new SimpleObjectProperty<Integer>(componenteSuperiorFK);
-		this.componenteInferiorFK = new SimpleObjectProperty<Integer>(componenteInferiorFK);
-		this.cantidad = new SimpleObjectProperty<Integer>(cantidad);
+		this.codigo = new SimpleObjectProperty<Componente>(codigo);
+		this.dimensiones = new SimpleObjectProperty<Dimensiones>(dimensiones);
+		this.gradoMaterial = new SimpleStringProperty(gradoMaterial);
+		this.materialFK = new SimpleObjectProperty<Material>(materialFK);
+		this.tipoMiscelaneoFK = new SimpleObjectProperty<Integer>(tipoMiscelaneoFK);
+		this.tipoMateriaPrimaFK = new SimpleObjectProperty<Integer>(tipoMateriaPrimaFK);
+		this.acabadoFK = new SimpleObjectProperty<Integer>(acabadoFK);
+		this.tratamientoFK = new SimpleObjectProperty<Integer>(tratamientoFK);
 		this.notas = new SimpleStringProperty(notas);
-		this.descripcionComponenteInferior = new SimpleStringProperty(descripcionComponenteInferior);
-		this.numeroParteComponenteInferior = new SimpleStringProperty(numeroParteComponenteInferior);
-		this.numeroDescripcionComponenteIferior = new SimpleStringProperty(numeroDescripcionComponenteIferior);
-		this.descripcionComponenteSuperior = new SimpleStringProperty(descripcionComponenteSuperior);
-		this.numeroParteComponenteSuperior = new SimpleStringProperty(numeroParteComponenteSuperior);
-		this.tipoComponenteInferior = new SimpleStringProperty(tipoComponenteInferior);
-		this.tipoComponenteSuperior = new SimpleStringProperty(tipoComponenteSuperior);
+		this.status = new SimpleStringProperty(status);
+		this.revision = new SimpleStringProperty(revision);
+		this.cantidad = new SimpleObjectProperty<Integer>(cantidad);
 	}//FIN CONSTRUCTOR
 
 	public void setSysPK(int sysPK) {
@@ -56,48 +62,120 @@ public class DetalleComponente {
 		return this.sysPK;
 	}//FIN METODO
 
-	public void setComponenteSuperiorFK(int componenteSuperiorFK) {
-		this.componenteSuperiorFK.set(componenteSuperiorFK);
+	public void setCodigo(Componente codigo) {
+		this.codigo.set(codigo);
 	}//FIN METODO
 
-	public int getComponenteSuperiorFK() {
-		return this.componenteSuperiorFK.get();
+	public Componente getCodigo() {
+		return this.codigo.get();
 	}//FIN METODO
 
-	public ObjectProperty<Integer> componenteSuperiorFKProperty() {
-		return this.componenteSuperiorFK;
+	public ObjectProperty<Componente> codigoProperty() {
+		return this.codigo;
 	}//FIN METODO
 
-	public Componente getComponenteSuperior(Connection connection) {
-		return ComponenteDAO.readComponente(connection, this.getComponenteSuperiorFK());
+	public void setGradoMaterial(String gradoMaterial) {
+		this.gradoMaterial.set(gradoMaterial);
 	}//FIN METODO
 
-	public void setComponenteInferiorFK(int componenteInferiorFK) {
-		this.componenteInferiorFK.set(componenteInferiorFK);
+	public String getGradoMaterial() {
+		return this.gradoMaterial.get();
 	}//FIN METODO
 
-	public int getComponenteInferiorFK() {
-		return this.componenteInferiorFK.get();
+	public StringProperty gradoMaterialProperty() {
+		return this.gradoMaterial;
 	}//FIN METODO
 
-	public ObjectProperty<Integer> componenteInferiorFKProperty() {
-		return this.componenteInferiorFK;
+	public void setDimensiones(Dimensiones dimensiones) {
+		this.dimensiones.set(dimensiones);
 	}//FIN METODO
 
-	public Componente getComponenteInferior(Connection connection) {
-		return ComponenteDAO.readComponente(connection, this.getComponenteInferiorFK());
+	public Dimensiones getDimensiones() {
+		return this.dimensiones.get();
 	}//FIN METODO
 
-	public void setCantidad(Integer cantidad) {
-		this.cantidad.set(cantidad);
+	public ObjectProperty<Dimensiones> dimesionesProperty() {
+		return this.dimensiones;
 	}//FIN METODO
 
-	public Integer getCantidad()	{
-		return this.cantidad.get();
+	public void setMaterialFK(Material materialFK) {
+		this.materialFK.set(materialFK);
 	}//FIN METODO
 
-	public ObjectProperty<Integer> cantidadProperty() {
-		return this.cantidad;
+	public Material getMaterialFK() {
+		return this.materialFK.get();
+	}//FIN METODO
+
+	public ObjectProperty<Material> materialFKProperty() {
+		return this.materialFK;
+	}//FIN METODO
+
+	public Material getMaterial(Connection connection) {
+		return MaterialDAO.readMaterial(connection, this.getMaterialFK().getSysPK());
+	}//FIN METODO
+
+	public void setTipoMiscelaneoFK(int tipoMiscelaneoFK) {
+		this.tipoMiscelaneoFK.set(tipoMiscelaneoFK);
+	}//FIN METODO
+
+	public int getTipoMiscelaneoFK() {
+		return this.tipoMiscelaneoFK.get();
+	}//FIN METODO
+
+	public ObjectProperty<Integer> tipoMiscelaneoFKProperty() {
+		return this.tipoMiscelaneoFK;
+	}//FIN METODO
+
+	public TipoMiscelaneo getTipoMiscelaneo(Connection connection) {
+		return TipoMiscelaneoDAO.readTipoMiscelaneo(connection, this.getTipoMiscelaneoFK());
+	}//FIN METODO
+
+	public void setTipoMateriaPrimaFK(int tipoMateriaPrimaFK) {
+		this.tipoMateriaPrimaFK.set(tipoMateriaPrimaFK);
+	}//FIN METODO
+
+	public int getTipoMateriaPrimaFK() {
+		return this.tipoMateriaPrimaFK.get();
+	}//FIN METODO
+
+	public ObjectProperty<Integer> tipoMateriaPrimaFKProperty() {
+		return this.tipoMateriaPrimaFK;
+	}//FIN METODO
+
+	public TipoMateriaPrima getTipoMateriaPrima(Connection connection) {
+		return TipoMateriaPrimaDAO.readTipoMateriaPrima(connection, getTipoMateriaPrimaFK());
+	}//FIN METODO
+
+	public void setAcabadoFK(int acabadoFK) {
+		this.acabadoFK.set(acabadoFK);
+	}//FIN METODO
+
+	public int getAcabadoFK() {
+		return this.acabadoFK.get();
+	}//FIN METODO
+
+	public ObjectProperty<Integer> acabadoFKProperty() {
+		return this.acabadoFK;
+	}//FIN METODO
+
+	public Acabado getAcabado(Connection connection) {
+		return AcabadoDAO.readAcabado(connection, this.getAcabadoFK());
+	}//FIN METODO
+
+	public void setTratamientoFK(int tratamientoFK) {
+		this.tratamientoFK.set(tratamientoFK);
+	}//FIN METODO
+
+	public int getTratamientoFK() {
+		return this.tratamientoFK.get();
+	}//FIN METODO
+
+	public ObjectProperty<Integer> tratamientoFKProperty() {
+		return this.tratamientoFK;
+	}//FIN METODO
+
+	public Tratamiento getTratamiento(Connection connection) {
+		return TratamientoDAO.readTratamiento(connection, this.getTratamientoFK());
 	}//FIN METODO
 
 	public void setNotas(String notas) {
@@ -112,88 +190,44 @@ public class DetalleComponente {
 		return this.notas;
 	}//FIN METODO
 
-	public void setDescripcionComponenteInferior(String descripcionComponenteInferior) {
-		this.descripcionComponenteInferior.set(descripcionComponenteInferior);
+	public void setStatus(int status) {
+		this.status.set(Status.toString(status));
 	}//FIN METODO
 
-	public String getDescripcionComponenteInferior() {
-		return this.descripcionComponenteInferior.get();
+	public String getStatus() {
+		return this.status.get();
 	}//FIN METODO
 
-	public StringProperty descripcionComponenteInferiorProperty() {
-		return this.descripcionComponenteInferior;
+	public StringProperty statusProperty() {
+		return this.status;
 	}//FIN METODO
 
-	public void setNumeroParteComponenteInferior(String numeroParteComponenteInferior) {
-		this.numeroParteComponenteInferior.set(numeroParteComponenteInferior);
+	public int getStatusFK() {
+		return Status.toInt(this.getStatus());
+	}//FIN METODO
+	
+	//METODOS PARA ACCEDER A REVISION
+	public void setRevision(String revision) {
+		this.revision.set(revision);
+	}//FIN METODO
+	
+	public String getRevision() {
+		return this.revision.get();
+	}//FIN METODO
+	
+	public StringProperty revisionProperty() {
+		return this.revision;
 	}//FIN METODO
 
-	public String getNumeroParteComponenteInferior() {
-		return this.numeroParteComponenteInferior.get();
+	public void setCantidad(int cantidad) {
+		this.cantidad.set(cantidad);
 	}//FIN METODO
 
-	public StringProperty numeroParteComponenteInferiorProperty() {
-		return this.numeroParteComponenteInferior;
+	public int getCantidad() {
+		return this.cantidad.get();
 	}//FIN METODO
 
-	public void setNumeroDescripcionComponenteIferior() {
-		this.numeroDescripcionComponenteIferior.set(getNumeroParteComponenteInferior() +" "+getDescripcionComponenteInferior());
+	public ObjectProperty<Integer> cantidadProperty() {
+		return this.cantidad;
 	}//FIN METODO
-
-	public String getNumeroDescripcionComponenteIferior(){
-		return this.numeroDescripcionComponenteIferior.get();
-	}
-
-	public StringProperty numeroDescripcionComponenteIferiorProperty() {
-		return this.numeroDescripcionComponenteIferior;
-	}//FIN METODO
-
-	public void setDescripcionComponenteSuperior(String descripcionComponenteSuperior) {
-		this.descripcionComponenteSuperior.set(descripcionComponenteSuperior);
-	}//FIN METODO
-
-	public String getDescripcionComponenteSuperior() {
-		return this.descripcionComponenteSuperior.get();
-	}//FIN METODO
-
-	public StringProperty descripcionComponenteSuperiorProperty() {
-		return this.descripcionComponenteSuperior;
-	}//FIN METODO
-
-	public void setNumeroParteComponenteSuperior(String numeroParteComponenteSuperior) {
-		this.numeroParteComponenteSuperior.set(numeroParteComponenteSuperior);
-	}//FIN METODO
-
-	public String getNumeroParteComponenteSuperior() {
-		return this.numeroParteComponenteSuperior.get();
-	}//FIN METODO
-
-	public StringProperty numeroParteComponenteSuperiorProperty() {
-		return this.numeroParteComponenteSuperior;
-	}//FIN METODO
-
-	public void setTipoComponenteInferior(String tipoComponenteInferior) {
-		this.tipoComponenteInferior.set(TipoComponente.toString(tipoComponenteInferior));
-	}//FIN METODO
-
-	public String getTipoComponenteInferior() {
-		return this.tipoComponenteInferior.get();
-	}//FIN METODO
-
-	public StringProperty tipoComponenteInferiorProperty() {
-		return this.tipoComponenteInferior;
-	}//FIN METODO
-
-	public void setTipoComponenteSuperior(String tipoComponenteSuperior) {
-		this.tipoComponenteSuperior.set(TipoComponente.toString(tipoComponenteSuperior));
-	}//FIN METODO
-
-	public String getTipoComponenteSuperior() {
-		return this.tipoComponenteSuperior.get();
-	}//FIN METODO
-
-	public StringProperty tipoComponenteSuperiorProperty() {
-		return this.tipoComponenteSuperior;
-	}//FIN METODO
-
 }//FIN CLASE

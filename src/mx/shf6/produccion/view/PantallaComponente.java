@@ -1,10 +1,7 @@
 package mx.shf6.produccion.view;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 import javafx.event.EventHandler;
@@ -20,21 +17,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Callback;
 import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
-import mx.shf6.produccion.utilities.GestorArchivos;
 import mx.shf6.produccion.utilities.Notificacion;
 import mx.shf6.produccion.utilities.PTableColumn;
 
@@ -96,11 +89,9 @@ public class PantallaComponente {
 		this.columnaNumeroParte.setCellValueFactory(cellData -> cellData.getValue().numeroParteProperty());
 		this.columnaDescripcion.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
 		//this.columnaCantidad.setCellValueFactory(cellData -> cellData.getValue().existenciaProperty());
-		this.columnaTipoComponente.setCellValueFactory(cellData -> cellData.getValue().tipoComponenteProperty());
 		//this.columnaTipoMaterial.setCellValueFactory(cellData -> cellData.getValue().getMaterial(this.mainApp.getConnection()).descripcionProperty());
-		this.columnaCosto.setCellValueFactory(cellData -> cellData.getValue().costoProperty());
-		this.columnaNotas.setCellValueFactory(cellData -> cellData.getValue().notasProperty());
-		this.columnaStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+		//this.columnaNotas.setCellValueFactory(cellData -> cellData.getValue().notasProperty());
+		//this.columnaStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 		this.inicializarColumnaAcciones();
 	}//FIN METODO.
 	
@@ -267,7 +258,7 @@ public class PantallaComponente {
 	}//FIN METODO
 	
 	private void manejadorBotonDibujo(Componente componente) {
-		String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  this.componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + this.componente.getNumeroParte() + ".pdf";
+		/*String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  this.componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + this.componente.getNumeroParte() + ".pdf";
 		File archivoDibujo = new File(rutaArchivoDibujo);
 		if (archivoDibujo.exists()) {
 			//Notificacion.dialogoAlerta(AlertType.CONFIRMATION, "", "El archivo se va abrir...");
@@ -294,15 +285,15 @@ public class PantallaComponente {
 				else
 					Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "El archivo no se pudo cargar al sistema");
 			}//FIN IF ELSE
-		}//FIN IF/ELSE
+		}//FIN IF/ELSE*/
 	}//FIN METODO
 	
 	private void manejadorBotonDetalle(Componente componente) {
-		if (TipoComponente.isComponenteBasico(componente.getTipoComponente())) {
+		/*if (TipoComponente.isComponenteBasico(componente.getTipoComponente())) {
 			Notificacion.dialogoAlerta(AlertType.WARNING, "", "No existe detalle de ensamble para este componente");
 		} else {
 			this.mainApp.iniciarDialogoDetalleComponente(componente);
-		}//FIN IF/ELSE
+		}//FIN IF/ELSE*/
 	}//FIN METODO
 	
 	@FXML private void manejadorBotonFiltroTodos() {

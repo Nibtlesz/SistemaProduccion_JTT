@@ -101,89 +101,45 @@ public class DialogoAgregarDetalleProceso {
 	
 	//INICIALIZA COMPONENTES
 	private void mostrarDatosInterfaz() {
-		if (this.componente.getTipoComponente() != TipoComponente.ENSAMBLE && this.componente.getTipoComponente() != TipoComponente.SUB_ENSAMBLE) {
-			if (this.opcion == CREAR) {
-				this.campoOperacion.setText(String.valueOf((DetalleProcesoDAO.ultimaOperacion(this.mainApp.getConnection(), syspk))+1));
-				this.campoOperacion.setEditable(false);
-				this.campoOperacion.setDisable(true);
-				this.campoOperacion.setFocusTraversable(false);
-				this.campoDescripcion.setUserData("");
-				this.campoDescripcion.setDisable(false);
-				this.campoTiempoPreparacion.setUserData("");
-				this.campoTiempoOperacion.setDisable(false);
-				this.campoTiempoOperacion.setUserData("");
-				this.campoOperacion.setDisable(false);
-				this.comboBoxCentroTrabajo.getSelectionModel().select("");
-				this.comboBoxCentroTrabajo.setDisable(false);
-				this.comboBoxGrupoTrabajo.getSelectionModel().select("");
-				this.comboBoxGrupoTrabajo.setDisable(false);
-				this.campoComponentes.setVisible(false);
-				this.labelComboboxParte.setVisible(false);
-				this.labelCantidad.setVisible(false);
-				this.campoCantidad.setVisible(false);
-				this.labelHerramienta.setVisible(false);
-				this.campoHerramienta.setVisible(false);
-			} else if (this.opcion == EDITAR) {
-				this.campoOperacion.setText(String.valueOf(this.detalleProceso.getOperacion()));
-				this.campoOperacion.setDisable(false);
-				this.campoDescripcion.setText(this.detalleProceso.getDescripcion());
-				this.campoDescripcion.setDisable(false);
-				this.campoTiempoPreparacion.setText(String.valueOf(this.detalleProceso.getTiempoPreparacion()));
-				this.campoTiempoOperacion.setDisable(false);
-				this.campoTiempoOperacion.setText(String.valueOf(this.detalleProceso.getTiempoOperacion()));
-				this.campoOperacion.setDisable(false);
-				this.comboBoxCentroTrabajo.setValue(this.detalleProceso.getNombreCentroTrabajo());
-				this.comboBoxCentroTrabajo.setDisable(false);
-				this.comboBoxGrupoTrabajo.setValue(this.detalleProceso.getNombreGrupoTrabajo());
-				this.campoComponentes.setVisible(false);
-				this.labelComboboxParte.setVisible(false);
-				this.labelCantidad.setVisible(false);
-				this.campoCantidad.setVisible(false);
-				this.labelHerramienta.setVisible(false);
-				this.campoHerramienta.setVisible(false);				
-			}//FIN IF ELSE
-		} else {
-			if (this.opcion == CREAR ) {
-				this.campoOperacion.setText(String.valueOf((DetalleProcesoDAO.ultimaOperacion(this.mainApp.getConnection(), syspk))+1));
-				this.campoOperacion.setEditable(false);
-				this.campoOperacion.setDisable(true);
-				this.campoOperacion.setFocusTraversable(false);
-				this.campoDescripcion.setUserData("");
-				this.campoDescripcion.setDisable(false);
-				this.campoTiempoPreparacion.setUserData("");
-				this.campoTiempoOperacion.setDisable(false);
-				this.campoTiempoOperacion.setUserData("");
-				this.campoOperacion.setDisable(false);
-				this.comboBoxCentroTrabajo.getSelectionModel().select("");
-				this.comboBoxCentroTrabajo.setDisable(false);
-				this.comboBoxGrupoTrabajo.getSelectionModel().select("");
-				this.comboBoxGrupoTrabajo.setDisable(false);
-				this.campoComponentes.setText("");
-				this.campoComponentes.setDisable(false);
-				this.campoCantidad.setText("");
-				this.campoCantidad.setDisable(false);
-				this.campoHerramienta.setText("");
-				this.campoHerramienta.setDisable(false);
-			} else if (this.opcion == EDITAR) {
-				this.campoOperacion.setText(String.valueOf(this.detalleProceso.getOperacion()));
-				this.campoOperacion.setDisable(false);
-				this.campoDescripcion.setText(this.detalleProceso.getDescripcion());
-				this.campoDescripcion.setDisable(false);
-				this.campoTiempoPreparacion.setText(String.valueOf(this.detalleProceso.getTiempoPreparacion()));
-				this.campoTiempoOperacion.setDisable(false);
-				this.campoTiempoOperacion.setText(String.valueOf(this.detalleProceso.getTiempoOperacion()));
-				this.campoOperacion.setDisable(false);
-				this.comboBoxCentroTrabajo.setValue(this.detalleProceso.getNombreCentroTrabajo());
-				this.comboBoxCentroTrabajo.setDisable(false);
-				this.comboBoxGrupoTrabajo.setValue(this.detalleProceso.getNombreGrupoTrabajo());
-				this.comboBoxGrupoTrabajo.setDisable(false);
-				this.campoComponentes.setText(this.detalleProceso.getComponentes());
-				this.campoComponentes.setDisable(false);
-				this.campoCantidad.setText(String.valueOf(this.detalleProceso.getCantidad()));
-				this.campoCantidad.setDisable(false);
-				this.campoHerramienta.setText(this.detalleProceso.getHerramientas());
-				this.campoHerramienta.setDisable(false);
-			}//FIN IF-ELSE
+		if (this.opcion == CREAR) {
+			this.campoOperacion.setText(String.valueOf((DetalleProcesoDAO.ultimaOperacion(this.mainApp.getConnection(), syspk))+1));
+			this.campoOperacion.setEditable(false);
+			this.campoOperacion.setDisable(true);
+			this.campoOperacion.setFocusTraversable(false);
+			this.campoDescripcion.setUserData("");
+			this.campoDescripcion.setDisable(false);
+			this.campoTiempoPreparacion.setUserData("");
+			this.campoTiempoOperacion.setDisable(false);
+			this.campoTiempoOperacion.setUserData("");
+			this.campoOperacion.setDisable(false);
+			this.comboBoxCentroTrabajo.getSelectionModel().select("");
+			this.comboBoxCentroTrabajo.setDisable(false);
+			this.comboBoxGrupoTrabajo.getSelectionModel().select("");
+			this.comboBoxGrupoTrabajo.setDisable(false);
+			this.campoComponentes.setVisible(false);
+			this.labelComboboxParte.setVisible(false);
+			this.labelCantidad.setVisible(false);
+			this.campoCantidad.setVisible(false);
+			this.labelHerramienta.setVisible(false);
+			this.campoHerramienta.setVisible(false);
+		} else if (this.opcion == EDITAR) {
+			this.campoOperacion.setText(String.valueOf(this.detalleProceso.getOperacion()));
+			this.campoOperacion.setDisable(false);
+			this.campoDescripcion.setText(this.detalleProceso.getDescripcion());
+			this.campoDescripcion.setDisable(false);
+			this.campoTiempoPreparacion.setText(String.valueOf(this.detalleProceso.getTiempoPreparacion()));
+			this.campoTiempoOperacion.setDisable(false);
+			this.campoTiempoOperacion.setText(String.valueOf(this.detalleProceso.getTiempoOperacion()));
+			this.campoOperacion.setDisable(false);
+			this.comboBoxCentroTrabajo.setValue(this.detalleProceso.getNombreCentroTrabajo());
+			this.comboBoxCentroTrabajo.setDisable(false);
+			this.comboBoxGrupoTrabajo.setValue(this.detalleProceso.getNombreGrupoTrabajo());
+			this.campoComponentes.setVisible(false);
+			this.labelComboboxParte.setVisible(false);
+			this.labelCantidad.setVisible(false);
+			this.campoCantidad.setVisible(false);
+			this.labelHerramienta.setVisible(false);
+			this.campoHerramienta.setVisible(false);				
 		}//FIN IF ELSE			
 	}//FIN METODO
 	
@@ -207,55 +163,34 @@ public class DialogoAgregarDetalleProceso {
 	
 	private void obtenerInformacion() {
 		if (this.validarDatos()) {
-			if (this.componente.getTipoComponente() != TipoComponente.ENSAMBLE && this.componente.getTipoComponente() != TipoComponente.SUB_ENSAMBLE) {
-				this.detalleProceso.setOperacion(Integer.parseInt(this.campoOperacion.getText()));
-				this.detalleProceso.setDescripcion(this.campoDescripcion.getText());
-				if (campoTiempoPreparacion.getText().isEmpty())
-					this.detalleProceso.setTiempoPreparacion(0.0);
-				else
-					this.detalleProceso.setTiempoPreparacion(Double.parseDouble(this.campoTiempoPreparacion.getText()));
-				if (campoTiempoOperacion.getText().isEmpty())
-					this.detalleProceso.setTiempoOperacion(0.0);
-				else
-					this.detalleProceso.setTiempoOperacion(Double.parseDouble(this.campoTiempoOperacion.getText()));
-				CentroTrabajo centroFK = CentroTrabajoDAO.readCentroTrabajoNombre(this.mainApp.getConnection(), comboBoxCentroTrabajo.getValue());
-				this.detalleProceso.setCentroTrabajoFK(centroFK.getSysPK());
-				GrupoTrabajo grupoFK = GrupoTrabajoDAO.readGrupoTrabajoNombre(this.mainApp.getConnection(), comboBoxGrupoTrabajo.getValue());
-				this.detalleProceso.setGrupoTrabajoFK(grupoFK.getSysPK());this.detalleProceso.setProcesoFK(this.syspk);
+			this.detalleProceso.setOperacion(Integer.parseInt(this.campoOperacion.getText()));
+			this.detalleProceso.setDescripcion(this.campoDescripcion.getText());
+			if (campoTiempoPreparacion.getText().isEmpty())
+				this.detalleProceso.setTiempoPreparacion(0.0);
+			else
+				this.detalleProceso.setTiempoPreparacion(Double.parseDouble(this.campoTiempoPreparacion.getText()));
+			if (campoTiempoOperacion.getText().isEmpty())
+				this.detalleProceso.setTiempoOperacion(0.0);
+			else
+				this.detalleProceso.setTiempoOperacion(Double.parseDouble(this.campoTiempoOperacion.getText()));
+			CentroTrabajo centroFK = CentroTrabajoDAO.readCentroTrabajoNombre(this.mainApp.getConnection(), comboBoxCentroTrabajo.getValue());
+			this.detalleProceso.setCentroTrabajoFK(centroFK.getSysPK());
+			GrupoTrabajo grupoFK = GrupoTrabajoDAO.readGrupoTrabajoNombre(this.mainApp.getConnection(), comboBoxGrupoTrabajo.getValue());
+			this.detalleProceso.setGrupoTrabajoFK(grupoFK.getSysPK());
+			this.detalleProceso.setProcesoFK(this.syspk);
+			if (campoCantidad.getText().isEmpty())
 				this.detalleProceso.setCantidad("");
+			else
+				this.detalleProceso.setCantidad(this.campoCantidad.getText());
+			if (campoComponentes.getText().isEmpty())
 				this.detalleProceso.setComponentes("");
-				this.detalleProceso.setHerramienta("");			
-				this.mainApp.getEscenarioDialogosAlterno().close();
-			} else {
-				this.detalleProceso.setOperacion(Integer.parseInt(this.campoOperacion.getText()));
-				this.detalleProceso.setDescripcion(this.campoDescripcion.getText());
-				if (campoTiempoPreparacion.getText().isEmpty())
-					this.detalleProceso.setTiempoPreparacion(0.0);
-				else
-					this.detalleProceso.setTiempoPreparacion(Double.parseDouble(this.campoTiempoPreparacion.getText()));
-				if (campoTiempoOperacion.getText().isEmpty())
-					this.detalleProceso.setTiempoOperacion(0.0);
-				else
-					this.detalleProceso.setTiempoOperacion(Double.parseDouble(this.campoTiempoOperacion.getText()));
-				CentroTrabajo centroFK = CentroTrabajoDAO.readCentroTrabajoNombre(this.mainApp.getConnection(), comboBoxCentroTrabajo.getValue());
-				this.detalleProceso.setCentroTrabajoFK(centroFK.getSysPK());
-				GrupoTrabajo grupoFK = GrupoTrabajoDAO.readGrupoTrabajoNombre(this.mainApp.getConnection(), comboBoxGrupoTrabajo.getValue());
-				this.detalleProceso.setGrupoTrabajoFK(grupoFK.getSysPK());
-				this.detalleProceso.setProcesoFK(this.syspk);
-				if (campoCantidad.getText().isEmpty())
-					this.detalleProceso.setCantidad("");
-				else
-					this.detalleProceso.setCantidad(this.campoCantidad.getText());
-				if (campoComponentes.getText().isEmpty())
-					this.detalleProceso.setComponentes("");
-				else	
-					this.detalleProceso.setComponentes(campoComponentes.getText());
-				if (campoHerramienta.getText().isEmpty())
-					this.detalleProceso.setHerramienta("");
-				else
-					this.detalleProceso.setHerramienta(campoHerramienta.getText());			
-				this.mainApp.getEscenarioDialogosAlterno().close();
-			}//FIN IF-ELSE
+			else	
+				this.detalleProceso.setComponentes(campoComponentes.getText());
+			if (campoHerramienta.getText().isEmpty())
+				this.detalleProceso.setHerramienta("");
+			else
+				this.detalleProceso.setHerramienta(campoHerramienta.getText());			
+			this.mainApp.getEscenarioDialogosAlterno().close();
 		}//FIN IF
 	}//FIN METODO
 	

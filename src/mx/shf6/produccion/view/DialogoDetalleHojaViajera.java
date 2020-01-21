@@ -102,14 +102,5 @@ public class DialogoDetalleHojaViajera {
 	}//FIN METODO
 
 	@FXML private void manejadorBotonImprimir() {
-		Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
-		Cliente cliente = ClienteDAO.readCliente(this.mainApp.getConnection(), componente.getclienteFK());
-		if (componente.getTipoComponente() != TipoComponente.COMPRADO)
-			GenerarDocumento.generaHojaViajera(this.mainApp.getConnection(), cliente, componente, listaDetalleProceso);
-		else 
-			Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "Los componentes miscelaneos no tienen hoja viajera.");
 	}//FIN METODO
-	
-	
-
 }//FIN CLASE

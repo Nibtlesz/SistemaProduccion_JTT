@@ -10,7 +10,6 @@ public class Dimensiones {
 	private Double espesor;
 	private Double alto2;
 	private Double anchoTotal; //ANCHO + ANCHO2 + DIAMETRO
-	private String codigoCatalogo; //CODIGO DEL CATALGO PERFIL CORTINA
 	private String unidadLargo;
 	private String unidadAncho;
 	private String unidadAlto;
@@ -22,11 +21,11 @@ public class Dimensiones {
 	
 	//CONSTRUCTOR VACIO
 	public Dimensiones (){
-		this(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "", "", "", "", "", "", "", "", "");
+		this(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "", "", "", "", "", "", "", "");
 	}//FIN CONSTRUCTOR
 
 	//CONSTRUCTOR
-	public Dimensiones(double largo, double ancho, double alto, double diametroInterior, double diametroExterior, double espesor, double alto2, double anchoTotal, String codigoCatalogo, String unidadLargo, String unidadAncho, String unidadAlto, String unidadEspesor, String unidadDExt, String unidadDInt, String unidadAlto2, String unidadAnchoTotal) {
+	public Dimensiones(double largo, double ancho, double alto, double diametroInterior, double diametroExterior, double espesor, double alto2, double anchoTotal, String unidadLargo, String unidadAncho, String unidadAlto, String unidadEspesor, String unidadDExt, String unidadDInt, String unidadAlto2, String unidadAnchoTotal) {
 		this.largo = largo;
 		this.ancho = ancho;
 		this.alto = alto;
@@ -35,7 +34,6 @@ public class Dimensiones {
 		this.espesor = espesor;
 		this.alto2 = alto2;
 		this.anchoTotal = anchoTotal;
-		this.codigoCatalogo = codigoCatalogo;
 		this.unidadLargo = unidadLargo;
 		this.unidadAncho = unidadAncho;
 		this.unidadAlto = unidadAlto;
@@ -116,15 +114,6 @@ public class Dimensiones {
 	
 	public Double getAnchoTotal() {
 		return this.anchoTotal;
-	}//FIN METODO
-	
-	//METODO PARA ACCEDER CODIGO CATALOGO	
-	public void setCodigoCatalogo(String codigoCatalogo) {
-		this.codigoCatalogo = codigoCatalogo;
-	}//FIN METODO
-	
-	public String getCodigoCatalogo() {
-		return this.codigoCatalogo;
 	}//FIN METODO
 	
 	//METODO PARA ACCEDER A UNIDAD LARGO

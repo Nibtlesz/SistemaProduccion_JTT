@@ -11,7 +11,6 @@ import mx.shf6.produccion.MainApp;
 import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.DetalleProceso;
 import mx.shf6.produccion.model.Proceso;
-import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.dao.DetalleProcesoDAO;
 import mx.shf6.produccion.utilities.Notificacion;
 import mx.shf6.produccion.utilities.PTableColumn;
@@ -68,33 +67,17 @@ public class DialogoDetalleProceso {
 	
 	//INICIALIZA LOS COMPONENTES DE LA TABLA DE PROCESOS
 	private void inicializaTabla() {
-		if (this.componente.getTipoComponente() != TipoComponente.ENSAMBLE && this.componente.getTipoComponente() != TipoComponente.SUB_ENSAMBLE) {
 			this.operacionColumna.setCellValueFactory(cellData -> cellData.getValue().operacionProperty());
 			this.descripcionColumna.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
 			this.tiempoPreparacionColumna.setCellValueFactory(cellData -> cellData.getValue().tiempoPreparacionProperty());
 			this.tiempoOperacionColumna.setCellValueFactory(cellData -> cellData.getValue().tiempoOperacionProperty());
 			this.centroTrabajoColumna.setCellValueFactory(cellData -> cellData.getValue().nombreCentroTrabajoProperty());
 			this.grupoTrabajoColumna.setCellValueFactory(cellData -> cellData.getValue().nombreGrupoTrabajoProperty());
-			this.componenteColumna.setPercentageWidth(0);
-			this.cantidadColumna.setPercentageWidth(0);
-			this.herramientaColumna.setPercentageWidth(0);
-			this.descripcionColumna.setPercentageWidth(0.65);
-		} else {
-			this.operacionColumna.setCellValueFactory(cellData -> cellData.getValue().operacionProperty());
-			this.descripcionColumna.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
-			this.tiempoPreparacionColumna.setCellValueFactory(cellData -> cellData.getValue().tiempoPreparacionProperty());
-			this.tiempoOperacionColumna.setCellValueFactory(cellData -> cellData.getValue().tiempoOperacionProperty());
-			this.centroTrabajoColumna.setCellValueFactory(cellData -> cellData.getValue().nombreCentroTrabajoProperty());
-			this.grupoTrabajoColumna.setCellValueFactory(cellData -> cellData.getValue().nombreGrupoTrabajoProperty());
-			this.componenteColumna.setCellValueFactory(cellData -> cellData.getValue().componentesProperty());
-			this.cantidadColumna.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty());
-			this.herramientaColumna.setCellValueFactory(cellData -> cellData.getValue().herramientaProperty());
-		}//FIN IF/ELSE
 	}//FIN METODO
 	
 	//ACTUALIZAR DATOS
 	private void actualizarDatos() {
-		this.campoTextoDescripcion.setText("HOJA DE PROCESO " + componente.getTipoComponente());
+		this.campoTextoDescripcion.setText("HOJA DE PROCESO ");
 		this.campoTextoDescripcion.setFocusTraversable(false);
 		this.campoTextoNumero.setText(componente.getNumeroParte());
 		this.campoTextoNumero.setFocusTraversable(false);

@@ -1,6 +1,5 @@
 package mx.shf6.produccion.view;
 
-import java.text.DecimalFormat;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,13 +11,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import mx.shf6.produccion.MainApp;
-import mx.shf6.produccion.model.Status;
 import mx.shf6.produccion.model.TipoComponente;
 import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.dao.AcabadoDAO;
 import mx.shf6.produccion.model.dao.ClienteDAO;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
-import mx.shf6.produccion.model.dao.ConsecutivoDAO;
 import mx.shf6.produccion.model.dao.MaterialDAO;
 import mx.shf6.produccion.model.dao.TipoMateriaPrimaDAO;
 import mx.shf6.produccion.model.dao.TipoMiscelaneoDAO;
@@ -32,7 +29,7 @@ public class DialogoComponente {
 	//PROPIEDADES
 	private MainApp mainApp;
 	private Componente componente;
-	private DecimalFormat decimalFormat;
+
 	
 	//VARIABLES
 	private int opcion;
@@ -83,7 +80,6 @@ public class DialogoComponente {
 	//INICIA COMPONENTES INTERFAZ USUARIO
 	@FXML private void initialize() {
 		this.componente = new Componente();
-		this.decimalFormat = new DecimalFormat("000");
 		
 		RestriccionTextField.limitarPuntoDecimal(campoAnchoTotal);
 		RestriccionTextField.limitarPuntoDecimal(campoTextoAlto);
@@ -448,160 +444,16 @@ public class DialogoComponente {
 			this.campoTextoNumeroParte.setDisable(true);
 			this.campoTextoDescripcion.setText(this.componente.getDescripcion());
 			this.campoTextoDescripcion.setDisable(true);
-			this.campoTextoLargo.setText(String.valueOf(this.componente.getDimensiones().getLargo()));
-			this.campoTextoLargo.setDisable(true);
-			this.comboBoxLargo.setValue(this.componente.getDimensiones().getUnidadLargo());
-			this.comboBoxLargo.setDisable(true);
-			this.campoTextoAncho.setText(String.valueOf(this.componente.getDimensiones().getAncho()));
-			this.campoTextoAncho.setDisable(true);
-			this.comboBoxAncho.setValue(this.componente.getDimensiones().getUnidadAncho());
-			this.comboBoxAncho.setDisable(true);
-			this.campoTextoAlto.setText(String.valueOf(this.componente.getDimensiones().getAlto()));
-			this.campoTextoAlto.setDisable(true);
-			this.comboBoxAlto.setValue(this.componente.getDimensiones().getUnidadAlto());
-			this.comboBoxAlto.setDisable(true);
-			this.campoTextoCosto.setText(String.valueOf(this.componente.getCosto()));
-			this.campoTextoCosto.setDisable(true);
-			this.campoTextoCostoDirecto.setText(String.valueOf(this.componente.getCostoDirecto()));
-			this.campoTextoCostoDirecto.setDisable(true);
-			this.campoTextoCostoIndirecto.setText(String.valueOf(this.componente.getCostoIndirecto()));
-			this.campoTextoCostoIndirecto.setDisable(true);
-			this.campoTextoNotas.setText(this.componente.getNotas());
-			this.campoTextoNotas.setDisable(true);
-			this.comboBoxStatus.getSelectionModel().select(this.componente.getStatus());
-			this.comboBoxStatus.setDisable(true);
-			String consecutivo = decimalFormat.format(this.componente.getConsecutivo());
-			this.campoTextoConsecutivo.setText(consecutivo);
 			this.campoTextoConsecutivo.setDisable(true);
-			this.comboBoxTipoComponente.getSelectionModel().select(this.componente.getTipoComponente());
 			this.comboBoxTipoComponente.setDisable(true);
-			this.comboBoxMaterial.getSelectionModel().select(this.componente.getMaterial(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxMaterial.setDisable(true);
-			this.comboBoxCliente.getSelectionModel().select(this.componente.getCliente(this.mainApp.getConnection()).getNombre());
-			this.comboBoxCliente.setDisable(true);
-			this.comboBoxTipoMateriaPrima.getSelectionModel().select(this.componente.getTipoMateriaPrima(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTipoMateriaPrima.setDisable(true);
-			this.comboBoxTipoMiscelaneo.getSelectionModel().select(this.componente.getTipoMiscelaneo(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTipoMiscelaneo.setDisable(true);
-			this.comboBoxAcabado.getSelectionModel().select(this.componente.getAcabado(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxAcabado.setDisable(true);
-			this.comboBoxTratamiento.getSelectionModel().select(this.componente.getTratamiento(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTratamiento.setDisable(true);
-			this.campoTextoGradoMaterial.setText(this.componente.getGradoMaterial());
-			this.campoTextoGradoMaterial.setDisable(true);
-			this.campoTextoEspesor.setText(String.valueOf(this.componente.getDimensiones().getEspesor()));
-			this.campoTextoEspesor.setDisable(true);
-			this.comboBoxEspesor.setValue(this.componente.getDimensiones().getUnidadEspesor());
-			this.comboBoxEspesor.setDisable(true);
-			this.campoTextoDiametroInterior.setText(String.valueOf(this.componente.getDimensiones().getDiametroInterior()));
-			this.campoTextoDiametroInterior.setDisable(true);
-			this.comboBoxDiametroInterior.setValue(this.componente.getDimensiones().getUnidadDInt());
-			this.comboBoxDiametroInterior.setDisable(true);
-			this.campoTextoDiametroExterior.setText(String.valueOf(this.componente.getDimensiones().getDiametroExterior()));
-			this.campoTextoDiametroExterior.setDisable(true);
-			this.comboBoxDiametroExterior.setValue(this.componente.getDimensiones().getUnidadDExt());
-			this.comboBoxDiametroExterior.setDisable(true);
-			this.campoTextoAlto2.setText(String.valueOf(this.componente.getDimensiones().getAlto2()));
-			this.campoTextoAlto2.setDisable(true);
-			this.comboBoxAlto2.setValue(this.componente.getDimensiones().getUnidadAlto2());
-			this.comboBoxAlto2.setDisable(true);
-			this.campoAnchoTotal.setText(String.valueOf(this.componente.getDimensiones().getAnchoTotal()));
-			this.campoAnchoTotal.setDisable(true);
-			this.comboBoxAnchoTotal.setValue(this.componente.getDimensiones().getUnidadAnchoTotal());
-			this.comboBoxAnchoTotal.setDisable(true);
-			this.campoCodigoCatalogo.setText(this.componente.getDimensiones().getCodigoCatalogo());
-			this.campoCodigoCatalogo.setDisable(true);
-			this.checkHabilitar.setDisable(true);
-			this.campoTextoHilos.setText(String.valueOf(this.componente.getHilos()));
-			this.campoTextoHilos.setDisable(true);
-			if (this.componente.getRevision() != null) {
-				this.campoTextoRevision.setText(this.componente.getRevision());
-				this.campoTextoRevision.setDisable(true);
-			} else {
-				this.campoTextoRevision.setText("");
-				this.campoTextoRevision.setDisable(true);
-			}
+			
 		} else if (this.opcion == EDITAR) {
 			
 			this.campoTextoNumeroParte.setText(this.componente.getNumeroParte());
 			this.campoTextoNumeroParte.setDisable(true);
 			this.campoTextoDescripcion.setText(componente.getDescripcion());
 			this.campoTextoDescripcion.setDisable(false);
-			this.campoTextoLargo.setText(String.valueOf(this.componente.getDimensiones().getLargo()));
-			this.campoTextoLargo.setDisable(false);
-			this.comboBoxLargo.setValue(this.componente.getDimensiones().getUnidadLargo());
-			this.comboBoxLargo.setDisable(false);
-			this.campoTextoAncho.setText(String.valueOf(this.componente.getDimensiones().getAncho()));
-			this.campoTextoAncho.setDisable(false);
-			this.comboBoxAncho.setValue(this.componente.getDimensiones().getUnidadAncho());
-			this.comboBoxAncho.setDisable(false);
-			this.campoTextoAlto.setText(String.valueOf(this.componente.getDimensiones().getAlto()));
-			this.campoTextoAlto.setDisable(false);
-			this.comboBoxAlto.setValue(this.componente.getDimensiones().getUnidadAlto());
-			this.comboBoxAlto.setDisable(false);
-			this.campoTextoCosto.setText(String.valueOf(this.componente.getCosto()));
-			this.campoTextoCosto.setDisable(false);
-			this.campoTextoCostoDirecto.setText(String.valueOf(componente.getCostoDirecto()));
-			this.campoTextoCostoDirecto.setDisable(false);
-			this.campoTextoCostoIndirecto.setText(String.valueOf(componente.getCostoIndirecto()));
-			this.campoTextoCostoIndirecto.setDisable(false);
-			this.campoTextoNotas.setText(componente.getNotas());
-			this.campoTextoNotas.setDisable(false);;
-			this.comboBoxStatus.getSelectionModel().select(componente.getStatus());
-			this.comboBoxStatus.setDisable(false);
-			String consecutivo = decimalFormat.format(componente.getConsecutivo());
-			this.campoTextoConsecutivo.setText(consecutivo);
-			this.campoTextoConsecutivo.setDisable(true);
-			this.comboBoxTipoComponente.getSelectionModel().select(componente.getTipoComponente());
-			this.comboBoxTipoComponente.setDisable(true);
-			this.comboBoxMaterial.getSelectionModel().select(componente.getMaterial(this.mainApp.getConnection()).getDescripcion());
-			if (this.componente.getTipoComponente() == TipoComponente.ENSAMBLE)
-				this.comboBoxMaterial.setDisable(true);
-			else
-				this.comboBoxMaterial.setDisable(false);
-			this.comboBoxCliente.getSelectionModel().select(componente.getCliente(this.mainApp.getConnection()).getNombre());
-			this.comboBoxCliente.setDisable(true);
-			this.comboBoxTipoMateriaPrima.getSelectionModel().select(componente.getTipoMateriaPrima(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTipoMateriaPrima.setDisable(false);
-			this.comboBoxTipoMiscelaneo.getSelectionModel().select(componente.getTipoMiscelaneo(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTipoMiscelaneo.setDisable(false);
-			this.comboBoxAcabado.getSelectionModel().select(componente.getAcabado(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxAcabado.setDisable(false);
-			this.comboBoxTratamiento.getSelectionModel().select(componente.getTratamiento(this.mainApp.getConnection()).getDescripcion());
-			this.comboBoxTratamiento.setDisable(false);
-			this.campoTextoGradoMaterial.setText(this.componente.getGradoMaterial());
-			this.campoTextoGradoMaterial.setDisable(false);
-			this.campoTextoEspesor.setText(String.valueOf(this.componente.getDimensiones().getEspesor()));
-			this.campoTextoEspesor.setDisable(false);
-			this.comboBoxEspesor.setValue(this.componente.getDimensiones().getUnidadEspesor());
-			this.comboBoxEspesor.setDisable(false);
-			this.campoTextoDiametroInterior.setText(String.valueOf(this.componente.getDimensiones().getDiametroInterior()));
-			this.campoTextoDiametroInterior.setDisable(false);
-			this.comboBoxDiametroInterior.setValue(this.componente.getDimensiones().getUnidadDInt());
-			this.comboBoxDiametroInterior.setDisable(false);
-			this.campoTextoDiametroExterior.setText(String.valueOf(this.componente.getDimensiones().getDiametroExterior()));
-			this.campoTextoDiametroExterior.setDisable(false);
-			this.comboBoxDiametroExterior.setValue(this.componente.getDimensiones().getUnidadDExt());
-			this.comboBoxDiametroExterior.setDisable(false);
-			this.campoTextoAlto2.setText(String.valueOf(this.componente.getDimensiones().getAlto2()));
-			this.campoTextoAlto2.setDisable(false);
-			this.comboBoxAlto2.setValue(this.componente.getDimensiones().getUnidadAlto2());
-			this.comboBoxAlto2.setDisable(false);
-			this.campoAnchoTotal.setText(String.valueOf(this.componente.getDimensiones().getAnchoTotal()));
-			this.campoAnchoTotal.setDisable(false);
-			this.comboBoxAnchoTotal.setValue(this.componente.getDimensiones().getUnidadAnchoTotal());
-			this.comboBoxAnchoTotal.setDisable(false);
-			this.campoCodigoCatalogo.setText(this.componente.getDimensiones().getCodigoCatalogo());
-			this.campoCodigoCatalogo.setDisable(false);
-			this.campoTextoHilos.setText(String.valueOf(this.componente.getHilos()));
-			this.campoTextoHilos.setDisable(false);
-			if (this.componente.getRevision() != null) {
-				this.campoTextoRevision.setText(this.componente.getRevision());
-				this.campoTextoRevision.setDisable(false);
-			} else {
-				this.campoTextoRevision.setText("");
-				this.campoTextoRevision.setDisable(false);
-			}
+	
 		}//FIN METODO
 		
 		checkHabilitar.selectedProperty().addListener((ov, oldValue, newValue) -> {
@@ -677,41 +529,8 @@ public class DialogoComponente {
 		else {
 			if (this.validarDatos()) {
 				if (this.opcion == CREAR) {
-					this.componente.setTipoComponente(TipoComponente.toCharacter(this.comboBoxTipoComponente.getSelectionModel().getSelectedItem()));
-					this.componente.setMaterialFK(MaterialDAO.readMaterial(this.mainApp.getConnection(), this.comboBoxMaterial.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxCliente.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setClienteFK(ClienteDAO.readCliente(this.mainApp.getConnection(), this.comboBoxCliente.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTipoMateriaPrima.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTipoMateriaPrimaFK(TipoMateriaPrimaDAO.readTipoMateriaPrima(this.mainApp.getConnection(), this.comboBoxTipoMateriaPrima.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTipoMiscelaneo.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTipoMiscelaneoFK(TipoMiscelaneoDAO.readTipoMiscelaneo(this.mainApp.getConnection(), this.comboBoxTipoMiscelaneo.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxAcabado.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setAcabadoFK(AcabadoDAO.readAcabado(this.mainApp.getConnection(), this.comboBoxAcabado.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTratamiento.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTratamientoFK(TratamientoDAO.readTratamiento(this.mainApp.getConnection(), this.comboBoxTratamiento.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
 					if(checkHabilitar.isSelected()) {
-						this.componente.setEsInterno(1);
 						this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
-					} else {
-						if (this.componente.getTipoComponente() == TipoComponente.SUB_ENSAMBLE || this.componente.getTipoComponente() == TipoComponente.PARTE_PRIMARIA)
-							this.componente.setConsecutivo(ConsecutivoDAO.readConsecutivoPartePrimaria(this.mainApp.getConnection()));
-						else if (this.componente.getTipoComponente() == TipoComponente.MATERIA_PRIMA)
-							this.componente.setConsecutivo(ConsecutivoDAO.readConsecutivoTipoMateriaPrima(this.mainApp.getConnection()));
-						else if (this.componente.getTipoComponente() == TipoComponente.COMPRADO)
-							this.componente.setConsecutivo(ConsecutivoDAO.readConsecutivoTipoMiscelaneo(this.mainApp.getConnection()));
-						else if (this.componente.getTipoComponente() == TipoComponente.ENSAMBLE)
-							this.componente.setConsecutivo(0);
-						if (this.componente.getTipoComponente() == TipoComponente.ENSAMBLE)
-							this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
-						else
-							this.componente.setNumeroParte(this.componente.doNumeroParte(this.mainApp.getConnection()));
-						this.componente.setEsInterno(0);
 					}
 					
 					this.componente.setDescripcion(this.campoTextoDescripcion.getText());
@@ -749,10 +568,6 @@ public class DialogoComponente {
 						dimensiones.setAnchoTotal(0.0);
 					else
 						dimensiones.setAnchoTotal(Double.parseDouble(this.campoAnchoTotal.getText()));
-					if (this.campoCodigoCatalogo.getText().isEmpty())
-						dimensiones.setCodigoCatalogo("");
-					else
-						dimensiones.setCodigoCatalogo(this.campoCodigoCatalogo.getText());
 					
 					if (this.comboBoxAlto.getSelectionModel().isEmpty())
 						dimensiones.setUnidadAlto("mm");
@@ -787,32 +602,6 @@ public class DialogoComponente {
 					else
 						dimensiones.setUnidadLargo(this.comboBoxLargo.getValue());
 					
-					this.componente.setDimensiones(dimensiones);
-					
-					if (campoTextoHilos.getText().isEmpty())
-						this.componente.setHilos("");
-					else
-						this.componente.setHilos(this.campoTextoHilos.getText());
-					this.componente.setGradoMaterial(this.campoTextoGradoMaterial.getText());
-					if (campoTextoCosto.getText().isEmpty())
-						this.componente.setCosto(0.0);
-					else
-						this.componente.setCosto(Double.parseDouble(this.campoTextoCosto.getText()));
-					if (campoTextoCostoDirecto.getText().isEmpty())
-						this.componente.setCostoDirecto(0.0);
-					else
-						this.componente.setCostoDirecto(Double.parseDouble(this.campoTextoCostoDirecto.getText()));
-					if (campoTextoCostoIndirecto.getText().isEmpty())
-						this.componente.setCostoIndirecto(0.0);
-					else
-						this.componente.setCostoIndirecto(Double.parseDouble(this.campoTextoCostoIndirecto.getText()));
-					this.componente.setNotas(this.campoTextoNotas.getText());
-					this.componente.setRevision(this.campoTextoRevision.getText());
-					if (comboBoxStatus.getSelectionModel().isEmpty())
-						this.componente.setStatus(1);
-					else
-						this.componente.setStatus(Status.toInt(this.comboBoxStatus.getSelectionModel().getSelectedItem()));
-					
 					if (componente != null) { 
 						if (ComponenteDAO.createComponente(this.mainApp.getConnection(), this.componente)) {
 							Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "El registro se creo de forma correcta");
@@ -824,32 +613,7 @@ public class DialogoComponente {
 					}
 				} else if (this.opcion == EDITAR) {
 					
-					this.componente.setTipoComponente(TipoComponente.toCharacter(this.comboBoxTipoComponente.getSelectionModel().getSelectedItem()));
-					this.componente.setMaterialFK(MaterialDAO.readMaterial(this.mainApp.getConnection(), this.comboBoxMaterial.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxCliente.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setClienteFK(ClienteDAO.readCliente(this.mainApp.getConnection(), this.comboBoxCliente.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTipoMateriaPrima.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTipoMateriaPrimaFK(TipoMateriaPrimaDAO.readTipoMateriaPrima(this.mainApp.getConnection(), this.comboBoxTipoMateriaPrima.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTipoMiscelaneo.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTipoMiscelaneoFK(TipoMiscelaneoDAO.readTipoMiscelaneo(this.mainApp.getConnection(), this.comboBoxTipoMiscelaneo.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxAcabado.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setAcabadoFK(AcabadoDAO.readAcabado(this.mainApp.getConnection(), this.comboBoxAcabado.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.comboBoxTratamiento.getSelectionModel().getSelectedItem().isEmpty() == false)
-						this.componente.setTratamientoFK(TratamientoDAO.readTratamiento(this.mainApp.getConnection(), this.comboBoxTratamiento.getSelectionModel().getSelectedItem()).get(0).getSysPK());
-					
-					if (this.componente.getTipoComponente() == TipoComponente.ENSAMBLE)
-						this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
-					else if (this.componente.getEsInterno() == 1)
-						this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
-					else if (this.checkHabilitar.isSelected())
-						this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
-					else if (!this.checkHabilitar.isSelected())
-						this.componente.setNumeroParte(this.componente.doNumeroParte(this.mainApp.getConnection()));
+					this.componente.setNumeroParte(this.campoTextoNumeroParte.getText());
 					this.componente.setDescripcion(this.campoTextoDescripcion.getText());
 
 					Dimensiones dimensiones = new Dimensiones();
@@ -885,10 +649,6 @@ public class DialogoComponente {
 						dimensiones.setAnchoTotal(0.0);
 					else
 						dimensiones.setAnchoTotal(Double.parseDouble(this.campoAnchoTotal.getText()));
-					if (this.campoCodigoCatalogo.getText().isEmpty())
-						dimensiones.setCodigoCatalogo("");
-					else
-						dimensiones.setCodigoCatalogo(this.campoCodigoCatalogo.getText());
 					
 					if (this.comboBoxAlto.getSelectionModel().isEmpty())
 						dimensiones.setUnidadAlto("mm");
@@ -923,28 +683,6 @@ public class DialogoComponente {
 					else
 						dimensiones.setUnidadLargo(this.comboBoxLargo.getValue());
 					
-					this.componente.setDimensiones(dimensiones);
-					
-					if (campoTextoHilos.getText().isEmpty())
-						this.componente.setHilos("");
-					else
-						this.componente.setHilos(this.campoTextoHilos.getText());
-					this.componente.setGradoMaterial(this.campoTextoGradoMaterial.getText());
-					if (campoTextoCosto.getText().isEmpty())
-						this.componente.setCosto(0.0);
-					else
-						this.componente.setCosto(Double.parseDouble(this.campoTextoCosto.getText()));
-					if (campoTextoCostoDirecto.getText().isEmpty())
-						this.componente.setCostoDirecto(0.0);
-					else
-						this.componente.setCostoDirecto(Double.parseDouble(this.campoTextoCostoDirecto.getText()));
-					if (campoTextoCostoIndirecto.getText().isEmpty())
-						this.componente.setCostoIndirecto(0.0);
-					else
-						this.componente.setCostoIndirecto(Double.parseDouble(this.campoTextoCostoIndirecto.getText()));
-					this.componente.setNotas(this.campoTextoNotas.getText());
-					this.componente.setRevision(this.campoTextoRevision.getText());
-					this.componente.setStatus(Status.toInt(this.comboBoxStatus.getSelectionModel().getSelectedItem()));
 					
 					if (ComponenteDAO.updateComponente(this.mainApp.getConnection(), this.componente)) {
 						Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "El registro se actualizo de forma correcta");

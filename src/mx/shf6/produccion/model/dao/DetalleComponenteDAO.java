@@ -8,7 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.DetalleComponente;
+import mx.shf6.produccion.model.Material;
 import mx.shf6.produccion.utilities.Notificacion;
 
 public class DetalleComponenteDAO {
@@ -18,10 +20,7 @@ public class DetalleComponenteDAO {
 		String consulta = "INSERT INTO detallecomponentes (ComponenteSuperiorFK, ComponenteInferiorFK, Cantidad, Notas) VALUES (?, ?, ?, ?)";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
-			sentenciaPreparada.setInt(1, detalleComponente.getComponenteSuperiorFK());
-			sentenciaPreparada.setInt(2, detalleComponente.getComponenteInferiorFK());
-			sentenciaPreparada.setDouble(3, detalleComponente.getCantidad());
-			sentenciaPreparada.setString(4, detalleComponente.getNotas());
+		
 			sentenciaPreparada.execute();
 			return true;
 		} catch (SQLException ex) {
@@ -40,10 +39,7 @@ public class DetalleComponenteDAO {
 			while (resultados.next()) {
 				DetalleComponente detalleComponente = new DetalleComponente();
 				detalleComponente.setSysPK(resultados.getInt(1));
-				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
-				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getInt(4));
-				detalleComponente.setNotas(resultados.getString(5));
+				
 				arrayListDetalleComponente.add(detalleComponente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -61,10 +57,7 @@ public class DetalleComponenteDAO {
 			ResultSet resultados = sentencia.executeQuery(consulta);
 			while (resultados.next()) {
 				detalleComponente.setSysPK(resultados.getInt(1));
-				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
-				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getInt(4));
-				detalleComponente.setNotas(resultados.getString(5));
+				
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -75,24 +68,24 @@ public class DetalleComponenteDAO {
 	//METODO PARA OBTENER UN REGISTRO
 	public static ArrayList<DetalleComponente> readDetalleComponenteSuperiorFK(Connection connection, int componenteSuperiorFK) {
 		ArrayList<DetalleComponente> arrayListDetalleComponente = new ArrayList<DetalleComponente>();
-		String consulta =  "SELECT detallecomponentes.Sys_PK, detallecomponentes.ComponenteSuperiorFK, detallecomponentes.ComponenteInferiorFK, detallecomponentes.Cantidad, detallecomponentes.Notas, cI.Descripcion AS DescripcionComponenteInferior, cI.NumeroParte AS NumeroParteInferior, cI.TipoComponente AS TipoComponenteInferior, cS.Descripcion AS DescripcionComponenteSuperior, cS.NumeroParte AS NumeroParteSuperior, cS.TipoComponente AS TipoComponenteSuperior FROM detallecomponentes INNER JOIN componentes AS cI ON cI.Sys_PK = detallecomponentes.ComponenteInferiorFK  INNER JOIN componentes AS cS ON cS.Sys_PK = detallecomponentes.ComponenteSuperiorFK WHERE ComponenteSuperiorFK =" + componenteSuperiorFK;
+		String consulta =  "SELECT ut_dproducto.Sys_PK, ut_dproducto.uf_codigo, ut_dproducto.uf_MaterialFK, ut_dproducto.uf_Notas, producto.Descripcion, producto.Codigo, ut_material.uf_Descripcion, ut_material.uf_Codigo FROM ut_dproducto INNER JOIN producto ON producto.Sys_PK = ut_dproducto.uf_codigo INNER JOIN ut_material ON ut_material.Sys_PK = ut_dproducto.uf_MaterialFK WHERE ut_dproducto.uf_codigo = " + componenteSuperiorFK;
 		try {
 			Statement sentencia = connection.createStatement();
 			ResultSet resultados = sentencia.executeQuery(consulta);
 			while (resultados.next()) {
+				Componente componente = new Componente();
+				Material material = new Material(); 
 				DetalleComponente detalleComponente = new DetalleComponente();
 				detalleComponente.setSysPK(resultados.getInt(1));
-				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
-				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getInt(4));
-				detalleComponente.setNotas(resultados.getString(5));
-				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
-				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));
-				detalleComponente.setNumeroDescripcionComponenteIferior();
-				detalleComponente.setTipoComponenteInferior(resultados.getString(8));
-				detalleComponente.setDescripcionComponenteSuperior(resultados.getString(9));
-				detalleComponente.setNumeroParteComponenteSuperior(resultados.getString(10));
-				detalleComponente.setTipoComponenteSuperior(resultados.getString(11));
+				componente.setSysPK(resultados.getInt(2));
+				material.setSysPK(resultados.getInt(3));
+				detalleComponente.setNotas(resultados.getString(4));
+				componente.setDescripcion(resultados.getString(5));
+				componente.setNumeroParte(resultados.getString(6));
+				material.setDescripcion(resultados.getString(7));
+				material.setCodigo(resultados.getString(8));
+				detalleComponente.setCodigo(componente);
+				detalleComponente.setMaterialFK(material);				
 				arrayListDetalleComponente.add(detalleComponente);
 			}//FIN WHILE
 		} catch (SQLException ex) {
@@ -109,17 +102,7 @@ public class DetalleComponenteDAO {
 			ResultSet resultados = sentencia.executeQuery(consulta);
 			while (resultados.next()) {
 				detalleComponente.setSysPK(resultados.getInt(1));
-				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
-				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getInt(4));
-				detalleComponente.setNotas(resultados.getString(5));
-				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
-				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));
-				detalleComponente.setNumeroDescripcionComponenteIferior();
-				detalleComponente.setTipoComponenteInferior(resultados.getString(8));
-				detalleComponente.setDescripcionComponenteSuperior(resultados.getString(9));
-				detalleComponente.setNumeroParteComponenteSuperior(resultados.getString(10));
-				detalleComponente.setTipoComponenteSuperior(resultados.getString(11));
+				
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -135,17 +118,7 @@ public class DetalleComponenteDAO {
 			ResultSet resultados = sentencia.executeQuery(consulta);
 			while (resultados.next()) {
 				detalleComponente.setSysPK(resultados.getInt(1));
-				detalleComponente.setComponenteSuperiorFK(resultados.getInt(2));
-				detalleComponente.setComponenteInferiorFK(resultados.getInt(3));
-				detalleComponente.setCantidad(resultados.getInt(4));
-				detalleComponente.setNotas(resultados.getString(5));
-				detalleComponente.setDescripcionComponenteInferior(resultados.getString(6));
-				detalleComponente.setNumeroParteComponenteInferior(resultados.getString(7));
-				detalleComponente.setNumeroDescripcionComponenteIferior();
-				detalleComponente.setTipoComponenteInferior(resultados.getString(8));
-				detalleComponente.setDescripcionComponenteSuperior(resultados.getString(9));
-				detalleComponente.setNumeroParteComponenteSuperior(resultados.getString(10));
-				detalleComponente.setTipoComponenteSuperior(resultados.getString(11));
+				
 			}//FIN WHILE
 		} catch (SQLException ex) {
 			Notificacion.dialogoException(ex);
@@ -158,10 +131,7 @@ public class DetalleComponenteDAO {
 		String consulta = "UPDATE detallecomponentes SET ComponenteSuperiorFK = ?, ComponenteInferiorFK = ?, Cantidad = ?, Notas = ? WHERE Sys_PK = ?";
 		try {
 			PreparedStatement sentenciaPreparada = connection.prepareStatement(consulta);
-			sentenciaPreparada.setInt(1, detalleComponente.getComponenteSuperiorFK());
-			sentenciaPreparada.setInt(2, detalleComponente.getComponenteInferiorFK());
-			sentenciaPreparada.setDouble(3, detalleComponente.getCantidad());
-			sentenciaPreparada.setString(4, detalleComponente.getNotas());
+			
 			sentenciaPreparada.execute();
 			return true;
 		} catch (SQLException ex) {

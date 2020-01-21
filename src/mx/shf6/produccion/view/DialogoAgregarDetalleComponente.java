@@ -74,10 +74,10 @@ public class DialogoAgregarDetalleComponente {
 		else if (this.comboBoxComponentes.getSelectionModel().getSelectedItem().isEmpty())
 			Notificacion.dialogoAlerta(AlertType.ERROR, "", "El campo \"Componente\" no puedes estar vacio");
 		else {
-			this.detalleComponente.setComponenteSuperiorFK(this.componente.getSysPK());
+		/*	this.detalleComponente.setComponenteSuperiorFK(this.componente.getSysPK());
 			this.detalleComponente.setComponenteInferiorFK(ComponenteDAO.readComponenteNumeroParte(this.mainApp.getConnection(), this.comboBoxComponentes.getSelectionModel().getSelectedItem()).getSysPK());
 			this.detalleComponente.setCantidad(Integer.parseInt(this.campoTextoCantidad.getText()));
-			this.detalleComponente.setNotas(this.campoTextoNotas.getText());
+			this.detalleComponente.setNotas(this.campoTextoNotas.getText());*/
 			this.mainApp.getEscenarioDialogosAlterno().close();
 		}//FIN METODO
 	}//FIN METODO

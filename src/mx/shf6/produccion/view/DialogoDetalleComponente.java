@@ -48,10 +48,10 @@ public class DialogoDetalleComponente {
 	
 	//INICIALIZA TABLA
 	private void inicializarTabla() {
-		this.columnaNumeroParte.setCellValueFactory(cellData -> cellData.getValue().getComponenteInferior(this.mainApp.getConnection()).numeroParteProperty());
+		/*this.columnaNumeroParte.setCellValueFactory(cellData -> cellData.getValue().getComponenteInferior(this.mainApp.getConnection()).numeroParteProperty());
 		this.columnaDescripcion.setCellValueFactory(cellData -> cellData.getValue().getComponenteInferior(this.mainApp.getConnection()).descripcionProperty());
 		this.columnaCantidad.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty());
-		this.columnaNotas.setCellValueFactory(cellData -> cellData.getValue().notasProperty());
+		this.columnaNotas.setCellValueFactory(cellData -> cellData.getValue().notasProperty());*/
 	}//FIN METODO
 	
 	//ACTUALIZAR DATOS
