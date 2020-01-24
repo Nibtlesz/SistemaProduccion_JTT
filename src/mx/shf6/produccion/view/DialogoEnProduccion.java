@@ -98,17 +98,18 @@ public class DialogoEnProduccion {
         return fechaSys;
 	}//FIN METODO
 	
-	//MANEJADORES COMPONENTES	
-	@FXML private void manejadorBotonAceptar() {
+	private void iniciarProduccion() {
 		if (this.validarDatos()) {
 			if (Notificacion.dialogoPreguntar("Confirmación para generar una orden de trabajo", "¿Desea generar una orden de trabajo?")){
 				OrdenProduccion orden = new OrdenProduccion();
 				orden.setLote(generarLote());
 				orden.setCantidad(Integer.valueOf(this.campoTextoActualizar.getText()));
 				orden.setDetalleOrdenCompraFK(detalleOrdenCompra.getSysPK());
-				this.detalleOrdenCompra.setSaldo(this.cantidadActualizar);
+				DetalleOrdenCompra dOrdenCompra = new DetalleOrdenCompra();
+				dOrdenCompra.setSysPK(this.detalleOrdenCompra.getSysPK());
+				dOrdenCompra.setSaldo(this.cantidadActualizar);
 					
-		    	if (OrdenProduccionDAO.createOrdenProduccion(this.conexion, orden) && DetalleOrdenCompraDAO.update(conexion, detalleOrdenCompra)) {
+		    	if (OrdenProduccionDAO.createOrdenProduccion(this.conexion, orden) && DetalleOrdenCompraDAO.update(conexion, dOrdenCompra)) {
 		    		for (int i = 0; i < detalleOrdenCompra.getPorEntregar(); i++) {
 		    			int syspk = OrdenProduccionDAO.ultimoSysPK(this.conexion);
 		    			DetalleOrdenProduccion detalleOrden = new DetalleOrdenProduccion();
@@ -121,6 +122,11 @@ public class DialogoEnProduccion {
 		    	}//FIN IF
 			}//FIN IF		
 		}//FIN IF 
+	}
+	
+	//MANEJADORES COMPONENTES	
+	@FXML private void manejadorBotonAceptar() {
+		iniciarProduccion();
 	}//FIN METODO
 	
 	@FXML private void manejadorBotonCerrar() {

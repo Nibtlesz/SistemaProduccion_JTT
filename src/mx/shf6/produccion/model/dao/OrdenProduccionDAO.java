@@ -260,6 +260,20 @@ public class OrdenProduccionDAO {
         }//FIN TRY-CATCH
         return orden;
     }//FIN METODO
+    
+    public static final boolean update(Connection connection, OrdenProduccion ordenProduccion) {
+    	String query = "UPDATE ut_ordenesproduccion SET uf_Status = ? WHERE Sys_PK = ?";
+    	try {
+    		PreparedStatement sentenciaPreparada = connection.prepareStatement(query);
+    		sentenciaPreparada.setInt(1, ordenProduccion.getStatus());
+    		sentenciaPreparada.setInt(2, ordenProduccion.getSysPK());
+    		sentenciaPreparada.execute();
+    		return true;
+    	} catch (SQLException ex) {
+    		Notificacion.dialogoException(ex);
+    		return false;
+    	}//FIN TRY/CATCH
+    }//FIN METODO
 			
 	public static ObservableList<OrdenProduccion> toObservableList(ArrayList<OrdenProduccion> arrayList) {
 		ObservableList<OrdenProduccion> listaObservableOrdenProduccion = FXCollections.observableArrayList();

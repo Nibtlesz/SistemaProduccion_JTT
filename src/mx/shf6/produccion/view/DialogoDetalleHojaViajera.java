@@ -9,16 +9,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import mx.shf6.produccion.MainApp;
-import mx.shf6.produccion.model.Cliente;
-import mx.shf6.produccion.model.Componente;
 import mx.shf6.produccion.model.DetalleHojaViajera;
 import mx.shf6.produccion.model.DetalleProceso;
 import mx.shf6.produccion.model.HojaViajera;
-import mx.shf6.produccion.model.TipoComponente;
-import mx.shf6.produccion.model.dao.ClienteDAO;
 import mx.shf6.produccion.model.dao.ComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleHojaViajeraDAO;
-import mx.shf6.produccion.utilities.GenerarDocumento;
 import mx.shf6.produccion.utilities.Notificacion;
 import mx.shf6.produccion.utilities.PTableColumn;
 
@@ -29,7 +24,7 @@ public class DialogoDetalleHojaViajera {
 	private Connection conexion;
 	private HojaViajera hojaViajera;
 	private ArrayList<DetalleHojaViajera> listaDetallesHojaViajera;
-	private ArrayList<DetalleProceso> listaDetalleProceso;
+	//private ArrayList<DetalleProceso> listaDetalleProceso;
 
 	//VARIABLES
 	Double cantidad = 0.0;
@@ -63,7 +58,7 @@ public class DialogoDetalleHojaViajera {
 		this.conexion = this.mainApp.getConnection();
 		this.hojaViajera = hojaViajera;
 		this.listaDetallesHojaViajera = new ArrayList<DetalleHojaViajera>();
-		this.listaDetalleProceso = listaDetalleProceso;
+		//this.listaDetalleProceso = listaDetalleProceso;
 		actualizarTabla();
 		inicializarComponentes();
 	}//FIN METODO
@@ -87,8 +82,9 @@ public class DialogoDetalleHojaViajera {
 		this.listaDetallesHojaViajera = DetalleHojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.hojaViajera.getSysPK());
 		this.tablaDetalleHojaViajera.setItems(FXCollections.observableArrayList(listaDetallesHojaViajera));
 	}//FIN METODO
-
 	
+
+	//MANEJADORES
 	@FXML private void manejadorBotonLiberar() {
 		if (this.tablaDetalleHojaViajera.getSelectionModel().getSelectedItem() != null) {
 			this.mainApp.iniciarDialogoActualizarDetalleHojaViajera(this.tablaDetalleHojaViajera.getSelectionModel().getSelectedItem(), this.listaDetallesHojaViajera.size(), DialogoActualizarDetalleHojaViajera.LIBERAR);

@@ -216,5 +216,6 @@ public class PantallaOrdenProduccion {
 	//VER LISTA DE MATERIALES
 	private void manejadorBotonListaMateriales(OrdenProduccion ordenProduccion) {
 		this.mainApp.iniciarDialogoPartesPrimarias(ordenProduccion);
+		this.actualizarTabla();
 	}//FIN METODO	
 }//FIN CLASE

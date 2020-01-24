@@ -34,6 +34,7 @@ import mx.shf6.produccion.model.dao.DetalleComponenteDAO;
 import mx.shf6.produccion.model.dao.DetalleHojaViajeraDAO;
 import mx.shf6.produccion.model.dao.DetalleProcesoDAO;
 import mx.shf6.produccion.model.dao.HojaViajeraDAO;
+import mx.shf6.produccion.model.dao.OrdenProduccionDAO;
 import mx.shf6.produccion.model.dao.ProcesoDAO;
 import mx.shf6.produccion.utilities.GenerarDocumento;
 import mx.shf6.produccion.utilities.Notificacion;
@@ -195,7 +196,7 @@ public class DialogoPartesPrimarias {
 	private boolean accionBotonHojaViajera(DetalleComponente componenteHojaViajera) {
 		HojaViajera hojaViajera = HojaViajeraDAO.readHojaViajeraPorOrdenProduccionComponente(this.conexion, this.ordenProduccion.getSysPK(), ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK());
 		ArrayList<DetalleProceso> listaDetallesProceso = DetalleProcesoDAO.readDetalleProcesoFK(this.conexion, ProcesoDAO.readProcesoComponenteFK(this.conexion, ComponenteDAO.readComponenteNumeroParte(this.conexion, componenteHojaViajera.getCodigo().getNumeroParte()).getSysPK()));
-		Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
+		//Componente componente = ComponenteDAO.readComponente(this.conexion, hojaViajera.getComponenteFK());
 		
 		if (hojaViajera.getSysPK() == 0) {
 			hojaViajera.setCantidad(this.ordenProduccion.getCantidad());
@@ -247,6 +248,22 @@ public class DialogoPartesPrimarias {
 		}
 	}//FIN METODO
 
+	private void updateStatusOrdenProduccion() {
+		int enProduccion = 0;
+		for (DetalleHojaViajera detalle :DetalleHojaViajeraDAO.readOrdenProduccion(conexion, this.ordenProduccion.getSysPK())) {
+			if(detalle.getCantidadEnProceso() != 0)
+				enProduccion = enProduccion + 1;
+		}//FIN FOR
+		
+		if(enProduccion != 0) {
+			this.ordenProduccion.setStatus(1);
+			OrdenProduccionDAO.update(conexion, ordenProduccion);
+		} else {
+			this.ordenProduccion.setStatus(3);
+			OrdenProduccionDAO.update(conexion, ordenProduccion);
+		}//FIN IF/ELSE	
+	}//FIN METODO
+	
 	//MANEJADORES COMPONENTES
 	private void manejadorVerHojaViajera(DetalleComponente componenteHojaViajera) {
 		accionBotonHojaViajera(componenteHojaViajera);
@@ -256,6 +273,7 @@ public class DialogoPartesPrimarias {
 	}//FIN METODO
 
 	@FXML private void manejadorBotonCerrar() {
+		updateStatusOrdenProduccion();
 		this.mainApp.getEscenarioDialogos().close();
 	}//FIN METODO
 
@@ -263,8 +281,8 @@ public class DialogoPartesPrimarias {
 		GenerarDocumento.generaListaMateriales(conexion, listaPartePrimaria, this.nombreNumeroComponente);
 	}//FIN METODO
 
-	private void manejadorBotonDibujo(Componente componente) {
-	/*	String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + componente.getNumeroParte() + ".pdf";
+	/*private void manejadorBotonDibujo(Componente componente) {
+		String rutaArchivoDibujo = MainApp.RAIZ_SERVIDOR + "Dibujos\\" +  componente.getCliente(this.mainApp.getConnection()).getNombre() + "\\" + componente.getNumeroParte() + ".pdf";
 		File archivoDibujo = new File(rutaArchivoDibujo);
 		if (archivoDibujo.exists()) {
 			//Notificacion.dialogoAlerta(AlertType.CONFIRMATION, "", "El archivo se va abrir...");
@@ -291,7 +309,7 @@ public class DialogoPartesPrimarias {
 				else
 					Notificacion.dialogoAlerta(AlertType.INFORMATION, "", "El archivo no se pudo cargar al sistema");
 			}//FIN IF ELSE
-		}//FIN IF/ELSE*/
-	}//FIN METODO
+		}//FIN IF/ELSE
+	}//FIN METODO*/
 
 }//FIN CLASE

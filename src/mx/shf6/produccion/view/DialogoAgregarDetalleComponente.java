@@ -21,6 +21,7 @@ public class DialogoAgregarDetalleComponente {
 
 	//PROPIEDADES
 	private MainApp mainApp;
+	@SuppressWarnings("unused")
 	private Componente componente;
 	private DetalleComponente detalleComponente;
 	

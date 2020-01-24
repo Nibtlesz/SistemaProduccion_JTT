@@ -56,6 +56,23 @@ public class DetalleHojaViajeraDAO {
 		return llistaDetallesHojaViajera;
 	}//FIN METODO
 	
+	public static ArrayList<DetalleHojaViajera> readOrdenProduccion(Connection connection, Integer ordenProduccion) {
+		ArrayList<DetalleHojaViajera> llistaDetallesHojaViajera = new ArrayList<DetalleHojaViajera>();
+		String consulta = "SELECT uf_CantidadProceso FROM ut_detallecontroloperaciones INNER JOIN ut_controloperaciones ON ut_detallecontroloperaciones.uf_ControlOperacionesFK = ut_controloperaciones.Sys_PK INNER JOIN ut_ordenesproduccion ON ut_controloperaciones.uf_OrdenProduccionFK = ut_ordenesproduccion.Sys_PK WHERE ut_ordenesproduccion.Sys_PK =  " + ordenProduccion;
+		try {
+			Statement sentencia = connection.createStatement();
+			ResultSet resultados = sentencia.executeQuery(consulta);
+			while (resultados.next()) {
+				DetalleHojaViajera detalleHojaViajera = new DetalleHojaViajera();
+				detalleHojaViajera.setCantidadEnProceso(resultados.getInt(1));
+				llistaDetallesHojaViajera.add(detalleHojaViajera);
+			}//FIN WHILE
+		} catch (SQLException ex) {
+			Notificacion.dialogoException(ex);
+		}//FIN TRY CATCH
+		return llistaDetallesHojaViajera;
+	}//FIN METODO
+	
 	//METODO PARA CREAR UN REGISTRO
 	public static boolean updateDetalleHojaViajera(Connection connection, DetalleHojaViajera detalleHojaViajera) {
 		String consulta = "UPDATE ut_detallecontroloperaciones SET uf_CantidadProceso = ?, uf_CantidadTerminada = ?, uf_FechaHoraInicio = ?, uf_FechaHoraFinal = ? WHERE uf_DetalleProcesoFK = ? AND uf_ControlOperacionesFK = ?";

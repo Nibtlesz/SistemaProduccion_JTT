@@ -204,5 +204,6 @@ public class DialogoDetalleOrdenCompra {
 			Notificacion.dialogoAlerta(AlertType.ERROR, "", "Todas tus piezas estan en producción");
 		else
 			this.mainApp.iniciarDialogoEnProduccion(detalleOrdenCompra);
+		this.updateTable();
 	}//FIN METODO
 }//FIN CLASE
