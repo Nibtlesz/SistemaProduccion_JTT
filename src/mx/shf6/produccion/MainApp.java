@@ -223,7 +223,7 @@ public class MainApp extends Application {
 	//CONSTANTES
 	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.100\\SistemaProduccion\\Ficheros\\";
 	public static final String RAIZ_SERVIDOR = "\\\\192.168.1.107\\SistemaProduccion\\Ficheros\\";
-	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.216\\Ingeniería y Planeación\\PruebasFicherosJTT\\";
+	//public static final String RAIZ_SERVIDOR = "\\\\192.168.0.216\\Ingenierï¿½a y Planeaciï¿½n\\PruebasFicherosJTT\\";
 
 	//VARIABLES
 	private double xOffset = 0.0;
@@ -232,9 +232,9 @@ public class MainApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		//INSTALACIÓN FUENTES
+		//INSTALACIï¿½N FUENTES
 		this.cargarFuentes();
-		//INICIA CONCEXIÓN BASE DATOS
+		//INICIA CONCEXIï¿½N BASE DATOS
 		this.configurarBaseDatos();
 		//INICIA ESCENARIO PRINCIPAL
 		this.configurarEscenarioPrincipal(primaryStage);
@@ -372,7 +372,7 @@ public class MainApp extends Application {
 		this.escenarioPrincipal.setResizable(false);
 		this.escenarioPrincipal.setAlwaysOnTop(true);
 
-		//ESTABLECE TAMAÑO APLICACIÓN
+		//ESTABLECE TAMAï¿½O APLICACIï¿½N
 		//Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		//escenarioPrincipal.setX(primaryScreenBounds.getMinX());
 		//escenarioPrincipal.setY(primaryScreenBounds.getMinY());
@@ -429,7 +429,7 @@ public class MainApp extends Application {
 			this.escenarioPrincipal.setResizable(false);
 			this.escenarioPrincipal.setAlwaysOnTop(false);
 
-			//ESTABLECE TAMAÑO APLICACIÓN
+			//ESTABLECE TAMAï¿½O APLICACIï¿½N
 			//Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 			//escenarioPrincipal.setX(primaryScreenBounds.getMinX());
 			//escenarioPrincipal.setY(primaryScreenBounds.getMinY());
@@ -1152,7 +1152,7 @@ public class MainApp extends Application {
             this.escenarioDialogos.showAndWait();
         } catch(IOException | IllegalStateException ex) {
             Notificacion.dialogoException(ex);
-        }//FIN TRY/CATCH
+        }//FIN TRY/CATC
     }//FIN METODO
 
 	public void iniciarDialogoAgregarMaterial(Material material, int opcion) {
@@ -1681,7 +1681,7 @@ public class MainApp extends Application {
 	@Override
 	public void stop() {
 		//System.out.println("Cerrando aplicacion...");
-		boolean opcion = Notificacion.dialogoPreguntar("Sistema de Producción", "Estas a punto de salir del sistema, ¿Realmente deseas cerrar la aplicación?");
+		boolean opcion = Notificacion.dialogoPreguntar("Sistema de Producciï¿½n", "Estas a punto de salir del sistema, ï¿½Realmente deseas cerrar la aplicaciï¿½n?");
 		if (opcion) {
 			this.conexionBD.terminarConexion(this.getConnection());
 			System.exit(0);
